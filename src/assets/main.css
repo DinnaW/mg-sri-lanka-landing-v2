@@ -1,0 +1,174 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Manrope', Arial, sans-serif;
+  color: #ffffff;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  --mg-red: #e30613;
+  --mg-dark: #050505;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--mg-dark);
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+}
+
+/* =========================================================
+   MG GLOBAL LAYOUT + TYPOGRAPHY SYSTEM
+   ---------------------------------------------------------
+   One shared system for every page section:
+   - full-width section content
+   - 5vw left / right page gutters
+   - one consistent section-heading size
+   - one consistent secondary-text weight
+   - readable minimum sizes for supporting copy
+========================================================= */
+
+:root {
+  --mg-page-gutter: 5vw;
+  --mg-section-heading-size: clamp(34px, 2.55vw, 48px);
+  --mg-secondary-size: clamp(11px, 0.72vw, 14px);
+  --mg-secondary-weight: 500;
+}
+
+/* Standard content containers — full width with one shared 5vw gutter. */
+.mg-header__inner,
+.mg-mega__inner,
+.mg-hero__container,
+.mg-range-container,
+.mg-range-slider-wrap,
+.mg-dynamics__container,
+.mg-editorial__container,
+.mg-gallery__container,
+.mg-owners__container,
+.mg-cinematic-banner__container,
+.mg-showroom-footer__shell,
+.mg-brand__container,
+.mg-highlight__container,
+.mg-cinematic-3d__container {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: var(--mg-page-gutter) !important;
+  padding-right: var(--mg-page-gutter) !important;
+  box-sizing: border-box !important;
+}
+
+/* Vehicle showcase has no inner page-width container. */
+.mg-range {
+  padding-left: var(--mg-page-gutter) !important;
+  padding-right: var(--mg-page-gutter) !important;
+}
+
+/* Full-bleed visual sections keep the image full width,
+   while their readable UI aligns to the same 5vw page gutter. */
+.mg-night-drive__header {
+  left: var(--mg-page-gutter) !important;
+  right: var(--mg-page-gutter) !important;
+}
+
+.mg-night-drive__metric,
+.mg-night-drive__image-footer {
+  right: var(--mg-page-gutter) !important;
+}
+
+.mg-model-stage__brand {
+  left: var(--mg-page-gutter) !important;
+}
+
+.mg-model-stage__reset {
+  right: var(--mg-page-gutter) !important;
+}
+
+/* One consistent heading size across content sections.
+   Hero campaign typography is intentionally excluded. */
+.mg-range-heading h2,
+.mg-dynamics__headline h2,
+.mg-editorial__title,
+.mg-gallery__heading h2,
+.mg-owners__heading h2,
+.mg-night-drive__heading h2,
+.mg-model-stage__title h2,
+.mg-cinematic-banner__content h2,
+.mg-brand__heading h2,
+.mg-highlight__heading h2,
+.mg-cinematic-3d__heading h2 {
+  font-size: var(--mg-section-heading-size) !important;
+}
+
+/* Shared secondary copy treatment.
+   This also prevents sub-copy dropping to unreadably small vw values. */
+.mg-range-intro p,
+.mg-dynamics__intro-copy p,
+.mg-editorial__spec-list li,
+.mg-gallery__intro p,
+.mg-gallery__copy p,
+.mg-owners__header-right p,
+.mg-night-drive__header-copy p,
+.mg-model-stage__title p,
+.mg-cinematic-banner__content p,
+.mg-showroom-footer__desc,
+.mg-brand__intro-copy p,
+.mg-highlight__community p,
+.mg-cinematic-3d__header p {
+  font-size: var(--mg-secondary-size) !important;
+  font-weight: var(--mg-secondary-weight) !important;
+}
+
+/* Keep supporting labels readable without making them visually dominant. */
+.mg-range-eyebrow,
+.mg-editorial__detail-label,
+.mg-gallery__label span,
+.mg-owners__eyebrow,
+.mg-model-stage__title > span,
+.mg-cinematic-banner__kicker,
+.mg-brand__eyebrow,
+.mg-highlight__eyebrow {
+  font-weight: var(--mg-secondary-weight) !important;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --mg-page-gutter: 5vw;
+    --mg-section-heading-size: 34px;
+    --mg-secondary-size: 11px;
+  }
+}
+
