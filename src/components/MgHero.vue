@@ -806,8 +806,8 @@ onBeforeUnmount(() => {
 
   margin: 0 !important;
 
-  padding-left: 4vw !important;
-  padding-right: 4vw !important;
+  padding-left: var(--mg-page-gutter, 5vw) !important;
+  padding-right: var(--mg-page-gutter, 5vw) !important;
 
   box-sizing: border-box !important;
 
@@ -906,7 +906,7 @@ onBeforeUnmount(() => {
 
 .mg-hero__slider-nav {
   position: absolute;
-  left: 0;
+  left: var(--mg-page-gutter, 5vw);
   bottom: 2.65vw;
   z-index: 60;
 
@@ -1052,7 +1052,7 @@ onBeforeUnmount(() => {
 
 .vehicle-card {
   position: absolute;
-  right: 0;
+  right: var(--mg-page-gutter, 5vw);
   bottom: 2.5vw;
   z-index: 55;
 
@@ -1375,8 +1375,8 @@ onBeforeUnmount(() => {
   .mg-hero__container {
     width: 100% !important;
 
-    padding-left: 4vw !important;
-    padding-right: 4vw !important;
+    padding-left: var(--mg-page-gutter, 5vw) !important;
+    padding-right: var(--mg-page-gutter, 5vw) !important;
   }
 
   .mg-hero__intro {
@@ -1455,8 +1455,8 @@ onBeforeUnmount(() => {
   .mg-hero__container {
     width: 100% !important;
 
-    padding-left: 4vw !important;
-    padding-right: 4vw !important;
+    padding-left: var(--mg-page-gutter, 5vw) !important;
+    padding-right: var(--mg-page-gutter, 5vw) !important;
   }
 
   .mg-hero__intro {
@@ -1479,7 +1479,7 @@ onBeforeUnmount(() => {
   }
 
   .mg-hero__slider-nav {
-    left: 0;
+    left: var(--mg-page-gutter, 5vw);
     bottom: 31vw;
     width: 70%;
 
@@ -1517,7 +1517,7 @@ onBeforeUnmount(() => {
   }
 
   .vehicle-card {
-    right: 0;
+    right: var(--mg-page-gutter, 5vw);
     bottom: 18px;
 
     width: min(62vw, 245px);
@@ -1609,9 +1609,9 @@ onBeforeUnmount(() => {
 /* =========================================================
    HERO INNER GUTTER
    ---------------------------------------------------------
-   Full-width hero with a dedicated 4vw inner gutter.
-   This intentionally overrides the project's shared
-   5vw gutter only for this hero section.
+   Full-width hero using the SAME shared page gutter
+   as the header and every content section.
+   Change --mg-page-gutter in main.css once to update all sections.
 ========================================================= */
 
 .mg-hero .mg-hero__container {
@@ -1621,8 +1621,8 @@ onBeforeUnmount(() => {
   margin-left: 0 !important;
   margin-right: 0 !important;
 
-  padding-left: 4vw !important;
-  padding-right: 4vw !important;
+  padding-left: var(--mg-page-gutter, 5vw) !important;
+  padding-right: var(--mg-page-gutter, 5vw) !important;
 
   box-sizing: border-box !important;
 }

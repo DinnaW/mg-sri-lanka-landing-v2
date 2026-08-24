@@ -338,14 +338,16 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 .mg-cinematic-banner__container {
   position: relative;
 
-  width: min(
-    91%,
-    1420px
-  );
-
+  width: 100% !important;
+  max-width: none !important;
   height: 100%;
 
-  margin: 0 auto;
+  margin: 0 !important;
+
+  padding-left: var(--mg-page-gutter, 5vw) !important;
+  padding-right: var(--mg-page-gutter, 5vw) !important;
+
+  box-sizing: border-box !important;
 }
 
 
@@ -470,7 +472,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 .mg-cinematic-banner__content {
   position: absolute;
 
-  left: 0;
+  left: var(--mg-page-gutter, 5vw);
 
   top: 49%;
 
@@ -716,8 +718,8 @@ span:last-child {
 .mg-cinematic-banner__bottom {
   position: absolute;
 
-  left: 0;
-  right: 0;
+  left: var(--mg-page-gutter, 5vw);
+  right: var(--mg-page-gutter, 5vw);
 
   bottom:
     clamp(
@@ -902,8 +904,9 @@ span:last-child {
 
 
   .mg-cinematic-banner__container {
-    width:
-      calc(100% - 30px);
+    width: 100% !important;
+    padding-left: var(--mg-page-gutter, 5vw) !important;
+    padding-right: var(--mg-page-gutter, 5vw) !important;
   }
 
 
@@ -956,7 +959,7 @@ span:last-child {
   .mg-cinematic-banner__content {
     top: auto;
 
-    left: 0;
+    left: var(--mg-page-gutter, 5vw);
 
     bottom: 105px;
 
