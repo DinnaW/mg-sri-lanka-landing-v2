@@ -845,7 +845,7 @@ onBeforeUnmount(() => {
   display: block;
   margin-bottom: .55vw;
   color: rgba(255, 255, 255, .84);
-  font-size: .62vw;
+  font-size: clamp(14px, 0.82vw, 17px);
   font-weight: 650;
   letter-spacing: .18em;
   text-transform: uppercase;
@@ -854,7 +854,7 @@ onBeforeUnmount(() => {
 .mg-hero__title {
   margin: 0;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 4.7vw;
+  font-size: clamp(62px, 4.35vw, 86px);
   font-weight: 500;
   line-height: .91;
   letter-spacing: -.025em;
@@ -866,7 +866,7 @@ onBeforeUnmount(() => {
 .mg-hero__tagline {
   margin: .62vw 0 0;
   color: rgba(255, 255, 255, .94);
-  font-size: 1.02vw;
+  font-size: clamp(18px, 1.2vw, 24px);
   font-weight: 400;
   text-shadow:
     0 .2vw 1vw rgba(0, 0, 0, .3);
@@ -933,14 +933,14 @@ onBeforeUnmount(() => {
 
 .mg-hero__counter strong {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 1.2vw;
+  font-size: clamp(23px, 1.5vw, 31px);
   font-weight: 500;
 }
 
 .mg-hero__counter span,
 .mg-hero__counter small {
   color: rgba(255, 255, 255, .5);
-  font-size: .48vw;
+  font-size: clamp(12px, 0.72vw, 15px);
   font-weight: 600;
 }
 
@@ -1037,7 +1037,7 @@ onBeforeUnmount(() => {
 
   overflow: hidden;
 
-  font-size: .56vw;
+  font-size: clamp(13px, 0.78vw, 16px);
   font-weight: 650;
   letter-spacing: .07em;
 
@@ -1170,7 +1170,7 @@ onBeforeUnmount(() => {
   display: block;
   margin-bottom: .16vw;
   color: rgba(255, 255, 255, .62);
-  font-size: .34vw;
+  font-size: clamp(10px, 0.58vw, 12px);
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
@@ -1179,7 +1179,7 @@ onBeforeUnmount(() => {
 .vehicle-card__meta strong {
   display: block;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 1.16vw;
+  font-size: clamp(23px, 1.48vw, 30px);
   font-weight: 600;
   line-height: 1;
   text-transform: uppercase;
@@ -1219,7 +1219,7 @@ onBeforeUnmount(() => {
 
 .vehicle-card__testdrive
 > span:last-child {
-  font-size: .56vw;
+  font-size: clamp(12px, 0.74vw, 15px);
   font-weight: 750;
   letter-spacing: .11em;
   text-transform: uppercase;

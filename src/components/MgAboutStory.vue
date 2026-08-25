@@ -246,13 +246,32 @@ const toggleSpec = (id) => {
   --page: #f7f7f4;
   --red: #e51920;
 
+  /* =======================================================
+     UNIFIED MG TYPOGRAPHY
+     Same Manrope style / weight system used across sections.
+  ======================================================= */
+  --mg-font: "Manrope", Arial, sans-serif;
+
+  --mg-heading-size: clamp(56px, 3.8vw, 76px);
+  --mg-subheading-size: clamp(38px, 2.6vw, 52px);
+  --mg-body-size: clamp(17px, 1.08vw, 22px);
+  --mg-card-title-size: clamp(16px, 1vw, 20px);
+  --mg-label-size: clamp(12px, 0.72vw, 15px);
+  --mg-detail-size: clamp(12px, 0.74vw, 15px);
+  --mg-spec-value-size: clamp(42px, 2.7vw, 58px);
+  --mg-spec-unit-size: clamp(13px, 0.8vw, 16px);
+
+  --mg-heading-weight: 600;
+  --mg-body-weight: 500;
+  --mg-label-weight: 600;
+
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: clamp(70px, 5.5vw, 96px) 0 clamp(76px, 6vw, 104px);
+  padding: clamp(42px, 3.2vw, 62px) 0 clamp(48px, 3.6vw, 70px);
   background: var(--page);
   color: var(--black);
-  font-family: "Manrope", sans-serif;
+  font-family: var(--mg-font);
 }
 
 .mg-dynamics::before {
@@ -281,14 +300,15 @@ const toggleSpec = (id) => {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   align-items: start;
   gap: clamp(32px, 4vw, 65px);
-  margin-bottom: clamp(35px, 3.4vw, 52px);
+  margin-bottom: clamp(24px, 2vw, 36px);
 }
 
 .mg-dynamics__headline h2 {
   max-width: 650px;
   margin: 0;
-  font-size: 2.65vw;
-  font-weight: 650;
+  font-family: var(--mg-font);
+  font-size: var(--mg-heading-size);
+  font-weight: var(--mg-heading-weight);
   line-height: 1.08;
   letter-spacing: -0.05em;
 }
@@ -302,15 +322,17 @@ const toggleSpec = (id) => {
   max-width: 600px;
   margin: 5px 0 0;
   color: var(--muted);
-  font-size: 0.68vw;
-  line-height: 1.62;
+  font-family: var(--mg-font);
+  font-size: var(--mg-body-size);
+  font-weight: var(--mg-body-weight);
+  line-height: 1.65;
 }
 
 .mg-dynamics__features {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(14px, 1.25vw, 20px);
-  margin-bottom: clamp(55px, 5vw, 76px);
+  margin-bottom: clamp(80px, 6vw, 120px);
 }
 
 .mg-eco-card {
@@ -430,8 +452,9 @@ const toggleSpec = (id) => {
   display: block;
   margin-bottom: 5px;
   color: rgba(255, 255, 255, 0.62);
-  font-size: 0.34vw;
-  font-weight: 700;
+  font-family: var(--mg-font);
+  font-size: var(--mg-label-size);
+  font-weight: var(--mg-label-weight);
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }
@@ -439,7 +462,8 @@ const toggleSpec = (id) => {
 .mg-eco-card__caption strong {
   display: block;
   max-width: 22vw;
-  font-size: 0.88vw;
+  font-family: var(--mg-font);
+  font-size: var(--mg-card-title-size);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.025em;
@@ -450,26 +474,30 @@ const toggleSpec = (id) => {
   grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(32px, 4vw, 65px);
   align-items: start;
-  margin-bottom: 37px;
+  margin-bottom: clamp(22px, 1.8vw, 30px);
 }
 
 .mg-specs__intro h3 {
   margin: 0;
-  font-size: 2.3vw;
-  font-weight: 650;
+  font-family: var(--mg-font);
+  font-size: clamp(46px, 3vw, 62px);
+  font-weight: var(--mg-heading-weight);
   line-height: 1.07;
   letter-spacing: -0.048em;
 }
 
 .mg-specs__intro p {
-  max-width: 610px;
+  max-width: 560px;
   margin: 4px 0 0;
   color: var(--muted);
-  font-size: 0.66vw;
-  line-height: 1.6;
+  font-family: var(--mg-font);
+  font-size: clamp(15px, 0.96vw, 19px);
+  font-weight: var(--mg-body-weight);
+  line-height: 1.62;
 }
 
 .mg-specs {
+  margin-top: clamp(28px, 2.2vw, 40px);
   border-top: 1px solid var(--line);
 }
 
@@ -527,8 +555,9 @@ const toggleSpec = (id) => {
 }
 
 .mg-spec__value strong {
-  font-size: 3vw;
-  font-weight: 650;
+  font-family: var(--mg-font);
+  font-size: clamp(46px, 3vw, 62px);
+  font-weight: var(--mg-heading-weight);
   line-height: 1;
   letter-spacing: -0.06em;
 }
@@ -536,8 +565,9 @@ const toggleSpec = (id) => {
 .mg-spec__value span {
   margin-left: 2px;
   color: #575a56;
-  font-size: 1vw;
-  font-weight: 500;
+  font-family: var(--mg-font);
+  font-size: clamp(14px, 0.86vw, 17px);
+  font-weight: var(--mg-body-weight);
 }
 
 .mg-spec__description {
@@ -550,8 +580,9 @@ const toggleSpec = (id) => {
 .mg-spec__description p {
   max-width: 480px;
   margin: 0;
-  font-size: 0.74vw;
-  font-weight: 600;
+  font-family: var(--mg-font);
+  font-size: clamp(15px, 0.96vw, 19px);
+  font-weight: var(--mg-body-weight);
   line-height: 1.43;
   letter-spacing: -0.016em;
 }
@@ -593,8 +624,10 @@ const toggleSpec = (id) => {
   max-width: 235px;
   margin: 0;
   color: #6c706a;
-  font-size: 0.46vw;
-  line-height: 1.58;
+  font-family: var(--mg-font);
+  font-size: clamp(13px, 0.82vw, 16px);
+  font-weight: var(--mg-body-weight);
+  line-height: 1.6;
 }
 
 .mg-spec__visual-card {
@@ -647,11 +680,13 @@ const toggleSpec = (id) => {
 
 .mg-spec__expanded p {
   grid-column: 3;
-  max-width: 470px;
+  max-width: 620px;
   margin: 0;
   color: #6c706a;
-  font-size: 0.625vw;
-  line-height: 1.6;
+  font-family: var(--mg-font);
+  font-size: clamp(13px, 0.82vw, 16px);
+  font-weight: 500;
+  line-height: 1.65;
 }
 
 .spec-expand-enter-active,
@@ -663,6 +698,94 @@ const toggleSpec = (id) => {
 .spec-expand-leave-to {
   opacity: 0;
   transform: translateY(-7px);
+}
+
+
+
+
+/* =========================================================
+   TYPE CONSISTENCY
+   Keep only the shared font family here. Individual elements
+   retain their own size, color, spacing and hierarchy.
+========================================================= */
+
+.mg-dynamics__headline h2,
+.mg-dynamics__intro-copy p,
+.mg-eco-card__caption span,
+.mg-eco-card__caption strong,
+.mg-specs__intro h3,
+.mg-specs__intro p,
+.mg-spec__value strong,
+.mg-spec__value span,
+.mg-spec__description p,
+.mg-spec__micro p,
+.mg-spec__expanded p {
+  font-family: var(--mg-font);
+}
+
+.mg-dynamics__headline h2,
+.mg-specs__intro h3,
+.mg-spec__value strong {
+  font-weight: var(--mg-heading-weight);
+}
+
+.mg-dynamics__intro-copy p,
+.mg-specs__intro p,
+.mg-spec__description p,
+.mg-spec__micro p,
+.mg-spec__expanded p,
+.mg-spec__value span {
+  font-weight: var(--mg-body-weight);
+}
+
+.mg-eco-card__caption span {
+  font-weight: var(--mg-label-weight);
+}
+
+.mg-eco-card__caption strong {
+  font-weight: 600;
+}
+
+
+/* =========================================================
+   LARGE DESKTOP TYPOGRAPHY
+   Matches the typography scale used across the other MG sections.
+========================================================= */
+
+@media (min-width: 1600px) {
+  .mg-dynamics {
+    --mg-heading-size: clamp(64px, 4vw, 86px);
+    --mg-body-size: clamp(18px, 1.12vw, 24px);
+    --mg-card-title-size: clamp(18px, 1.08vw, 22px);
+    --mg-label-size: clamp(13px, 0.76vw, 16px);
+  }
+
+  .mg-specs__intro h3,
+  .mg-spec__value strong {
+    font-size: clamp(52px, 3.1vw, 68px);
+  }
+
+  .mg-specs__intro p,
+  .mg-spec__description p {
+    font-size: clamp(16px, 1vw, 20px);
+  }
+
+  .mg-spec__expanded p {
+    max-width: 680px;
+    font-size: clamp(13px, 0.82vw, 16px);
+  }
+
+  .mg-spec__value span {
+    font-size: clamp(15px, 0.9vw, 18px);
+  }
+
+  .mg-spec__micro p {
+    font-size: clamp(14px, 0.86vw, 17px);
+  }
+
+  .mg-eco-card__caption strong {
+    max-width: 30vw;
+  }
 }
 
 @media (max-width: 1000px) {
@@ -686,13 +809,36 @@ const toggleSpec = (id) => {
 
   .mg-eco-card__caption strong {
     max-width: 32vw;
-    font-size: 1.15vw;
+    font-size: clamp(14px, 1.4vw, 18px);
   }
 }
 
 @media (max-width: 767px) {
+
+  .mg-dynamics__headline h2,
+  .mg-specs__intro h3,
+  .mg-spec__value strong {
+    font-family: var(--mg-font);
+    font-weight: 600;
+  }
+
+  .mg-dynamics__intro-copy p,
+  .mg-specs__intro p,
+  .mg-spec__description p,
+  .mg-spec__micro p,
+  .mg-spec__expanded p,
+  .mg-spec__value span {
+    font-family: var(--mg-font);
+    font-weight: 500;
+  }
+
+  .mg-eco-card__caption span,
+  .mg-eco-card__caption strong {
+    font-family: var(--mg-font);
+  }
+
   .mg-dynamics {
-    padding: 58px 0 66px;
+    padding: 42px 0 50px;
   }
 
   .mg-dynamics__container {
@@ -702,7 +848,7 @@ const toggleSpec = (id) => {
   .mg-dynamics__intro {
     grid-template-columns: 1fr;
     gap: 18px;
-    margin-bottom: 34px;
+    margin-bottom: 26px;
   }
 
   .mg-dynamics__headline h2 {
@@ -721,7 +867,7 @@ const toggleSpec = (id) => {
   .mg-dynamics__features {
     grid-template-columns: 1fr;
     gap: 27px;
-    margin-bottom: 54px;
+    margin-bottom: 38px;
   }
 
   .mg-eco-card__top {
@@ -750,7 +896,7 @@ const toggleSpec = (id) => {
   .mg-specs__intro {
     grid-template-columns: 1fr;
     gap: 17px;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
   }
 
   .mg-specs__intro h3 {
@@ -822,7 +968,8 @@ const toggleSpec = (id) => {
   }
 
   .mg-spec__expanded p {
-    font-size: 7px;
+    font-size: 9px;
+    line-height: 1.55;
   }
 }
 

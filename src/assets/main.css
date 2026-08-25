@@ -1,15 +1,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
 
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root {
   font-family: 'Manrope', Arial, sans-serif;
   color: #ffffff;
   background: #050505;
+
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+
   --mg-red: #e30613;
   --mg-dark: #050505;
+
+  --mg-page-gutter: 5vw;
+
+  /* NORMAL / LAPTOP */
+  --mg-section-heading-size: clamp(38px, 2.65vw, 52px);
+
+  /* DESCRIPTION â€” SLIGHTLY LARGER */
+  --mg-secondary-size: clamp(13px, 0.86vw, 17px);
+
+  --mg-secondary-weight: 500;
 }
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *,
 *::before,
@@ -49,25 +70,11 @@ a {
   color: inherit;
 }
 
+
 /* =========================================================
-   MG GLOBAL LAYOUT + TYPOGRAPHY SYSTEM
-   ---------------------------------------------------------
-   One shared system for every page section:
-   - full-width section content
-   - 5vw left / right page gutters
-   - one consistent section-heading size
-   - one consistent secondary-text weight
-   - readable minimum sizes for supporting copy
+   GLOBAL PAGE CONTAINERS
 ========================================================= */
 
-:root {
-  --mg-page-gutter: 5vw;
-  --mg-section-heading-size: clamp(34px, 2.55vw, 48px);
-  --mg-secondary-size: clamp(11px, 0.72vw, 14px);
-  --mg-secondary-weight: 500;
-}
-
-/* Standard content containers — full width with one shared 5vw gutter. */
 .mg-header__inner,
 .mg-mega__inner,
 .mg-hero__container,
@@ -84,21 +91,31 @@ a {
 .mg-cinematic-3d__container {
   width: 100% !important;
   max-width: none !important;
+
   margin-left: 0 !important;
   margin-right: 0 !important;
+
   padding-left: var(--mg-page-gutter) !important;
   padding-right: var(--mg-page-gutter) !important;
+
   box-sizing: border-box !important;
 }
 
-/* Vehicle showcase has no inner page-width container. */
+
+/* =========================================================
+   VEHICLE RANGE
+========================================================= */
+
 .mg-range {
   padding-left: var(--mg-page-gutter) !important;
   padding-right: var(--mg-page-gutter) !important;
 }
 
-/* Full-bleed visual sections keep the image full width,
-   while their readable UI aligns to the same 5vw page gutter. */
+
+/* =========================================================
+   NIGHT DRIVE
+========================================================= */
+
 .mg-night-drive__header {
   left: var(--mg-page-gutter) !important;
   right: var(--mg-page-gutter) !important;
@@ -109,6 +126,11 @@ a {
   right: var(--mg-page-gutter) !important;
 }
 
+
+/* =========================================================
+   MODEL STAGE
+========================================================= */
+
 .mg-model-stage__brand {
   left: var(--mg-page-gutter) !important;
 }
@@ -117,8 +139,12 @@ a {
   right: var(--mg-page-gutter) !important;
 }
 
-/* One consistent heading size across content sections.
-   Hero campaign typography is intentionally excluded. */
+
+/* =========================================================
+   GLOBAL SECTION HEADINGS
+   HEADING SIZES UNCHANGED
+========================================================= */
+
 .mg-range-heading h2,
 .mg-dynamics__headline h2,
 .mg-editorial__title,
@@ -131,10 +157,16 @@ a {
 .mg-highlight__heading h2,
 .mg-cinematic-3d__heading h2 {
   font-size: var(--mg-section-heading-size) !important;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
 }
 
-/* Shared secondary copy treatment.
-   This also prevents sub-copy dropping to unreadably small vw values. */
+
+/* =========================================================
+   DESCRIPTION / SECONDARY TEXT
+   ONLY THESE FONT SIZES ARE INCREASED
+========================================================= */
+
 .mg-range-intro p,
 .mg-dynamics__intro-copy p,
 .mg-editorial__spec-list li,
@@ -150,9 +182,14 @@ a {
 .mg-cinematic-3d__header p {
   font-size: var(--mg-secondary-size) !important;
   font-weight: var(--mg-secondary-weight) !important;
+  line-height: 1.65;
 }
 
-/* Keep supporting labels readable without making them visually dominant. */
+
+/* =========================================================
+   EYEBROWS / SMALL LABELS
+========================================================= */
+
 .mg-range-eyebrow,
 .mg-editorial__detail-label,
 .mg-gallery__label span,
@@ -161,14 +198,570 @@ a {
 .mg-cinematic-banner__kicker,
 .mg-brand__eyebrow,
 .mg-highlight__eyebrow {
-  font-weight: var(--mg-secondary-weight) !important;
+  font-weight: 600 !important;
 }
 
-@media (max-width: 767px) {
-  :root {
-    --mg-page-gutter: 5vw;
-    --mg-section-heading-size: 34px;
-    --mg-secondary-size: 11px;
+
+
+/* =========================================================
+   GLOBAL SECTION GAP / TYPOGRAPHY POLISH
+========================================================= */
+
+/*
+  Consistent vertical rhythm between the main MG sections.
+  Components can keep their own internal layout, while these
+  rules prevent sections from feeling either cramped or too far apart.
+*/
+.mg-range,
+.mg-dynamics,
+.mg-editorial,
+.mg-gallery,
+.mg-owners,
+.mg-brand,
+.mg-highlight,
+.mg-cinematic-3d {
+  padding-top: clamp(72px, 6vw, 118px);
+  padding-bottom: clamp(72px, 6vw, 118px);
+}
+
+/* Sections that are primarily full-bleed visual/cinematic blocks
+   do not receive forced outer padding. */
+.mg-night-drive,
+.mg-model-stage,
+.mg-cinematic-banner,
+.mg-showroom-footer {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Consistent heading-to-description gap. */
+.mg-range-heading,
+.mg-dynamics__headline,
+.mg-gallery__heading,
+.mg-owners__heading,
+.mg-brand__heading,
+.mg-highlight__heading,
+.mg-cinematic-3d__heading {
+  margin-bottom: clamp(20px, 1.7vw, 34px);
+}
+
+/* Premium heading treatment. */
+.mg-range-heading h2,
+.mg-dynamics__headline h2,
+.mg-editorial__title,
+.mg-gallery__heading h2,
+.mg-owners__heading h2,
+.mg-night-drive__heading h2,
+.mg-model-stage__title h2,
+.mg-cinematic-banner__content h2,
+.mg-brand__heading h2,
+.mg-highlight__heading h2,
+.mg-cinematic-3d__heading h2 {
+  font-family: 'Manrope', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  line-height: 1.03 !important;
+  letter-spacing: -0.035em !important;
+}
+
+/* Body copy stays lighter than headings. */
+.mg-range-intro p,
+.mg-dynamics__intro-copy p,
+.mg-editorial__spec-list li,
+.mg-gallery__intro p,
+.mg-gallery__copy p,
+.mg-owners__header-right p,
+.mg-night-drive__header-copy p,
+.mg-model-stage__title p,
+.mg-cinematic-banner__content p,
+.mg-showroom-footer__desc,
+.mg-brand__intro-copy p,
+.mg-highlight__community p,
+.mg-cinematic-3d__header p {
+  font-family: 'Manrope', Arial, sans-serif !important;
+  font-weight: 500 !important;
+  line-height: 1.65 !important;
+  letter-spacing: -0.01em;
+}
+
+/* Eyebrows remain compact and clean. */
+.mg-range-eyebrow,
+.mg-dynamics__eyebrow,
+.mg-editorial__detail-label,
+.mg-gallery__label span,
+.mg-owners__eyebrow,
+.mg-model-stage__title > span,
+.mg-cinematic-banner__kicker,
+.mg-brand__eyebrow,
+.mg-highlight__eyebrow {
+  font-family: 'Manrope', Arial, sans-serif !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.12em;
+}
+
+/* Desktop section spacing */
+@media (min-width: 1200px) {
+  .mg-range,
+  .mg-dynamics,
+  .mg-editorial,
+  .mg-gallery,
+  .mg-owners,
+  .mg-brand,
+  .mg-highlight,
+  .mg-cinematic-3d {
+    padding-top: clamp(82px, 6vw, 124px);
+    padding-bottom: clamp(82px, 6vw, 124px);
   }
 }
 
+/* Very wide screens: avoid huge empty gaps. */
+@media (min-width: 1600px) {
+  .mg-range,
+  .mg-dynamics,
+  .mg-editorial,
+  .mg-gallery,
+  .mg-owners,
+  .mg-brand,
+  .mg-highlight,
+  .mg-cinematic-3d {
+    padding-top: clamp(92px, 5.5vw, 132px);
+    padding-bottom: clamp(92px, 5.5vw, 132px);
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) and (max-width: 1199px) {
+  .mg-range,
+  .mg-dynamics,
+  .mg-editorial,
+  .mg-gallery,
+  .mg-owners,
+  .mg-brand,
+  .mg-highlight,
+  .mg-cinematic-3d {
+    padding-top: clamp(64px, 7vw, 84px);
+    padding-bottom: clamp(64px, 7vw, 84px);
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-range,
+  .mg-dynamics,
+  .mg-editorial,
+  .mg-gallery,
+  .mg-owners,
+  .mg-brand,
+  .mg-highlight,
+  .mg-cinematic-3d {
+    padding-top: clamp(52px, 14vw, 72px);
+    padding-bottom: clamp(52px, 14vw, 72px);
+  }
+
+  .mg-range-heading,
+  .mg-dynamics__headline,
+  .mg-gallery__heading,
+  .mg-owners__heading,
+  .mg-brand__heading,
+  .mg-highlight__heading,
+  .mg-cinematic-3d__heading {
+    margin-bottom: 18px;
+  }
+}
+
+
+/* =========================================================
+   DESKTOP â€” 1200px+
+========================================================= */
+
+@media (min-width: 1200px) {
+
+  :root {
+    /* HEADING â€” UNCHANGED */
+    --mg-section-heading-size: clamp(46px, 3vw, 62px);
+
+    /* DESCRIPTION â€” SLIGHTLY LARGER */
+    --mg-secondary-size: clamp(15px, 0.96vw, 19px);
+  }
+
+
+  /* =======================================================
+     RANGE
+  ======================================================= */
+
+  .mg-range-eyebrow {
+    font-size: clamp(11px, 0.64vw, 13px) !important;
+  }
+
+  .mg-range-heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-range-intro p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+    line-height: 1.65;
+  }
+
+
+  /* =======================================================
+     DYNAMICS / ABOUT
+  ======================================================= */
+
+  .mg-dynamics__eyebrow {
+    font-size: clamp(11px, 0.64vw, 13px) !important;
+  }
+
+  .mg-dynamics__headline h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-dynamics__intro-copy p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+
+  /* =======================================================
+     EDITORIAL
+  ======================================================= */
+
+  .mg-editorial__title {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-editorial__detail-label {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+  .mg-editorial__spec-list li {
+    font-size: clamp(14px, 0.86vw, 17px) !important;
+  }
+
+
+  /* =======================================================
+     DESIGN GALLERY
+  ======================================================= */
+
+  .mg-gallery__heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-gallery__intro p,
+  .mg-gallery__copy p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+  .mg-gallery__label span {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+
+  /* =======================================================
+     OWNER STORIES
+  ======================================================= */
+
+  .mg-owners__heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-owners__header-right p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+  .mg-owners__eyebrow {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+
+  /* =======================================================
+     NIGHT DRIVE
+  ======================================================= */
+
+  .mg-night-drive__heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-night-drive__header-copy p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+
+  /* =======================================================
+     MODEL STAGE
+  ======================================================= */
+
+  .mg-model-stage__title h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-model-stage__title p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+  .mg-model-stage__title > span {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+
+  /* =======================================================
+     CINEMATIC BANNER
+  ======================================================= */
+
+  .mg-cinematic-banner__content h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-cinematic-banner__content p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+  .mg-cinematic-banner__kicker {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+
+  /* =======================================================
+     SHOWROOM FOOTER DESCRIPTION
+  ======================================================= */
+
+  .mg-showroom-footer__desc {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+    line-height: 1.7;
+  }
+
+
+  /* =======================================================
+     BRAND STORY
+  ======================================================= */
+
+  .mg-brand__heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-brand__intro-copy p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+  .mg-brand__eyebrow {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+
+  /* =======================================================
+     HIGHLIGHT
+  ======================================================= */
+
+  .mg-highlight__heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-highlight__community p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+
+  .mg-highlight__eyebrow {
+    font-size: clamp(10px, 0.62vw, 13px) !important;
+  }
+
+
+  /* =======================================================
+     CINEMATIC 3D
+  ======================================================= */
+
+  .mg-cinematic-3d__heading h2 {
+    font-size: clamp(46px, 3vw, 62px) !important;
+  }
+
+  .mg-cinematic-3d__header p {
+    font-size: clamp(15px, 0.96vw, 19px) !important;
+  }
+}
+
+
+/* =========================================================
+   VERY LARGE DESKTOP â€” 1600px+
+========================================================= */
+
+@media (min-width: 1600px) {
+
+  :root {
+    /* HEADING â€” UNCHANGED */
+    --mg-section-heading-size: clamp(52px, 3.1vw, 68px);
+
+    /* DESCRIPTION â€” SLIGHTLY LARGER */
+    --mg-secondary-size: clamp(16px, 1vw, 20px);
+  }
+
+
+  /* =======================================================
+     HEADINGS
+  ======================================================= */
+
+  .mg-range-heading h2,
+  .mg-dynamics__headline h2,
+  .mg-editorial__title,
+  .mg-gallery__heading h2,
+  .mg-owners__heading h2,
+  .mg-night-drive__heading h2,
+  .mg-model-stage__title h2,
+  .mg-cinematic-banner__content h2,
+  .mg-brand__heading h2,
+  .mg-highlight__heading h2,
+  .mg-cinematic-3d__heading h2 {
+    font-size: clamp(52px, 3.1vw, 68px) !important;
+  }
+
+
+  /* =======================================================
+     DESCRIPTION TEXT
+  ======================================================= */
+
+  .mg-range-intro p,
+  .mg-dynamics__intro-copy p,
+  .mg-gallery__intro p,
+  .mg-gallery__copy p,
+  .mg-owners__header-right p,
+  .mg-night-drive__header-copy p,
+  .mg-model-stage__title p,
+  .mg-cinematic-banner__content p,
+  .mg-showroom-footer__desc,
+  .mg-brand__intro-copy p,
+  .mg-highlight__community p,
+  .mg-cinematic-3d__header p {
+    font-size: clamp(16px, 1vw, 20px) !important;
+  }
+
+  .mg-editorial__spec-list li {
+    font-size: clamp(15px, 0.88vw, 18px) !important;
+  }
+
+
+  /* =======================================================
+     LABELS â€” UNCHANGED
+  ======================================================= */
+
+  .mg-range-eyebrow,
+  .mg-editorial__detail-label,
+  .mg-gallery__label span,
+  .mg-owners__eyebrow,
+  .mg-model-stage__title > span,
+  .mg-cinematic-banner__kicker,
+  .mg-brand__eyebrow,
+  .mg-highlight__eyebrow {
+    font-size: clamp(11px, 0.64vw, 14px) !important;
+  }
+}
+
+
+/* =========================================================
+   TABLET â€” 768px TO 1199px
+========================================================= */
+
+@media (min-width: 768px) and (max-width: 1199px) {
+
+  :root {
+    /* HEADING â€” UNCHANGED */
+    --mg-section-heading-size: clamp(34px, 3.8vw, 44px);
+
+    /* DESCRIPTION â€” SLIGHTLY LARGER */
+    --mg-secondary-size: clamp(13px, 1.35vw, 16px);
+  }
+
+
+  .mg-range-heading h2,
+  .mg-dynamics__headline h2,
+  .mg-editorial__title,
+  .mg-gallery__heading h2,
+  .mg-owners__heading h2,
+  .mg-night-drive__heading h2,
+  .mg-model-stage__title h2,
+  .mg-cinematic-banner__content h2,
+  .mg-brand__heading h2,
+  .mg-highlight__heading h2,
+  .mg-cinematic-3d__heading h2 {
+    font-size: var(--mg-section-heading-size) !important;
+  }
+
+
+  .mg-range-intro p,
+  .mg-dynamics__intro-copy p,
+  .mg-editorial__spec-list li,
+  .mg-gallery__intro p,
+  .mg-gallery__copy p,
+  .mg-owners__header-right p,
+  .mg-night-drive__header-copy p,
+  .mg-model-stage__title p,
+  .mg-cinematic-banner__content p,
+  .mg-showroom-footer__desc,
+  .mg-brand__intro-copy p,
+  .mg-highlight__community p,
+  .mg-cinematic-3d__header p {
+    font-size: var(--mg-secondary-size) !important;
+  }
+}
+
+
+/* =========================================================
+   MOBILE â€” 767px AND BELOW
+========================================================= */
+
+@media (max-width: 767px) {
+
+  :root {
+    --mg-page-gutter: 5vw;
+
+    /* HEADING â€” UNCHANGED */
+    --mg-section-heading-size: 32px;
+
+    /* DESCRIPTION â€” ONLY +1px */
+    --mg-secondary-size: 12px;
+  }
+
+
+  .mg-range-heading h2,
+  .mg-dynamics__headline h2,
+  .mg-editorial__title,
+  .mg-gallery__heading h2,
+  .mg-owners__heading h2,
+  .mg-night-drive__heading h2,
+  .mg-model-stage__title h2,
+  .mg-cinematic-banner__content h2,
+  .mg-brand__heading h2,
+  .mg-highlight__heading h2,
+  .mg-cinematic-3d__heading h2 {
+    font-size: var(--mg-section-heading-size) !important;
+  }
+
+
+  .mg-range-intro p,
+  .mg-dynamics__intro-copy p,
+  .mg-editorial__spec-list li,
+  .mg-gallery__intro p,
+  .mg-gallery__copy p,
+  .mg-owners__header-right p,
+  .mg-night-drive__header-copy p,
+  .mg-model-stage__title p,
+  .mg-cinematic-banner__content p,
+  .mg-showroom-footer__desc,
+  .mg-brand__intro-copy p,
+  .mg-highlight__community p,
+  .mg-cinematic-3d__header p {
+    font-size: var(--mg-secondary-size) !important;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE â€” 480px AND BELOW
+========================================================= */
+
+@media (max-width: 480px) {
+
+  :root {
+    --mg-page-gutter: 5vw;
+
+    /* HEADING â€” UNCHANGED */
+    --mg-section-heading-size: clamp(28px, 8vw, 32px);
+
+    /* DESCRIPTION â€” SLIGHTLY LARGER */
+    --mg-secondary-size: clamp(11px, 3.1vw, 12px);
+  }
+}

@@ -715,9 +715,9 @@ onBeforeUnmount(
 
   padding:
     clamp(
-      72px,
-      6.2vw,
-      105px
+      46px,
+      3.6vw,
+      62px
     )
     0
     clamp(
@@ -829,7 +829,7 @@ onBeforeUnmount(
 
 
   font-size:
-    .43vw;
+    clamp(9px, .52vw, 11px);
 
 
   font-weight:
@@ -869,8 +869,8 @@ onBeforeUnmount(
   font-size:
     clamp(
       30px,
-      2.5vw,
-      42px
+      2.15vw,
+      40px
     );
 
 
@@ -974,7 +974,7 @@ onBeforeUnmount(
 
 
   font-size:
-    .7vw;
+    clamp(15px, .96vw, 19px);
 
 
   font-weight:
@@ -1094,7 +1094,7 @@ p {
 
 
   font-size:
-    .76vw;
+    clamp(11px, .72vw, 14px);
 
 
   line-height:
@@ -1389,7 +1389,7 @@ p {
 
 
   font-size:
-    .34vw;
+    clamp(11px, .68vw, 14px);
 
 
   font-weight:
@@ -1502,7 +1502,7 @@ i {
 
 
   font-size:
-    .42vw;
+    clamp(8px, .46vw, 10px);
 
 
   font-weight:
@@ -1756,7 +1756,7 @@ blockquote {
 
 
   font-size:
-    1.05vw;
+    clamp(18px, 1.18vw, 24px);
 
 
   font-weight:
@@ -1787,7 +1787,7 @@ p {
 
 
   font-size:
-    .68vw;
+    clamp(13px, .82vw, 16px);
 
 
   font-weight:
@@ -2069,7 +2069,7 @@ button.is-active {
 
 
   font-size:
-    .35vw;
+    clamp(11px, .68vw, 14px);
 
 
   font-weight:
@@ -2132,7 +2132,7 @@ i {
 strong {
 
   font-size:
-    4.4vw;
+    clamp(64px, 4.6vw, 92px);
 
 
   font-weight:
@@ -2157,7 +2157,7 @@ span {
 
 
   font-size:
-    2.5vw;
+    clamp(36px, 2.7vw, 54px);
 
 
   font-weight:
@@ -2174,7 +2174,7 @@ span {
 strong {
 
   font-size:
-    4vw;
+    clamp(58px, 4.15vw, 84px);
 
 }
 
@@ -2195,7 +2195,7 @@ span {
 
 
   font-size:
-    .66vw;
+    clamp(14px, .88vw, 17px);
 
 }
 
@@ -2212,7 +2212,7 @@ strong {
 
 
   font-size:
-    .72vw;
+    clamp(15px, .96vw, 19px);
 
 
   font-weight:
@@ -2353,7 +2353,7 @@ svg {
 
 
   font-size:
-    .34vw;
+    clamp(12px, .76vw, 15px);
 
 
   font-weight:
@@ -2377,7 +2377,7 @@ svg {
 
 
   font-size:
-    .78vw;
+    clamp(16px, 1.02vw, 20px);
 
 
   font-weight:
@@ -2441,7 +2441,7 @@ p {
 
 
   font-size:
-    .61vw;
+    clamp(13px, .82vw, 16px);
 
 
   line-height:
@@ -2477,7 +2477,7 @@ p {
 
 
   font-size:
-    .58vw;
+    clamp(13px, .8vw, 16px);
 
 
   font-weight:

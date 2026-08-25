@@ -321,7 +321,7 @@ const socials = [
   max-width: none !important;
   margin: 0 !important;
   padding:
-    clamp(56px, 5vw, 86px)
+    clamp(36px, 3.2vw, 54px)
     var(--mg-page-gutter, 5vw)
     clamp(24px, 2vw, 34px) !important;
   box-sizing: border-box;
@@ -361,8 +361,8 @@ const socials = [
   width: min(38vw, 580px);
   margin: 0;
   color: var(--muted);
-  font-size: clamp(13px, 0.9vw, 15px);
-  line-height: 1.75;
+  font-size: clamp(14px, 0.90vw, 17px);
+  line-height: 1.65;
 }
 
 .mg-footer__top-contact {
@@ -375,7 +375,7 @@ const socials = [
 .mg-footer__contact-label {
   margin-bottom: 9px;
   color: var(--muted);
-  font-size: clamp(10px, 0.68vw, 12px);
+  font-size: clamp(10px, 0.62vw, 12px);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -383,7 +383,7 @@ const socials = [
 
 .mg-footer__phone {
   color: var(--white);
-  font-size: clamp(21px, 1.55vw, 27px);
+  font-size: clamp(22px, 1.48vw, 29px);
   font-weight: 600;
   letter-spacing: -0.035em;
   text-decoration: none;
@@ -392,7 +392,7 @@ const socials = [
 .mg-footer__top-email {
   margin-top: 8px;
   color: var(--muted);
-  font-size: clamp(12px, 0.78vw, 14px);
+  font-size: clamp(12px, 0.74vw, 15px);
   text-decoration: none;
 }
 
@@ -422,7 +422,7 @@ const socials = [
 .mg-footer__column h3 {
   margin: 0 0 clamp(19px, 1.6vw, 25px);
   color: var(--white);
-  font-size: clamp(13px, 0.86vw, 15px);
+  font-size: clamp(14px, 0.86vw, 17px);
   font-weight: 600;
 }
 
@@ -438,8 +438,8 @@ const socials = [
 .mg-footer__column a {
   display: inline-flex;
   color: var(--muted);
-  font-size: clamp(12px, 0.78vw, 14px);
-  line-height: 1.55;
+  font-size: clamp(12px, 0.74vw, 15px);
+  line-height: 1.5;
   text-decoration: none;
   transition:
     color 0.25s ease,
@@ -465,7 +465,7 @@ const socials = [
   display: block;
   margin-bottom: 10px;
   color: var(--red);
-  font-size: clamp(10px, 0.63vw, 11px);
+  font-size: clamp(10px, 0.62vw, 12px);
   font-weight: 700;
   letter-spacing: 0.15em;
 }
@@ -474,7 +474,7 @@ const socials = [
   margin: 0;
   max-width: 230px;
   color: var(--white);
-  font-size: clamp(23px, 1.7vw, 30px);
+  font-size: clamp(24px, 1.65vw, 33px);
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.04em;
@@ -485,7 +485,7 @@ const socials = [
   align-items: flex-start;
   gap: 11px;
   color: var(--muted);
-  font-size: clamp(12px, 0.78vw, 14px);
+  font-size: clamp(12px, 0.74vw, 15px);
   line-height: 1.7;
   text-decoration: none;
 }
@@ -507,7 +507,7 @@ const socials = [
   gap: 13px;
   margin-top: 25px;
   color: var(--white);
-  font-size: clamp(12px, 0.8vw, 14px);
+  font-size: clamp(12px, 0.74vw, 15px);
   font-weight: 600;
   text-decoration: none;
 }
@@ -542,8 +542,8 @@ const socials = [
   max-width: 820px;
   margin: 0;
   color: var(--subtle);
-  font-size: clamp(11px, 0.72vw, 13px);
-  line-height: 1.75;
+  font-size: clamp(12px, 0.74vw, 15px);
+  line-height: 1.65;
 }
 
 .mg-footer__socials {
@@ -590,7 +590,7 @@ const socials = [
 .mg-footer__copyright {
   margin: 0;
   color: var(--subtle);
-  font-size: clamp(10px, 0.67vw, 12px);
+  font-size: clamp(10px, 0.62vw, 12px);
 }
 
 .mg-footer__legal {
@@ -603,7 +603,7 @@ const socials = [
 
 .mg-footer__legal a {
   color: var(--subtle);
-  font-size: clamp(10px, 0.67vw, 12px);
+  font-size: clamp(10px, 0.62vw, 12px);
   text-decoration: none;
 }
 
@@ -667,7 +667,7 @@ const socials = [
   .mg-footer__inner {
     width: 100% !important;
     padding:
-      46px
+      36px
       var(--mg-page-gutter, 5vw)
       22px !important;
   }
@@ -678,11 +678,11 @@ const socials = [
 
   .mg-footer__intro {
     width: 100%;
-    font-size: 13px;
+    font-size: 15px;
   }
 
   .mg-footer__phone {
-    font-size: 20px;
+    font-size: 23px;
   }
 
   .mg-footer__navigation {
@@ -696,7 +696,7 @@ const socials = [
 
   .mg-footer__column a,
   .mg-footer__address {
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .mg-footer__showroom h3 {
@@ -709,7 +709,7 @@ const socials = [
 
   .mg-footer__copyright,
   .mg-footer__legal a {
-    font-size: 10px;
+    font-size: 11px;
   }
 }
 
@@ -728,15 +728,15 @@ const socials = [
   z-index: 9999;
   right: 0;
   top: 62%;
-  width: 72px;
-  height: 72px;
+  width: 82px;
+  height: 82px;
   display: flex;
   align-items: center;
-  padding: 0 13px;
+  padding: 0 15px;
   box-sizing: border-box;
   border: 1px solid rgba(255, 255, 255, 0.72);
   border-right: 0;
-  border-radius: 22px 0 0 22px;
+  border-radius: 25px 0 0 25px;
   background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
   color: #111111;
   text-decoration: none;
@@ -750,14 +750,14 @@ const socials = [
 
 .mg-drive-fab:hover,
 .mg-drive-fab:focus-visible {
-  width: 245px;
+  width: 275px;
   box-shadow: 0 22px 55px rgba(0, 0, 0, 0.34);
 }
 
 .mg-drive-fab__icon {
-  width: 46px;
-  height: 46px;
-  flex: 0 0 46px;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 52px;
   display: grid;
   place-items: center;
   border-radius: 50%;
@@ -771,8 +771,8 @@ const socials = [
 }
 
 .mg-drive-fab__icon svg {
-  width: 27px;
-  height: 27px;
+  width: 31px;
+  height: 31px;
   transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -794,7 +794,7 @@ const socials = [
   flex-direction: column;
   justify-content: center;
   gap: 3px;
-  margin-left: 14px;
+  margin-left: 16px;
   opacity: 0;
   visibility: hidden;
   transform: translateX(14px);
@@ -817,7 +817,7 @@ const socials = [
 
 .mg-drive-fab__eyebrow {
   color: var(--red, #e30613);
-  font-size: 8px;
+  font-size: 12px;
   font-weight: 700;
   line-height: 1.1;
   letter-spacing: 0.16em;
@@ -826,7 +826,7 @@ const socials = [
 
 .mg-drive-fab__title {
   color: #111111;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
@@ -842,40 +842,40 @@ const socials = [
     top: auto;
     right: 14px;
     bottom: 18px;
-    width: 60px;
-    height: 60px;
-    padding: 0 9px;
+    width: 66px;
+    height: 66px;
+    padding: 0 10px;
     border-right: 1px solid rgba(255, 255, 255, 0.72);
-    border-radius: 18px;
+    border-radius: 20px;
     transform: none;
   }
 
   .mg-drive-fab:hover,
   .mg-drive-fab:focus-visible {
-    width: 215px;
+    width: 235px;
   }
 
   .mg-drive-fab__icon {
-    width: 42px;
-    height: 42px;
-    flex-basis: 42px;
+    width: 46px;
+    height: 46px;
+    flex-basis: 46px;
   }
 
   .mg-drive-fab__icon svg {
-    width: 24px;
-    height: 24px;
+    width: 27px;
+    height: 27px;
   }
 
   .mg-drive-fab__content {
-    margin-left: 11px;
+    margin-left: 12px;
   }
 
   .mg-drive-fab__eyebrow {
-    font-size: 7px;
+    font-size: 8px;
   }
 
   .mg-drive-fab__title {
-    font-size: 12px;
+    font-size: 14px;
   }
 }
 

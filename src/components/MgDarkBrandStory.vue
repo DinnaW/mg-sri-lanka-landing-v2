@@ -321,7 +321,7 @@ const backgroundImage = asset(
 
   left: 4.5vw;
   right: 4.5vw;
-  top: 4.4vw;
+  top: clamp(28px, 2.4vw, 46px);
 
   z-index: 8;
 
@@ -345,7 +345,7 @@ const backgroundImage = asset(
 
   color: #fff;
 
-  font-size: 3.25vw;
+  font-size: clamp(36px, 2.55vw, 49px);
 
   font-weight: 550;
 
@@ -382,7 +382,7 @@ const backgroundImage = asset(
   color:
     rgba(255, 255, 255, .94);
 
-  font-size: .74vw;
+  font-size: clamp(13px, 0.82vw, 16px);
 
   font-weight: 500;
 
@@ -449,7 +449,7 @@ const backgroundImage = asset(
   color:
     rgba(255, 255, 255, .97);
 
-  font-size: .74vw;
+  font-size: clamp(16px, 1vw, 20px);
 
   font-weight: 600;
 
@@ -517,18 +517,18 @@ const backgroundImage = asset(
 }
 
 .mg-night-drive__image-footer div {
-  min-width: 6.5vw;
+  min-width: clamp(110px, 8vw, 150px);
 }
 
 .mg-night-drive__image-footer span {
   display: block;
 
-  margin-bottom: .3vw;
+  margin-bottom: clamp(5px, 0.35vw, 8px);
 
   color:
     rgba(255, 255, 255, .7);
 
-  font-size: .39vw;
+  font-size: clamp(12px, 0.72vw, 15px);
 
   font-weight: 700;
 
@@ -539,7 +539,7 @@ const backgroundImage = asset(
   color:
     rgba(255, 255, 255, .97);
 
-  font-size: .61vw;
+  font-size: clamp(16px, 1vw, 20px);
 
   font-weight: 500;
 }
@@ -560,7 +560,7 @@ const backgroundImage = asset(
   }
 
   .mg-night-drive__heading h2 {
-    font-size: 4.5vw;
+    font-size: clamp(34px, 4.1vw, 44px);
   }
 
   .mg-night-drive__header-copy {
@@ -568,7 +568,7 @@ const backgroundImage = asset(
   }
 
   .mg-night-drive__header-copy p {
-    font-size: 1.05vw;
+    font-size: clamp(12px, 1.25vw, 14px);
   }
 
   .mg-night-drive__metric {
@@ -642,7 +642,7 @@ const backgroundImage = asset(
   .mg-night-drive__header {
     left: 15px;
     right: 15px;
-    top: 6.5vh;
+    top: 3.5vh;
 
     display: block;
   }

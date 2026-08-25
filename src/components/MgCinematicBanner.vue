@@ -389,11 +389,11 @@ const bannerImage = asset("images/mg-mountain-banner.png");
   color:
     rgba(255, 255, 255, .8);
 
-  font-size: .4vw;
+  font-size: clamp(9px, .52vw, 11px);
 
   font-weight: 700;
 
-  letter-spacing: .15em;
+  letter-spacing: .18em;
 }
 
 
@@ -440,7 +440,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
     "Barlow Condensed",
     sans-serif;
 
-  font-size: .52vw;
+  font-size: clamp(9px, .56vw, 12px);
 
   letter-spacing: .08em;
 }
@@ -449,7 +449,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 .mg-cinematic-banner__index > span:first-child {
   color: #fff;
 
-  font-size: .9vw;
+  font-size: clamp(13px, .82vw, 16px);
 }
 
 
@@ -474,7 +474,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   left: var(--mg-page-gutter, 5vw);
 
-  top: 49%;
+  top: 46%;
 
   width: min(
     520px,
@@ -503,7 +503,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
   color:
     rgba(255, 255, 255, .66);
 
-  font-size: .4vw;
+  font-size: clamp(9px, .52vw, 11px);
 
   font-weight: 700;
 
@@ -518,11 +518,11 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 .mg-cinematic-banner__content h2 {
   margin: 0;
 
-  font-size: 3.4vw;
+  font-size: clamp(36px, 2.55vw, 49px);
 
-  font-weight: 500;
+  font-weight: 600;
 
-  line-height: .99;
+  line-height: 1.02;
 
   letter-spacing: -.057em;
 
@@ -549,7 +549,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
   color:
     rgba(255, 255, 255, .7);
 
-  font-size: .68vw;
+  font-size: clamp(13px, .82vw, 16px);
 
   line-height: 1.7;
 }
@@ -616,7 +616,11 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   text-decoration: none;
 
-  font-size: .58vw;
+  font-size: clamp(14px, .9vw, 18px);
+
+  line-height: 1.35;
+
+  letter-spacing: .035em;
 
   font-weight: 650;
 
@@ -692,7 +696,11 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   text-decoration: none;
 
-  font-size: .54vw;
+  font-size: clamp(14px, .88vw, 18px);
+
+  line-height: 1.35;
+
+  letter-spacing: .035em;
 
   font-weight: 600;
 }
@@ -748,7 +756,9 @@ span:last-child {
   color:
     rgba(255, 255, 255, .44);
 
-  font-size: .34vw;
+  font-size: clamp(11px, .68vw, 14px);
+
+  line-height: 1.45;
 
   font-weight: 700;
 
@@ -757,7 +767,11 @@ span:last-child {
 
 
 .mg-cinematic-banner__bottom-left strong {
-  font-size: .65vw;
+  font-size: clamp(15px, .95vw, 19px);
+
+  line-height: 1.45;
+
+  letter-spacing: .015em;
 
   font-weight: 500;
 }
@@ -777,11 +791,13 @@ span:last-child {
   color:
     rgba(255, 255, 255, .55);
 
-  font-size: .35vw;
+  font-size: clamp(11px, .68vw, 14px);
+
+  line-height: 1.45;
 
   font-weight: 700;
 
-  letter-spacing: .14em;
+  letter-spacing: .18em;
 }
 
 
@@ -867,7 +883,7 @@ span:last-child {
 
 
   .mg-cinematic-banner__content h2 {
-    font-size: 44px;
+    font-size: 40px;
   }
 
 
@@ -972,7 +988,7 @@ span:last-child {
   .mg-cinematic-banner__content h2 {
     max-width: 370px;
 
-    font-size: 36px;
+    font-size: 34px;
   }
 
 
@@ -986,7 +1002,7 @@ span:last-child {
 
     margin-top: 15px;
 
-    font-size: 9px;
+    font-size: 12px;
   }
 
 
@@ -1012,7 +1028,7 @@ span:last-child {
 
 
   .mg-cinematic-banner__secondary {
-    font-size: 8px;
+    font-size: 11px;
   }
 
 
@@ -1054,7 +1070,7 @@ span:last-child {
 
 
   .mg-cinematic-banner__content h2 {
-    font-size: 33px;
+    font-size: 31px;
   }
 
 

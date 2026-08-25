@@ -75,7 +75,7 @@ const vehicles = [
     layout: {
 
       desktopWidth:
-        "86%",
+        "96%",
 
       tabletWidth:
         "90%",
@@ -84,7 +84,7 @@ const vehicles = [
         "103%",
 
       maxWidth:
-        "1030px",
+        "1280px",
 
     },
 
@@ -201,7 +201,7 @@ const vehicles = [
     layout: {
 
       desktopWidth:
-        "84%",
+        "95%",
 
       tabletWidth:
         "89%",
@@ -210,7 +210,7 @@ const vehicles = [
         "102%",
 
       maxWidth:
-        "1010px",
+        "1260px",
 
     },
 
@@ -332,7 +332,7 @@ const vehicles = [
     layout: {
 
       desktopWidth:
-        "88%",
+        "98%",
 
       tabletWidth:
         "92%",
@@ -341,7 +341,7 @@ const vehicles = [
         "106%",
 
       maxWidth:
-        "1070px",
+        "1340px",
 
     },
 
@@ -449,7 +449,7 @@ const vehicles = [
     layout: {
 
       desktopWidth:
-        "82%",
+        "94%",
 
       tabletWidth:
         "87%",
@@ -458,7 +458,7 @@ const vehicles = [
         "101%",
 
       maxWidth:
-        "990px",
+        "1240px",
 
     },
 
@@ -566,7 +566,7 @@ const vehicles = [
     layout: {
 
       desktopWidth:
-        "88%",
+        "98%",
 
       tabletWidth:
         "94%",
@@ -576,7 +576,7 @@ const vehicles = [
         "110%",
 
       maxWidth:
-        "1080px",
+        "1360px",
 
     },
 
@@ -1848,7 +1848,7 @@ onBeforeUnmount(() => {
     "Manrope",
     sans-serif;
 
-  font-size: 0.55vw;
+  font-size: clamp(13px, 0.78vw, 16px);
 
   font-weight:
     700;
@@ -1909,7 +1909,7 @@ onBeforeUnmount(() => {
     "Barlow Condensed",
     sans-serif;
 
-  font-size: 18vw;
+  font-size: clamp(220px, 19vw, 390px);
 
   font-weight:
     500;
@@ -2368,7 +2368,7 @@ onBeforeUnmount(() => {
     "Manrope",
     sans-serif;
 
-  font-size: 0.556vw;
+  font-size: clamp(13px, 0.8vw, 16px);
 
   font-weight:
     700;
@@ -2400,7 +2400,7 @@ onBeforeUnmount(() => {
     "Barlow Condensed",
     sans-serif;
 
-  font-size: 2.35vw;
+  font-size: clamp(46px, 2.8vw, 62px);
 
   font-weight:
     500;
@@ -2465,7 +2465,7 @@ onBeforeUnmount(() => {
     "Manrope",
     sans-serif;
 
-  font-size: 0.556vw;
+  font-size: clamp(13px, 0.8vw, 16px);
 
   font-weight:
     700;
@@ -2772,7 +2772,7 @@ onBeforeUnmount(() => {
     "Manrope",
     sans-serif;
 
-  font-size: 0.5vw;
+  font-size: clamp(11px, 0.68vw, 14px);
 
   font-weight:
     700;
@@ -3033,6 +3033,197 @@ onBeforeUnmount(() => {
 }
 
 
+
+
+/* =========================================================
+   LARGE DESKTOP — BIGGER CARS + LARGER TYPOGRAPHY
+   1200px and above only.
+   Tablet/mobile sizing below remains unchanged.
+========================================================= */
+
+@media (min-width: 1200px) {
+  .mg-range {
+    padding:
+      clamp(80px, 6vw, 120px)
+      var(--mg-page-gutter, 5vw)
+      clamp(55px, 4vw, 80px);
+  }
+
+  .mg-range__header span {
+    font-size: clamp(13px, 0.8vw, 17px);
+  }
+
+  .mg-range__background-title {
+    top: 13%;
+    font-size: clamp(240px, 19vw, 400px);
+  }
+
+  .mg-stage {
+    width: min(96vw, 1500px);
+
+    height:
+      clamp(
+        430px,
+        45vw,
+        680px
+      );
+
+    margin:
+      clamp(
+        34px,
+        4vh,
+        60px
+      )
+      auto
+      0;
+  }
+
+  .mg-stage__shadow {
+    width: 62%;
+    height: 38px;
+    filter: blur(28px);
+  }
+
+  .mg-range__info {
+    margin-top: -28px;
+  }
+
+  .mg-range__type {
+    font-size: clamp(13px, 0.82vw, 17px);
+    margin-bottom: 7px;
+  }
+
+  .mg-range__info h2 {
+    font-size: clamp(50px, 3vw, 68px);
+  }
+
+  .mg-range__explore {
+    height: clamp(44px, 2.7vw, 52px);
+    margin-top: 18px;
+    padding: 0 clamp(20px, 1.4vw, 28px);
+    gap: 13px;
+
+    font-size: clamp(13px, 0.8vw, 16px);
+  }
+
+  .mg-range__explore svg {
+    width: clamp(15px, 0.9vw, 18px);
+  }
+
+  .mg-carousel {
+    width: min(100%, 1450px);
+
+    grid-template-columns:
+      50px
+      minmax(0, 1fr)
+      50px;
+
+    margin:
+      clamp(
+        44px,
+        4vh,
+        62px
+      )
+      auto
+      0;
+  }
+
+  .mg-carousel__vehicles {
+    gap: clamp(24px, 2.7vw, 52px);
+  }
+
+  .mg-carousel__vehicle {
+    flex:
+      0
+      0
+      clamp(
+        125px,
+        11vw,
+        170px
+      );
+  }
+
+  .mg-carousel__image {
+    height: clamp(72px, 5vw, 92px);
+  }
+
+  .mg-carousel__vehicle > span {
+    margin-top: 8px;
+    font-size: clamp(11px, 0.68vw, 14px);
+  }
+
+  .mg-carousel__nav {
+    width: 46px;
+    height: 46px;
+  }
+
+  .mg-carousel__nav svg {
+    width: 17px;
+  }
+}
+
+
+/* =========================================================
+   VERY LARGE DESKTOP — 1600px+
+========================================================= */
+
+@media (min-width: 1600px) {
+  .mg-range__header span {
+    font-size: clamp(14px, 0.78vw, 18px);
+  }
+
+  .mg-range__background-title {
+    font-size: clamp(300px, 18.5vw, 430px);
+  }
+
+  .mg-stage {
+    width: min(97vw, 1650px);
+
+    height:
+      clamp(
+        560px,
+        43vw,
+        760px
+      );
+  }
+
+  .mg-range__info h2 {
+    font-size: clamp(58px, 3vw, 74px);
+  }
+
+  .mg-range__type {
+    font-size: clamp(14px, 0.8vw, 18px);
+  }
+
+  .mg-range__explore {
+    font-size: clamp(14px, 0.78vw, 17px);
+  }
+
+  .mg-carousel {
+    width: min(100%, 1550px);
+  }
+
+  .mg-carousel__vehicle {
+    flex:
+      0
+      0
+      clamp(
+        140px,
+        10vw,
+        185px
+      );
+  }
+
+  .mg-carousel__image {
+    height: clamp(80px, 4.8vw, 100px);
+  }
+
+  .mg-carousel__vehicle > span {
+    font-size: clamp(12px, 0.66vw, 15px);
+  }
+}
+
+
 /* =========================================================
    TABLET
 ========================================================= */
@@ -3279,5 +3470,37 @@ onBeforeUnmount(() => {
   }
 
 }
+
+
+
+/* =========================================================
+   COMPACT JOIN WITH PREVIOUS SECTION
+   Reduces the large blank gap before "DISCOVER THE RANGE".
+========================================================= */
+@media (min-width: 1001px) {
+  .mg-range {
+    min-height: auto;
+    padding-top: clamp(22px, 1.7vw, 36px) !important;
+  }
+
+  .mg-stage {
+    margin-top: clamp(12px, 1.4vh, 22px);
+  }
+}
+
+@media (min-width: 1200px) {
+  .mg-range {
+    padding-top: clamp(24px, 1.8vw, 38px) !important;
+  }
+
+  .mg-range__background-title {
+    top: 10%;
+  }
+
+  .mg-stage {
+    margin-top: clamp(14px, 1.5vh, 24px);
+  }
+}
+
 
 </style>

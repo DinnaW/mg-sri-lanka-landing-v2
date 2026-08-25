@@ -442,7 +442,7 @@ onBeforeUnmount(() => {
   display: block;
   margin-bottom: 11px;
   font-family: "Manrope", sans-serif;
-  font-size: 0.5vw;
+  font-size: clamp(14px, 0.82vw, 17px);
   font-weight: 700;
   line-height: 1;
   letter-spacing: 0.19em;
@@ -454,7 +454,7 @@ onBeforeUnmount(() => {
   max-width: 660px;
   margin: 0;
   font-family: "Manrope", sans-serif;
-  font-size: 2.5vw;
+  font-size: clamp(54px, 3.6vw, 76px);
   font-weight: 600;
   line-height: 1.08;
   letter-spacing: -0.04em;
@@ -473,7 +473,7 @@ onBeforeUnmount(() => {
   max-width: 330px;
   margin: 0 0 20px;
   font-family: "Manrope", sans-serif;
-  font-size: 0.72vw;
+  font-size: clamp(17px, 1.08vw, 22px);
   line-height: 1.7;
   color: rgba(0, 0, 0, 0.48);
 }
@@ -486,7 +486,7 @@ onBeforeUnmount(() => {
   color: #111;
   text-decoration: none;
   font-family: "Manrope", sans-serif;
-  font-size: 0.625vw;
+  font-size: clamp(14px, 0.84vw, 17px);
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -587,7 +587,7 @@ onBeforeUnmount(() => {
 .mg-range-card-type,
 .mg-range-card-number {
   font-family: "Manrope", sans-serif;
-  font-size: 0.486vw;
+  font-size: clamp(13px, 0.76vw, 16px);
   font-weight: 700;
   letter-spacing: 0.17em;
   text-transform: uppercase;
@@ -692,7 +692,7 @@ onBeforeUnmount(() => {
   display: block;
   margin-bottom: 5px;
   font-family: "Manrope", sans-serif;
-  font-size: 0.486vw;
+  font-size: clamp(13px, 0.76vw, 16px);
   font-weight: 500;
   letter-spacing: 0.02em;
   color: rgba(0, 0, 0, 0.4);
@@ -701,7 +701,7 @@ onBeforeUnmount(() => {
 .mg-range-card-title-row h3 {
   margin: 0;
   font-family: "Manrope", sans-serif;
-  font-size: 1.35vw;
+  font-size: clamp(28px, 1.8vw, 38px);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -0.035em;
@@ -773,7 +773,7 @@ onBeforeUnmount(() => {
 
 .mg-range-spec span {
   margin-bottom: 4px;
-  font-size: 0.417vw;
+  font-size: clamp(11px, 0.64vw, 13px);
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -781,7 +781,7 @@ onBeforeUnmount(() => {
 }
 
 .mg-range-spec strong {
-  font-size: 0.556vw;
+  font-size: clamp(14px, 0.82vw, 17px);
   font-weight: 600;
   color: rgba(0, 0, 0, 0.73);
 }
@@ -851,14 +851,14 @@ onBeforeUnmount(() => {
   gap: 4px;
   white-space: nowrap;
   font-family: "Manrope", sans-serif;
-  font-size: 0.486vw;
+  font-size: clamp(13px, 0.76vw, 16px);
   font-weight: 500;
   letter-spacing: 0.05em;
   color: rgba(0, 0, 0, 0.34);
 }
 
 .mg-range-progress-count strong {
-  font-size: 0.625vw;
+  font-size: clamp(14px, 0.84vw, 17px);
   font-weight: 700;
   color: #111;
 }
@@ -887,6 +887,71 @@ onBeforeUnmount(() => {
 ========================================================= */
 
 
+
+
+@media (min-width: 1200px) {
+  .mg-range-eyebrow {
+    font-size: clamp(15px, 0.9vw, 18px);
+  }
+
+  .mg-range-heading h2 {
+    max-width: 820px;
+    font-size: clamp(60px, 3.9vw, 82px);
+  }
+
+  .mg-range-intro p {
+    max-width: 430px;
+    font-size: clamp(18px, 1.12vw, 23px);
+    line-height: 1.65;
+  }
+
+  .mg-range-all {
+    font-size: clamp(15px, 0.9vw, 18px);
+  }
+
+  .mg-range-card-type,
+  .mg-range-card-number {
+    font-size: clamp(13px, 0.78vw, 16px);
+  }
+
+  .mg-range-card-subtitle {
+    font-size: clamp(13px, 0.78vw, 16px);
+  }
+
+  .mg-range-card-title-row h3 {
+    font-size: clamp(29px, 1.85vw, 39px);
+  }
+
+  .mg-range-spec span {
+    font-size: clamp(11px, 0.66vw, 14px);
+  }
+
+  .mg-range-spec strong {
+    font-size: clamp(14px, 0.84vw, 18px);
+  }
+
+  .mg-range-progress-count {
+    font-size: clamp(13px, 0.78vw, 16px);
+  }
+
+  .mg-range-progress-count strong {
+    font-size: clamp(15px, 0.9vw, 18px);
+  }
+}
+
+@media (min-width: 1600px) {
+  .mg-range-heading h2 {
+    font-size: clamp(66px, 4vw, 88px);
+  }
+
+  .mg-range-intro p {
+    font-size: clamp(19px, 1.14vw, 24px);
+  }
+
+  .mg-range-card-title-row h3 {
+    font-size: clamp(31px, 1.9vw, 41px);
+  }
+}
 
 /* =========================================================
    TABLET

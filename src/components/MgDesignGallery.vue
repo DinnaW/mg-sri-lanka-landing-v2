@@ -408,7 +408,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
 
   padding:
-    clamp(82px, 6vw, 108px)
+    clamp(42px, 3.2vw, 62px)
     0
     clamp(46px, 3.2vw, 58px);
 
@@ -488,7 +488,7 @@ onBeforeUnmount(() => {
 
   margin: 0;
 
-  font-size: 3.05vw;
+  font-size: clamp(36px, 2.55vw, 49px);
 
   font-weight: 500;
 
@@ -513,7 +513,7 @@ onBeforeUnmount(() => {
 
   color: #747674;
 
-  font-size: clamp(10px, .64vw, 13px);
+  font-size: clamp(13px, 0.82vw, 16px);
 
   line-height: 1.6;
 
@@ -1092,7 +1092,7 @@ onBeforeUnmount(() => {
 
   color: #767875;
 
-  font-size: clamp(10px, .58vw, 12px);
+  font-size: clamp(13px, 0.82vw, 16px);
 
   line-height: 1.62;
 }
@@ -1209,7 +1209,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 1050px) {
   .mg-gallery {
-    padding-top: 72px;
+    padding-top: 46px;
     padding-bottom: 48px;
   }
 
@@ -1267,7 +1267,7 @@ onBeforeUnmount(() => {
 @media (max-width: 767px) {
   .mg-gallery {
     padding:
-      66px
+      38px
       0
       42px;
   }

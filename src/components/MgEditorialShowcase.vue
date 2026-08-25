@@ -204,8 +204,9 @@ const detailCards = [
   overflow: hidden;
 
   padding:
-    clamp(72px, 6vw, 110px)
-    0;
+    clamp(42px, 3.2vw, 62px)
+    0
+    clamp(72px, 5.5vw, 105px);
 
   background:
     var(--bg);
@@ -266,7 +267,7 @@ const detailCards = [
     #6e6e6e;
 
   font-size:
-    .75vw;
+    clamp(10px, 0.68vw, 13px);
 
   font-weight:
     600;
@@ -283,7 +284,7 @@ const detailCards = [
   white-space: pre-line;
 
   font-size:
-    2.6vw;
+    clamp(36px, 2.55vw, 52px);
 
   line-height:
     1.02;
@@ -355,7 +356,7 @@ const detailCards = [
   margin: 0;
 
   font-size:
-    1.65vw;
+    clamp(22px, 1.5vw, 30px);
 
   line-height:
     1;
@@ -377,7 +378,7 @@ const detailCards = [
     var(--muted);
 
   font-size:
-    .7vw;
+    clamp(10px, 0.68vw, 13px);
 
   font-weight:
     600;
@@ -413,7 +414,7 @@ const detailCards = [
     #4f4f4f;
 
   font-size:
-    .8vw;
+    clamp(12px, 0.78vw, 15px);
 
   line-height:
     1.5;
@@ -446,7 +447,7 @@ const detailCards = [
     none;
 
   font-size:
-    .78vw;
+    clamp(11px, 0.74vw, 14px);
 
   font-weight:
     600;
@@ -640,7 +641,7 @@ img {
     #707070;
 
   font-size:
-    .625vw;
+    clamp(9px, 0.6vw, 12px);
 
   font-weight:
     700;
@@ -654,7 +655,7 @@ img {
 
 .mg-editorial__hero-note strong {
   font-size:
-    .8vw;
+    clamp(12px, 0.78vw, 15px);
 
   line-height:
     1.35;
@@ -763,7 +764,7 @@ img {
     #4f4f4f;
 
   font-size:
-    .66vw;
+    clamp(10px, 0.64vw, 12px);
 
   font-weight:
     600;
@@ -784,7 +785,7 @@ img {
 
   .mg-editorial__title {
     font-size:
-      2.5vw;
+      clamp(40px, 2.55vw, 54px);
   }
 }
 
@@ -879,7 +880,7 @@ img {
 @media (max-width: 767px) {
   .mg-editorial {
     padding:
-      58px
+      38px
       0
       68px;
   }

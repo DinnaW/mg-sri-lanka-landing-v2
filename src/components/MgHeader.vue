@@ -205,14 +205,11 @@ onBeforeUnmount(() => {
     <div class="mg-header__bar">
       <div class="mg-header__inner">
         <a :href="homeHref" class="mg-header__brand" aria-label="MG home">
-          <svg
-            class="mg-header__brand-mark"
-            viewBox="0 0 64 52"
-            aria-hidden="true"
-          >
-            <path d="M15 2h34l13 12v24L49 50H15L2 38V14L15 2Z" />
-            <text x="32" y="34">MG</text>
-          </svg>
+          <img
+            :src="asset('images/logo.png')"
+            alt="MG"
+            class="mg-header__brand-logo"
+          />
 
           <span class="mg-header__brand-copy">
             <strong>MG</strong>
@@ -557,25 +554,12 @@ onBeforeUnmount(() => {
   text-decoration: none;
 }
 
-.mg-header__brand-mark {
-  width: 2.68vw;
+.mg-header__brand-logo {
+  display: block;
+  width: clamp(48px, 3.25vw, 66px);
   height: auto;
-  overflow: visible;
-}
-
-.mg-header__brand-mark path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.7;
-}
-
-.mg-header__brand-mark text {
-  fill: currentColor;
-  text-anchor: middle;
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 1.38vw;
-  font-weight: 600;
-  letter-spacing: -.08em;
+  object-fit: contain;
+  flex-shrink: 0;
 }
 
 .mg-header__brand-copy {
@@ -585,14 +569,14 @@ onBeforeUnmount(() => {
 }
 
 .mg-header__brand-copy strong {
-  font-size: .74vw;
+  font-size: clamp(14px, .90vw, 18px);
   font-weight: 700;
   letter-spacing: .12em;
 }
 
 .mg-header__brand-copy small {
   opacity: .48;
-  font-size: .40vw;
+  font-size: clamp(11px, .68vw, 13px);
   font-weight: 700;
   letter-spacing: .17em;
 }
@@ -618,7 +602,7 @@ onBeforeUnmount(() => {
   color: rgba(255, 255, 255, .88);
   text-decoration: none;
   font-family: "Manrope", sans-serif;
-  font-size: .73vw;
+  font-size: clamp(15px, .96vw, 19px);
   font-weight: 600;
   letter-spacing: .035em;
   cursor: pointer;
@@ -685,7 +669,7 @@ onBeforeUnmount(() => {
   gap: .42vw;
   color: rgba(255, 255, 255, .82);
   text-decoration: none;
-  font-size: .61vw;
+  font-size: clamp(12px, .78vw, 15px);
   font-weight: 700;
   letter-spacing: .11em;
   text-transform: uppercase;
@@ -712,7 +696,7 @@ onBeforeUnmount(() => {
   background: #fff;
   color: #111;
   text-decoration: none;
-  font-size: .63vw;
+  font-size: clamp(13px, .84vw, 17px);
   font-weight: 700;
   letter-spacing: .105em;
   text-transform: uppercase;
@@ -799,7 +783,7 @@ onBeforeUnmount(() => {
 .mg-mega__topline > div > span {
   display: block;
   color: rgba(17, 17, 17, .38);
-  font-size: .45vw;
+  font-size: clamp(11px, .68vw, 13px);
   font-weight: 700;
   letter-spacing: .17em;
 }
@@ -807,7 +791,7 @@ onBeforeUnmount(() => {
 .mg-mega__filters-intro strong {
   display: block;
   margin-top: .55vw;
-  font-size: 1.36vw;
+  font-size: clamp(27px, 1.72vw, 34px);
   font-weight: 500;
   letter-spacing: -.04em;
 }
@@ -832,7 +816,7 @@ onBeforeUnmount(() => {
   color: rgba(17, 17, 17, .46);
   text-align: left;
   font-family: "Manrope", sans-serif;
-  font-size: .67vw;
+  font-size: clamp(13px, .84vw, 17px);
   font-weight: 600;
   cursor: pointer;
   transition: color .25s ease, transform .25s ease;
@@ -865,7 +849,7 @@ onBeforeUnmount(() => {
   gap: .7vw;
   color: #111;
   text-decoration: none;
-  font-size: .64vw;
+  font-size: clamp(13px, .82vw, 17px);
   font-weight: 700;
 }
 
@@ -892,7 +876,7 @@ onBeforeUnmount(() => {
 .mg-mega__topline > div strong {
   display: block;
   margin-top: .22vw;
-  font-size: .61vw;
+  font-size: clamp(12px, .76vw, 15px);
   font-weight: 600;
 }
 
@@ -905,7 +889,7 @@ onBeforeUnmount(() => {
   background: transparent;
   color: rgba(17, 17, 17, .48);
   font-family: "Manrope", sans-serif;
-  font-size: .52vw;
+  font-size: clamp(11px, .68vw, 13px);
   font-weight: 650;
   cursor: pointer;
 }
@@ -987,7 +971,7 @@ onBeforeUnmount(() => {
   background: rgba(255, 255, 255, .74);
   color: rgba(17, 17, 17, .58);
   backdrop-filter: blur(.5vw);
-  font-size: .38vw;
+  font-size: clamp(10px, .60vw, 12px);
   font-weight: 750;
   letter-spacing: .11em;
 }
@@ -1037,7 +1021,7 @@ onBeforeUnmount(() => {
 
 .mg-model-card__copy strong {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 1.24vw;
+  font-size: clamp(25px, 1.58vw, 32px);
   font-weight: 600;
   letter-spacing: -.02em;
   text-transform: uppercase;
@@ -1045,7 +1029,7 @@ onBeforeUnmount(() => {
 
 .mg-model-card__copy span {
   color: rgba(17, 17, 17, .42);
-  font-size: .48vw;
+  font-size: clamp(11px, .70vw, 14px);
   font-weight: 550;
   white-space: nowrap;
 }
@@ -1058,7 +1042,7 @@ onBeforeUnmount(() => {
   padding-top: .95vw;
   border-top: 1px solid rgba(17, 17, 17, .08);
   color: rgba(17, 17, 17, .34);
-  font-size: .43vw;
+  font-size: clamp(10px, .60vw, 12px);
   font-weight: 600;
   letter-spacing: .05em;
 }
@@ -1142,20 +1126,16 @@ onBeforeUnmount(() => {
     gap: 2vw;
   }
 
-  .mg-header__brand-mark {
-    width: 3.2vw;
-  }
-
-  .mg-header__brand-mark text {
-    font-size: 1.55vw;
+  .mg-header__brand-logo {
+    width: clamp(46px, 4vw, 58px);
   }
 
   .mg-header__brand-copy strong {
-    font-size: 1vw;
+    font-size: clamp(12px, 1.15vw, 14px);
   }
 
   .mg-header__brand-copy small {
-    font-size: .52vw;
+    font-size: clamp(11px, .68vw, 13px);
   }
 
   .mg-header__nav {
@@ -1163,7 +1143,7 @@ onBeforeUnmount(() => {
   }
 
   .mg-header__nav-link {
-    font-size: .95vw;
+    font-size: clamp(13px, 1.05vw, 15px);
   }
 
   .mg-header__dealer {
@@ -1172,7 +1152,7 @@ onBeforeUnmount(() => {
 
   .mg-header__testdrive {
     height: 3.1vw;
-    font-size: .84vw;
+    font-size: clamp(11px, .90vw, 14px);
   }
 
   .mg-header__testdrive-icon {
@@ -1199,13 +1179,13 @@ onBeforeUnmount(() => {
   }
 
   .mg-model-card__copy strong {
-    font-size: 1.6vw;
+    font-size: clamp(20px, 1.75vw, 25px);
   }
 
   .mg-model-card__copy span,
   .mg-mega__filter-list button,
   .mg-mega__all-link {
-    font-size: .84vw;
+    font-size: clamp(11px, .90vw, 14px);
   }
 }
 
@@ -1248,12 +1228,8 @@ onBeforeUnmount(() => {
     gap: 8px;
   }
 
-  .mg-header__brand-mark {
-    width: 34px;
-  }
-
-  .mg-header__brand-mark text {
-    font-size: 4.25vw;
+  .mg-header__brand-logo {
+    width: 44px;
   }
 
   .mg-header__brand-copy strong {
