@@ -1,0 +1,326 @@
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap');
+
+:root {
+  font-family: 'Manrope', Arial, sans-serif;
+  color: #ffffff;
+  background: #050505;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --mg-red: #e30613;
+  --mg-dark: #050505;
+
+  /* =========================================================
+     GLOBAL PAGE SYSTEM
+  ========================================================= */
+
+  --mg-page-gutter: 5vw;
+
+  /* Main section headings */
+  --mg-section-heading-size: clamp(34px, 2.55vw, 48px);
+
+  /* Description / secondary text */
+  --mg-secondary-size: clamp(13px, 0.9vw, 17px);
+  --mg-secondary-weight: 500;
+
+  /* Supporting labels / buttons */
+  --mg-label-size: clamp(11px, 0.7vw, 13px);
+  --mg-button-size: clamp(12px, 0.75vw, 14px);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html,
+body,
+#app {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  background: var(--mg-dark);
+}
+
+button,
+a,
+input,
+textarea {
+  font: inherit;
+}
+
+button {
+  border: 0;
+}
+
+a {
+  color: inherit;
+}
+
+
+/* =========================================================
+   GLOBAL CONTENT CONTAINERS
+========================================================= */
+
+.mg-header__inner,
+.mg-mega__inner,
+.mg-hero__container,
+.mg-range-container,
+.mg-range-slider-wrap,
+.mg-dynamics__container,
+.mg-editorial__container,
+.mg-gallery__container,
+.mg-owners__container,
+.mg-cinematic-banner__container,
+.mg-showroom-footer__shell,
+.mg-brand__container,
+.mg-highlight__container,
+.mg-cinematic-3d__container {
+  width: 100% !important;
+  max-width: none !important;
+
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+
+  padding-left: var(--mg-page-gutter) !important;
+  padding-right: var(--mg-page-gutter) !important;
+
+  box-sizing: border-box !important;
+}
+
+
+/* =========================================================
+   VEHICLE RANGE
+========================================================= */
+
+.mg-range {
+  padding-left: var(--mg-page-gutter) !important;
+  padding-right: var(--mg-page-gutter) !important;
+}
+
+
+/* =========================================================
+   VIEW ALL MODELS
+========================================================= */
+
+.mg-range-all > span:first-child {
+  color: #111111 !important;
+}
+
+
+/* =========================================================
+   FULL-BLEED VISUAL SECTIONS
+========================================================= */
+
+/* Night Drive */
+
+.mg-night-drive__header {
+  left: var(--mg-page-gutter) !important;
+  right: var(--mg-page-gutter) !important;
+}
+
+.mg-night-drive__metric,
+.mg-night-drive__image-footer {
+  right: var(--mg-page-gutter) !important;
+}
+
+
+/* Model Stage */
+
+.mg-model-stage__brand {
+  left: var(--mg-page-gutter) !important;
+}
+
+.mg-model-stage__reset {
+  right: var(--mg-page-gutter) !important;
+}
+
+
+/* =========================================================
+   GLOBAL SECTION HEADINGS
+========================================================= */
+
+.mg-range-heading h2,
+.mg-dynamics__headline h2,
+.mg-editorial__title,
+.mg-gallery__heading h2,
+.mg-owners__heading h2,
+.mg-night-drive__heading h2,
+.mg-model-stage__title h2,
+.mg-cinematic-banner__content h2,
+.mg-brand__heading h2,
+.mg-highlight__heading h2,
+.mg-cinematic-3d__heading h2 {
+  font-size: var(--mg-section-heading-size) !important;
+  line-height: 1.12;
+}
+
+
+/* =========================================================
+   GLOBAL DESCRIPTION / SECONDARY TEXT
+========================================================= */
+
+.mg-range-intro p,
+.mg-dynamics__intro-copy p,
+.mg-editorial__spec-list li,
+.mg-gallery__intro p,
+.mg-gallery__copy p,
+.mg-owners__header-right p,
+.mg-night-drive__header-copy p,
+.mg-model-stage__title p,
+.mg-cinematic-banner__content p,
+.mg-showroom-footer__desc,
+.mg-brand__intro-copy p,
+.mg-highlight__community p,
+.mg-cinematic-3d__header p {
+  font-size: var(--mg-secondary-size) !important;
+  font-weight: var(--mg-secondary-weight) !important;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   SUPPORTING LABELS / EYEBROWS
+========================================================= */
+
+.mg-range-eyebrow,
+.mg-editorial__detail-label,
+.mg-gallery__label span,
+.mg-owners__eyebrow,
+.mg-model-stage__title > span,
+.mg-cinematic-banner__kicker,
+.mg-brand__eyebrow,
+.mg-highlight__eyebrow {
+  font-size: var(--mg-label-size) !important;
+  font-weight: var(--mg-secondary-weight) !important;
+}
+
+
+/* =========================================================
+   COMMON BUTTON TEXT
+========================================================= */
+
+.mg-cinematic-banner__button,
+.mg-cinematic-banner__secondary {
+  font-size: var(--mg-button-size) !important;
+}
+
+
+/* =========================================================
+   LAPTOP / 1200PX SCREEN
+   Covers common 1100px - 1366px laptop widths
+========================================================= */
+
+@media (min-width: 1100px) and (max-width: 1366px) {
+  :root {
+    --mg-section-heading-size: 40px;
+    --mg-secondary-size: 15px;
+    --mg-label-size: 12px;
+    --mg-button-size: 13px;
+  }
+
+  .mg-range-heading h2,
+  .mg-dynamics__headline h2,
+  .mg-editorial__title,
+  .mg-gallery__heading h2,
+  .mg-owners__heading h2,
+  .mg-night-drive__heading h2,
+  .mg-model-stage__title h2,
+  .mg-cinematic-banner__content h2,
+  .mg-brand__heading h2,
+  .mg-highlight__heading h2,
+  .mg-cinematic-3d__heading h2 {
+    line-height: 1.12 !important;
+  }
+
+  .mg-range-intro p,
+  .mg-dynamics__intro-copy p,
+  .mg-editorial__spec-list li,
+  .mg-gallery__intro p,
+  .mg-gallery__copy p,
+  .mg-owners__header-right p,
+  .mg-night-drive__header-copy p,
+  .mg-model-stage__title p,
+  .mg-cinematic-banner__content p,
+  .mg-showroom-footer__desc,
+  .mg-brand__intro-copy p,
+  .mg-highlight__community p,
+  .mg-cinematic-3d__header p {
+    line-height: 1.65 !important;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1024px) {
+  :root {
+    --mg-section-heading-size: clamp(34px, 4vw, 42px);
+    --mg-secondary-size: 14px;
+    --mg-label-size: 11px;
+    --mg-button-size: 12px;
+  }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 767px) {
+  :root {
+    --mg-page-gutter: 5vw;
+
+    --mg-section-heading-size: 34px;
+    --mg-secondary-size: 13px;
+    --mg-label-size: 11px;
+    --mg-button-size: 12px;
+  }
+
+  .mg-range-intro p,
+  .mg-dynamics__intro-copy p,
+  .mg-editorial__spec-list li,
+  .mg-gallery__intro p,
+  .mg-gallery__copy p,
+  .mg-owners__header-right p,
+  .mg-night-drive__header-copy p,
+  .mg-model-stage__title p,
+  .mg-cinematic-banner__content p,
+  .mg-showroom-footer__desc,
+  .mg-brand__intro-copy p,
+  .mg-highlight__community p,
+  .mg-cinematic-3d__header p {
+    line-height: 1.65;
+  }
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+========================================================= */
+
+@media (max-width: 420px) {
+  :root {
+    --mg-section-heading-size: 32px;
+    --mg-secondary-size: 13px;
+    --mg-label-size: 10px;
+    --mg-button-size: 12px;
+  }
+}
