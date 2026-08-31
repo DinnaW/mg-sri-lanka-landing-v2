@@ -12,10 +12,8 @@ import {
 const asset = (path) =>
   `${import.meta.env.BASE_URL}${String(path).replace(/^\/+/, "")}`;
 
-const MODEL_REVISION = "paint-v3-20260831";
-
 const modelPath =
-  `${import.meta.env.BASE_URL}models/mg-car.glb?v=${MODEL_REVISION}`;
+  `${import.meta.env.BASE_URL}models/mg-car.glb`;
 
 const studioBackground = asset(
   "images/Generated Image August 24, 2026 - 12_44PM.jpg"
@@ -31,9 +29,9 @@ const modelViewer = ref(null);
 const modelLoaded = ref(false);
 const modelLoading = ref(true);
 const modelError = ref(false);
-const paintMaterialReady = ref(false);
 
 const selectedColorId = ref("silver");
+const useFilterFallback = ref(false);
 
 /* =========================================================
    MODEL SETTINGS
@@ -41,20 +39,9 @@ const selectedColorId = ref("silver");
 
 const DEFAULT_CAMERA = "32deg 82deg 57%";
 
-/*
-  IMPORTANT COLOUR NOTE
-  ---------------------------------------------------------
-  The original mg-car.glb has a material called "carpaint".
-  Its baked baseColorFactor is BLUE. There is NO base colour
-  texture in this GLB.
-
-  <model-viewer> accepts a CSS colour string for
-  setBaseColorFactor(). CSS colours are interpreted as sRGB
-  and converted internally to the linear colour space used by
-  glTF. Passing ordinary HEX channel values as a numeric array
-  makes red too bright/pink and gives very dark colours a cool
-  blue cast. Therefore the paint colours below are always sent
-  as CSS HEX strings.
+/* =========================================================
+   EXTERIOR COLOURS
+   Uses the same material logic as your previous 3D section.
 ========================================================= */
 
 const colours = [
@@ -64,10 +51,12 @@ const colours = [
     shortName: "White",
     finish: "Pearl",
     code: "DW01",
-    hex: "#F5F4F0",
-    paintHex: "#F5F4F0",
-    metallic: 0.05,
-    roughness: 0.19,
+    hex: "#F4F2EC",
+    paintHex: "#F8F6F0",
+    metallic: 0.06,
+    roughness: 0.31,
+    exposure: 1.02,
+    filter: "brightness(1.12) saturate(.18)",
   },
   {
     id: "black",
@@ -75,10 +64,12 @@ const colours = [
     shortName: "Black",
     finish: "Metallic",
     code: "PB02",
-    hex: "#090909",
-    paintHex: "#090909",
-    metallic: 0.08,
-    roughness: 0.15,
+    hex: "#0A0B0C",
+    paintHex: "#030405",
+    metallic: 0.38,
+    roughness: 0.13,
+    exposure: 0.92,
+    filter: "brightness(.20) saturate(.25) contrast(1.22)",
   },
   {
     id: "silver",
@@ -86,10 +77,12 @@ const colours = [
     shortName: "Silver",
     finish: "Metallic",
     code: "CS03",
-    hex: "#B4B8BA",
-    paintHex: "#B4B8BA",
-    metallic: 0.22,
-    roughness: 0.17,
+    hex: "#B9BEC0",
+    paintHex: "#AEB4B7",
+    metallic: 0.90,
+    roughness: 0.18,
+    exposure: 0.98,
+    filter: "grayscale(.78) saturate(.18) brightness(.94)",
   },
   {
     id: "red",
@@ -97,10 +90,13 @@ const colours = [
     shortName: "Red",
     finish: "Metallic",
     code: "DR04",
-    hex: "#A70B16",
-    paintHex: "#A70B16",
-    metallic: 0.10,
-    roughness: 0.17,
+    hex: "#B51220",
+    paintHex: "#9E0A17",
+    metallic: 0.48,
+    roughness: 0.16,
+    exposure: 0.97,
+    filter:
+      "sepia(.38) saturate(5.4) hue-rotate(326deg) brightness(.72) contrast(1.08)",
   },
   {
     id: "grey",
@@ -108,10 +104,12 @@ const colours = [
     shortName: "Grey",
     finish: "Metallic",
     code: "AG05",
-    hex: "#515657",
-    paintHex: "#515657",
-    metallic: 0.16,
-    roughness: 0.18,
+    hex: "#555D5F",
+    paintHex: "#454C4E",
+    metallic: 0.72,
+    roughness: 0.20,
+    exposure: 0.96,
+    filter: "grayscale(.56) saturate(.22) brightness(.58)",
   },
   {
     id: "blue",
@@ -119,35 +117,37 @@ const colours = [
     shortName: "Blue",
     finish: "Metallic",
     code: "PB06",
-    hex: "#315B7A",
-    paintHex: "#315B7A",
-    metallic: 0.12,
-    roughness: 0.17,
+    hex: "#3E607A",
+    paintHex: "#294E6B",
+    metallic: 0.62,
+    roughness: 0.18,
+    exposure: 0.95,
+    filter:
+      "sepia(.12) saturate(2.2) hue-rotate(165deg) brightness(.61) contrast(1.04)",
   },
 ];
 
 const selectedColour = computed(() => {
   return (
     colours.find(
-      (colour) => colour.id === selectedColorId.value
+      (colour) =>
+        colour.id === selectedColorId.value
     ) || colours[0]
   );
 });
 
 const selectedColourIndex = computed(() => {
   const index = colours.findIndex(
-    (colour) => colour.id === selectedColorId.value
+    (colour) =>
+      colour.id === selectedColorId.value
   );
 
   return String(index + 1).padStart(2, "0");
 });
 
-/*
-  Use one neutral exposure for every paint.
-  Per-colour exposure was making comparisons misleading and
-  could make black look cool/navy and red look brighter/pinker.
-*/
-const modelExposure = 1;
+const modelExposure = computed(
+  () => selectedColour.value.exposure || 1
+);
 
 /* =========================================================
    VEHICLE SPECS
@@ -216,72 +216,96 @@ const featureCards = [
 ];
 
 /* =========================================================
-   CAR PAINT MATERIAL
+   COLOUR MATERIAL HELPERS
 ========================================================= */
 
+const hexToFactor = (hex) => {
+  const clean = hex.replace("#", "");
+
+  return [
+    parseInt(clean.slice(0, 2), 16) / 255,
+    parseInt(clean.slice(2, 4), 16) / 255,
+    parseInt(clean.slice(4, 6), 16) / 255,
+    1,
+  ];
+};
+
+/*
+  The GLB from the previous section uses a material called
+  "carpaint", so target that exact material first.
+*/
 const getCarPaintMaterial = () => {
   const viewer = modelViewer.value;
 
-  if (!viewer?.model) {
+  if (!viewer?.model?.materials) {
     return null;
   }
 
-  // Prefer model-viewer's name lookup API. The inspected GLB
-  // contains this exact material name.
-  const byName = viewer.model.getMaterialByName?.("carpaint");
-
-  if (byName) {
-    return byName;
-  }
-
-  // Defensive fallback for older/alternate model-viewer builds.
   return (
-    viewer.model.materials?.find(
+    viewer.model.materials.find(
       (material) =>
-        (material.name || "").trim().toLowerCase() === "carpaint"
+        (material.name || "").toLowerCase() === "carpaint"
     ) || null
   );
 };
 
-const applyMaterialColour = async (material, colour) => {
-  if (!material) {
-    return false;
+/*
+  Safety fallback in case the GLB is replaced later.
+*/
+const getFallbackBodyMaterials = () => {
+  const viewer = modelViewer.value;
+
+  if (!viewer?.model?.materials) {
+    return [];
   }
 
-  try {
-    // Ensure the material resource is available before mutating it.
-    await material.ensureLoaded?.();
+  const keywords = [
+    "bodypaint",
+    "paint",
+    "body",
+    "exterior",
+    "shell",
+  ];
 
-    const pbr = material.pbrMetallicRoughness;
+  return viewer.model.materials.filter(
+    (material) => {
+      const name =
+        (material.name || "").toLowerCase();
 
-    if (!pbr) {
-      return false;
+      return keywords.some((keyword) =>
+        name.includes(keyword)
+      );
     }
-
-    /*
-      CRITICAL FIX:
-      Send CSS HEX directly. model-viewer converts this sRGB
-      value to glTF's linear colour space correctly.
-
-      Do NOT convert HEX to [r/255, g/255, b/255] here. Numeric
-      arrays are already expected to be linear values.
-    */
-    pbr.setBaseColorFactor?.(colour.paintHex);
-
-    // Keep the body paint glossy, but not mirror-like/raw metal.
-    // This preserves the true red/black hue much better.
-    pbr.setMetallicFactor?.(colour.metallic);
-    pbr.setRoughnessFactor?.(colour.roughness);
-
-    return true;
-  } catch (error) {
-    console.warn("MG car paint material update failed:", error);
-    return false;
-  }
+  );
 };
 
-const applyVehicleColour = async (colour) => {
-  selectedColorId.value = colour.id;
+const applyMaterialColour = (
+  material,
+  colour
+) => {
+  const pbr =
+    material?.pbrMetallicRoughness;
+
+  if (!pbr) return;
+
+  pbr.setBaseColorFactor?.(
+    hexToFactor(colour.paintHex || colour.hex)
+  );
+
+  pbr.setMetallicFactor?.(
+    colour.metallic
+  );
+
+  pbr.setRoughnessFactor?.(
+    colour.roughness
+  );
+};
+
+const applyVehicleColour = async (
+  colour
+) => {
+  selectedColorId.value =
+    colour.id;
 
   await nextTick();
 
@@ -289,19 +313,64 @@ const applyVehicleColour = async (colour) => {
     return;
   }
 
-  const material = getCarPaintMaterial();
+  try {
+    const exactMaterial =
+      getCarPaintMaterial();
 
-  if (!material) {
-    paintMaterialReady.value = false;
+    if (exactMaterial) {
+      applyMaterialColour(
+        exactMaterial,
+        colour
+      );
+
+      useFilterFallback.value =
+        false;
+
+      return;
+    }
+
+    const fallbackMaterials =
+      getFallbackBodyMaterials();
+
+    if (fallbackMaterials.length) {
+      fallbackMaterials.forEach(
+        (material) =>
+          applyMaterialColour(
+            material,
+            colour
+          )
+      );
+
+      useFilterFallback.value =
+        false;
+
+      return;
+    }
+  } catch (error) {
     console.warn(
-      'MG colour selector: material "carpaint" was not found in the loaded GLB.'
+      "MG exterior colour update failed:",
+      error
     );
-    return;
   }
 
-  const applied = await applyMaterialColour(material, colour);
-  paintMaterialReady.value = applied;
+  /*
+    CSS fallback is intentionally only used when no paint
+    material can be found.
+  */
+  useFilterFallback.value =
+    true;
 };
+
+const modelFilterStyle = computed(() => {
+  if (!useFilterFallback.value) {
+    return {};
+  }
+
+  return {
+    filter:
+      selectedColour.value.filter,
+  };
+});
 
 /* =========================================================
    MODEL EVENTS
@@ -314,16 +383,14 @@ const handleModelLoad = async () => {
 
   await nextTick();
 
-  // Apply the selected silver immediately after model-viewer has
-  // exposed its scene graph. The GLB itself is also patched to
-  // neutral silver, so there is no blue flash before this runs.
-  await applyVehicleColour(selectedColour.value);
+  await applyVehicleColour(
+    selectedColour.value
+  );
 };
 
 const handleModelError = (event) => {
   modelLoading.value = false;
   modelError.value = true;
-  paintMaterialReady.value = false;
 
   console.error(
     "MG model failed to load:",
@@ -338,19 +405,26 @@ const handleModelError = (event) => {
 const resetStage = async () => {
   const silver =
     colours.find(
-      (colour) => colour.id === "silver"
+      (colour) =>
+        colour.id === "silver"
     ) || colours[0];
 
   await applyVehicleColour(silver);
+
   await nextTick();
 
-  const viewer = modelViewer.value;
+  const viewer =
+    modelViewer.value;
 
   if (!viewer) return;
 
   try {
-    viewer.cameraOrbit = DEFAULT_CAMERA;
-    viewer.fieldOfView = "20deg";
+    viewer.cameraOrbit =
+      DEFAULT_CAMERA;
+
+    viewer.fieldOfView =
+      "20deg";
+
     viewer.resetTurntableRotation?.();
   } catch (error) {
     console.warn(
@@ -359,6 +433,7 @@ const resetStage = async () => {
     );
   }
 };
+
 </script>
 
 <template>
@@ -553,6 +628,7 @@ const resetStage = async () => {
             'is-loaded':
               modelLoaded,
           }"
+          :style="modelFilterStyle"
           :src="modelPath"
           alt="Interactive MG S5 EV"
           loading="eager"
@@ -577,7 +653,6 @@ const resetStage = async () => {
           shadow-softness="0.8"
           :exposure="modelExposure"
           environment-image="neutral"
-          tone-mapping="neutral"
           touch-action="pan-y"
           @load="handleModelLoad"
           @error="handleModelError"
