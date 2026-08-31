@@ -635,7 +635,7 @@ const bannerImage = asset("images/Folder 1 (14) 2.png");
 
   border-radius: 50%;
 
-  background: #ffffff;
+  background: #111111;
 
   color: #fff;
 
