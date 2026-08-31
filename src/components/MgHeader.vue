@@ -592,6 +592,8 @@ onBeforeUnmount(() => {
 
                 }"
 
+                @mouseenter="activeCategory = category.id"
+                @focus="activeCategory = category.id"
                 @click="activeCategory = category.id"
 
               >
@@ -1608,11 +1610,30 @@ onBeforeUnmount(() => {
 
 .mg-mega__filter-list button:hover,
 
+.mg-mega__filter-list button:focus-visible,
+
 .mg-mega__filter-list button.is-active {
 
   color: #111;
 
   transform: translateX(0.16vw);
+
+}
+
+.mg-mega__filter-list button:hover i,
+.mg-mega__filter-list button:focus-visible i,
+.mg-mega__filter-list button.is-active i {
+
+  background: var(--red);
+
+  box-shadow:
+    0 0 0.6vw rgba(229, 25, 32, 0.35);
+
+}
+
+.mg-mega__filter-list button:focus-visible {
+
+  outline: none;
 
 }
 
@@ -1628,15 +1649,7 @@ onBeforeUnmount(() => {
 
 }
 
-.mg-mega__filter-list button.is-active i {
 
-  background: var(--red);
-
-  box-shadow:
-
-    0 0 0.6vw rgba(229, 25, 32, 0.35);
-
-}
 
 .mg-mega__all-link {
 
