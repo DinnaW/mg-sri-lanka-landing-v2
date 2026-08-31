@@ -254,13 +254,15 @@ const socials = [
       aria-label="Book a test drive"
     >
       <span class="mg-drive-fab__icon">
-        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true">
-          <circle cx="16" cy="16" r="11.5" stroke="currentColor" stroke-width="1.8" />
-          <circle cx="16" cy="16" r="3" stroke="currentColor" stroke-width="1.8" />
-          <path d="M5.2 14.1h21.6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          <path d="M16 19v8.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          <path d="M10.3 10.4 16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
-          <path d="M21.7 10.4 16 16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+        <svg
+          viewBox="0 0 64 64"
+          aria-hidden="true"
+          class="mg-drive-fab__steering-icon"
+        >
+          <path
+            d="M32 3.25C16.15 3.25 3.25 16.15 3.25 32S16.15 60.75 32 60.75 60.75 47.85 60.75 32 47.85 3.25 32 3.25Zm-5.19 49.57C17.88 50.6 11.14 42.76 10.58 33.29l12.87 3.12c.78 1.5 1.939 2.78 3.359 3.69v12.72ZM32 36c-2.21 0-4-1.79-4-4s1.79-4 4-4 4 1.79 4 4-1.79 4-4 4Zm3.72-12.87c-1.14-.48-2.399-.75-3.72-.75s-2.58.27-3.72.75c-.14-.08-.31-.13-.49-.13H12.52C15.93 15.65 23.38 10.54 32 10.54S48.07 15.65 51.48 23H36.21c-.18 0-.35.05-.49.13Zm1.47 29.69V40.1c1.42-.91 2.579-2.19 3.359-3.69l12.87-3.12c-.559 9.47-7.299 17.31-16.229 19.53Z"
+            fill="currentColor"
+          />
         </svg>
       </span>
 
