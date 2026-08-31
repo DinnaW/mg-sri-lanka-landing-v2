@@ -406,7 +406,7 @@ onBeforeUnmount(() => {
   overflow: hidden;
 
   padding:
-    clamp(82px, 6vw, 108px)
+    clamp(100px, 7.5vw, 132px)
     0
     clamp(46px, 3.2vw, 58px);
 
@@ -490,7 +490,7 @@ onBeforeUnmount(() => {
 
   font-weight: 500;
 
-  line-height: 1.02;
+  line-height: 1.16;
 
   letter-spacing: -.057em;
 }
@@ -1232,7 +1232,7 @@ onBeforeUnmount(() => {
 
 @media (max-width: 1050px) {
   .mg-gallery {
-    padding-top: 72px;
+    padding-top: 88px;
     padding-bottom: 48px;
   }
 
@@ -1247,6 +1247,7 @@ onBeforeUnmount(() => {
 
   .mg-gallery__heading h2 {
     font-size: 36px;
+    line-height: 1.16;
   }
 
   .mg-gallery__stage {
@@ -1290,7 +1291,7 @@ onBeforeUnmount(() => {
 @media (max-width: 767px) {
   .mg-gallery {
     padding:
-      66px
+      82px
       0
       42px;
   }
@@ -1322,6 +1323,7 @@ onBeforeUnmount(() => {
     max-width: 440px;
 
     font-size: 30px;
+    line-height: 1.16;
   }
 
   .mg-gallery__heading h2 br {
@@ -1461,6 +1463,7 @@ onBeforeUnmount(() => {
 @media (max-width: 420px) {
   .mg-gallery__heading h2 {
     font-size: 28px;
+    line-height: 1.16;
   }
 
   .mg-gallery__main {

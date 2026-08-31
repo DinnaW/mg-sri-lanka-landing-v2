@@ -2,7 +2,7 @@
 const asset = (path) =>
   `${import.meta.env.BASE_URL}${path.replace(/^\/+/, "")}`;
 
-const bannerImage = asset("images/mg-mountain-banner.png");
+const bannerImage = asset("images/Folder 1 (14) 2.png");
 </script>
 
 <template>
@@ -20,16 +20,16 @@ const bannerImage = asset("images/mg-mountain-banner.png");
       decoding="async"
     />
 
+    <!-- Dark overlay ONLY on the image area below the top white band -->
+    <div
+      class="mg-cinematic-banner__image-overlay"
+      aria-hidden="true"
+    ></div>
+
 
     <!-- =====================================================
          IMAGE TREATMENT
     ====================================================== -->
-
-    <div class="mg-cinematic-banner__shade"></div>
-
-    <div class="mg-cinematic-banner__top-shade"></div>
-
-    <div class="mg-cinematic-banner__bottom-shade"></div>
 
 
 
@@ -178,6 +178,8 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   width: 100%;
 
+  margin-top: 60px;
+
   height: clamp(
     650px,
     56.25vw,
@@ -190,7 +192,9 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   isolation: isolate;
 
-  background: #111;
+  background: #f2f2f1;
+
+  box-shadow: 0 -140px 0 0 #f2f2f1;
 
   color: var(--white);
 
@@ -203,7 +207,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 /* =========================================================
    IMAGE
 
-   Keeps the supplied 16:9 composition as intact as possible.
+   Keeps the supplied composition stable with no hover zoom or top cropping.
 ========================================================= */
 
 .mg-cinematic-banner__image {
@@ -221,9 +225,15 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   object-fit: cover;
 
-  object-position: center center;
+  /* Keep the roof/top of the vehicle visible */
+  object-position: center top;
 
-  transform: scale(1.32);
+  /* Never zoom or move the image on hover */
+  transform: none !important;
+  transition: none !important;
+
+  transform: scale(1);
+  transform-origin: center center;
 
   transition:
     transform
@@ -232,101 +242,72 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 }
 
 
-.mg-cinematic-banner:hover
-.mg-cinematic-banner__image {
-  transform: scale(1.36);
-}
+
+
 
 
 /* =========================================================
-   MAIN LEFT GRADIENT
+   IMAGE OVERLAY ONLY
 
-   Darkens only the text area.
-   Keeps vehicle side clean.
+   IMPORTANT:
+   - The top white area stays visually clean.
+   - Overlay fades in smoothly with no hard horizontal edge.
+   - The car/image itself is NOT moved or cropped.
 ========================================================= */
 
-.mg-cinematic-banner__shade {
+.mg-cinematic-banner__image-overlay {
   position: absolute;
-
   inset: 0;
 
-  z-index: -7;
+  z-index: -5;
 
   pointer-events: none;
 
+  /*
+    No hard top edge.
+    Overlay is fully transparent at the top,
+    fades in smoothly below it,
+    then uses the left-to-right darkening.
+  */
   background:
+    linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0) 10%,
+      rgba(0, 0, 0, 0.08) 18%,
+      rgba(0, 0, 0, 0.16) 28%,
+      rgba(0, 0, 0, 0.20) 100%
+    ),
     linear-gradient(
       90deg,
-
-      rgba(5, 8, 10, .62)
-      0%,
-
-      rgba(5, 8, 10, .39)
-      22%,
-
-      rgba(5, 8, 10, .12)
-      43%,
-
-      rgba(5, 8, 10, 0)
-      61%
+      rgba(0, 0, 0, 0.30) 0%,
+      rgba(0, 0, 0, 0.18) 38%,
+      rgba(0, 0, 0, 0.06) 68%,
+      rgba(0, 0, 0, 0.08) 100%
     );
-}
 
-
-/* =========================================================
-   TOP SHADE
-========================================================= */
-
-.mg-cinematic-banner__top-shade {
-  position: absolute;
-
-  inset: 0 0 auto;
-
-  z-index: -6;
-
-  height: 32%;
-
-  pointer-events: none;
-
-  background:
+  /*
+    Fade the whole overlay itself from transparent at the top,
+    so there is never a straight grey horizontal line.
+  */
+  -webkit-mask-image:
     linear-gradient(
-      180deg,
-
-      rgba(0, 0, 0, .32),
-
-      transparent
+      to bottom,
+      transparent 0%,
+      transparent 8%,
+      rgba(0, 0, 0, 0.25) 16%,
+      #000 28%,
+      #000 100%
     );
-}
 
-
-/* =========================================================
-   BOTTOM SHADE
-========================================================= */
-
-.mg-cinematic-banner__bottom-shade {
-  position: absolute;
-
-  left: 0;
-  right: 0;
-  bottom: 0;
-
-  z-index: -6;
-
-  height: 37%;
-
-  pointer-events: none;
-
-  background:
+  mask-image:
     linear-gradient(
-      180deg,
-
-      transparent,
-
-      rgba(0, 0, 0, .14)
-      35%,
-
-      rgba(0, 0, 0, .5)
-      100%
+      to bottom,
+      transparent 0%,
+      transparent 8%,
+      rgba(0, 0, 0, 0.25) 16%,
+      #000 28%,
+      #000 100%
     );
 }
 
@@ -654,7 +635,7 @@ const bannerImage = asset("images/mg-mountain-banner.png");
 
   border-radius: 50%;
 
-  background: #111;
+  background: #ffffff;
 
   color: #fff;
 
@@ -895,6 +876,7 @@ span:last-child {
   max-width: 1000px
 ) {
 
+
   .mg-cinematic-banner {
     height: 700px;
   }
@@ -913,22 +895,6 @@ span:last-child {
     line-height: 1.16;
   }
 
-
-  .mg-cinematic-banner__shade {
-    background:
-      linear-gradient(
-        90deg,
-
-        rgba(5, 8, 10, .67),
-
-        rgba(5, 8, 10, .39)
-        39%,
-
-        transparent
-        72%
-      );
-  }
-
 }
 
 
@@ -939,6 +905,7 @@ span:last-child {
 @media (
   max-width: 767px
 ) {
+
 
   .mg-cinematic-banner {
     height: 740px;
@@ -959,34 +926,9 @@ span:last-child {
    */
 
   .mg-cinematic-banner__image {
-    object-position: 63% center;
-    transform: scale(1.18);
+    object-position: 63% top;
   }
 
-  .mg-cinematic-banner:hover
-  .mg-cinematic-banner__image {
-    transform: scale(1.22);
-  }
-
-
-  .mg-cinematic-banner__shade {
-    background:
-      linear-gradient(
-        180deg,
-
-        rgba(5, 8, 10, .3)
-        0%,
-
-        rgba(5, 8, 10, .07)
-        32%,
-
-        rgba(5, 8, 10, .24)
-        57%,
-
-        rgba(5, 8, 10, .83)
-        100%
-      );
-  }
 
 
   .mg-cinematic-banner__top {
@@ -1092,6 +1034,7 @@ span:last-child {
   max-width: 430px
 ) {
 
+
   .mg-cinematic-banner {
     height: 700px;
     min-height: 700px;
@@ -1099,14 +1042,9 @@ span:last-child {
 
 
   .mg-cinematic-banner__image {
-    object-position: 66% center;
-    transform: scale(1.12);
+    object-position: 66% top;
   }
 
-  .mg-cinematic-banner:hover
-  .mg-cinematic-banner__image {
-    transform: scale(1.16);
-  }
 
 
   .mg-cinematic-banner__content h2 {
@@ -1125,6 +1063,292 @@ span:last-child {
 
 }
 
+
+
+/* =========================================================
+   RESPONSIVE HERO SIZE FIX
+
+   Keeps the banner balanced on desktop, laptop, tablet
+   and mobile. These rules are placed last so they override
+   the older responsive values above.
+========================================================= */
+
+/* Large desktop */
+@media (min-width: 1440px) {
+  .mg-cinematic-banner {
+    height: clamp(720px, 52vw, 900px);
+    min-height: 720px;
+  }
+
+  .mg-cinematic-banner__image {
+    object-position: center top;
+  }
+
+  .mg-cinematic-banner__content {
+    top: 51%;
+    width: min(520px, 34vw);
+  }
+}
+
+/* Laptop / small desktop */
+@media (min-width: 1100px) and (max-width: 1439px) {
+  .mg-cinematic-banner {
+    height: clamp(620px, 54vw, 760px);
+    min-height: 620px;
+  }
+
+  .mg-cinematic-banner__image {
+    object-position: 57% top;
+  }
+
+  .mg-cinematic-banner__content {
+    top: 52%;
+    width: min(470px, 36vw);
+  }
+
+  .mg-cinematic-banner__content h2 {
+    font-size: clamp(40px, 3.4vw, 52px);
+  }
+
+  .mg-cinematic-banner__content p {
+    max-width: 390px;
+    font-size: 14px;
+  }
+}
+
+/* Tablet landscape */
+@media (min-width: 768px) and (max-width: 1099px) {
+  .mg-cinematic-banner {
+    height: 650px;
+    min-height: 650px;
+  }
+
+  .mg-cinematic-banner__image {
+    object-position: 61% top;
+  }
+
+  .mg-cinematic-banner__content {
+    top: 53%;
+    left: 5vw;
+    width: 390px;
+  }
+
+  .mg-cinematic-banner__content h2 {
+    font-size: 40px;
+    line-height: 1.12;
+  }
+
+  .mg-cinematic-banner__content p {
+    max-width: 350px;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .mg-cinematic-banner__actions {
+    margin-top: 24px;
+  }
+
+  .mg-cinematic-banner__button {
+    min-height: 46px;
+    font-size: 12px;
+  }
+
+  .mg-cinematic-banner__button-arrow {
+    width: 38px;
+    height: 38px;
+  }
+
+  .mg-cinematic-banner__bottom {
+    bottom: 24px;
+  }
+}
+
+/* Mobile */
+@media (min-width: 481px) and (max-width: 767px) {
+  .mg-cinematic-banner {
+    height: 680px;
+    min-height: 680px;
+  }
+
+  .mg-cinematic-banner__image {
+    object-position: 68% top;
+  }
+
+  .mg-cinematic-banner__content {
+    top: auto;
+    left: 20px;
+    right: 20px;
+    bottom: 92px;
+    width: auto;
+    transform: none;
+  }
+
+  .mg-cinematic-banner__kicker {
+    margin-bottom: 12px;
+    font-size: 10px;
+  }
+
+  .mg-cinematic-banner__content h2 {
+    max-width: 330px;
+    font-size: 32px;
+    line-height: 1.12;
+  }
+
+  .mg-cinematic-banner__content p {
+    max-width: 320px;
+    margin-top: 14px;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .mg-cinematic-banner__actions {
+    margin-top: 20px;
+    gap: 14px;
+  }
+
+  .mg-cinematic-banner__button {
+    min-height: 44px;
+    padding-left: 15px;
+    font-size: 11px;
+  }
+
+  .mg-cinematic-banner__button-arrow {
+    width: 36px;
+    height: 36px;
+  }
+
+  .mg-cinematic-banner__secondary {
+    font-size: 10px;
+  }
+
+  .mg-cinematic-banner__bottom {
+    left: 20px;
+    right: 20px;
+    bottom: 18px;
+  }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+  .mg-cinematic-banner {
+    height: 640px;
+    min-height: 640px;
+  }
+
+  .mg-cinematic-banner__image {
+    object-position: 72% top;
+  }
+
+  .mg-cinematic-banner__content {
+    top: auto;
+    left: 16px;
+    right: 16px;
+    bottom: 82px;
+    width: auto;
+    transform: none;
+  }
+
+  .mg-cinematic-banner__kicker {
+    margin-bottom: 10px;
+    font-size: 9px;
+    letter-spacing: .13em;
+  }
+
+  .mg-cinematic-banner__content h2 {
+    max-width: 295px;
+    font-size: 28px;
+    line-height: 1.1;
+  }
+
+  .mg-cinematic-banner__content h2 br {
+    display: none;
+  }
+
+  .mg-cinematic-banner__content p {
+    max-width: 285px;
+    margin-top: 12px;
+    font-size: 11px;
+    line-height: 1.55;
+  }
+
+  .mg-cinematic-banner__actions {
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-top: 17px;
+  }
+
+  .mg-cinematic-banner__button {
+    min-height: 42px;
+    padding: 3px 4px 3px 13px;
+    gap: 12px;
+    font-size: 10px;
+  }
+
+  .mg-cinematic-banner__button-arrow {
+    width: 34px;
+    height: 34px;
+  }
+
+  .mg-cinematic-banner__secondary {
+    font-size: 9px;
+  }
+
+  .mg-cinematic-banner__bottom {
+    left: 16px;
+    right: 16px;
+    bottom: 15px;
+  }
+
+  .mg-cinematic-banner__scroll {
+    font-size: 9px;
+  }
+}
+
+
+/* =========================================================
+   FINAL IMAGE CROP SAFETY
+
+   The image always anchors to the TOP vertically.
+   This prevents the vehicle roof from being cut on
+   laptop, tablet and mobile screen sizes.
+========================================================= */
+
+.mg-cinematic-banner__image,
+.mg-cinematic-banner:hover .mg-cinematic-banner__image {
+  transform: none !important;
+  transition: none !important;
+}
+
+@media (min-width: 1440px) {
+  .mg-cinematic-banner__image {
+    object-position: center top !important;
+  }
+}
+
+@media (min-width: 1100px) and (max-width: 1439px) {
+  .mg-cinematic-banner__image {
+    object-position: 57% top !important;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1099px) {
+  .mg-cinematic-banner__image {
+    object-position: 61% top !important;
+  }
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+  .mg-cinematic-banner__image {
+    object-position: 68% top !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .mg-cinematic-banner__image {
+    object-position: 72% top !important;
+  }
+}
 
 /* =========================================================
    REDUCED MOTION

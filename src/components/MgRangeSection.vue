@@ -413,7 +413,7 @@ onBeforeUnmount(() => {
   position: relative;
   width: 100%;
   overflow: hidden;
-  padding: clamp(40px, 3.5vw, 58px) 0 clamp(76px, 6vw, 105px);
+  padding: clamp(80px, 7vw, 120px) 0 clamp(76px, 6vw, 105px);
   background: var(--mg-bg);
   color: var(--mg-black);
   font-family: "Manrope", sans-serif;
@@ -943,7 +943,7 @@ onBeforeUnmount(() => {
   .mg-range-section {
     --page-width: calc(100% - 30px);
     --page-max-width: none;
-    padding: 40px 0 70px;
+    padding: 70px 0 70px;
   }
 
   .mg-range-header {
@@ -1050,6 +1050,10 @@ onBeforeUnmount(() => {
 ========================================================= */
 
 @media (max-width: 420px) {
+  .mg-range-section {
+    padding-top: 62px;
+  }
+
   .mg-range-heading h2 {
     font-size: 27px;
   }

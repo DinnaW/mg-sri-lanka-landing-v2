@@ -991,7 +991,7 @@ const resetStage = async () => {
   position: absolute;
 
   left: 4.4%;
-  top: 3.8%;
+  top: 7.2%;
 
   z-index: 90;
 
@@ -1033,7 +1033,7 @@ const resetStage = async () => {
   position: absolute;
 
   right: 4.4%;
-  top: 3.5%;
+  top: 6.9%;
 
   z-index: 90;
 
@@ -1097,7 +1097,7 @@ const resetStage = async () => {
   position: absolute;
 
   left: 50%;
-  top: 6.8%;
+  top: 11.5%;
 
   z-index: 80;
 
@@ -1131,14 +1131,14 @@ const resetStage = async () => {
 
   font-weight: 500;
 
-  line-height: 1;
+  line-height: 1.28;
 
   letter-spacing: -.055em;
 }
 
 .mg-model-stage__title p {
   margin:
-    .48vw
+    .9vw
     0
     0;
 
@@ -1146,6 +1146,8 @@ const resetStage = async () => {
     rgba(255, 255, 255, .56);
 
   font-size: .82vw;
+
+  line-height: 1.9;
 }
 
 .mg-model-stage__cta {
@@ -1205,7 +1207,7 @@ const resetStage = async () => {
   position: absolute;
 
   left: 3.8%;
-  top: 16.5%;
+  top: 21.0%;
 
   z-index: 88;
 
@@ -1628,7 +1630,7 @@ const resetStage = async () => {
   position: absolute;
 
   right: 4.8%;
-  top: 18.5%;
+  top: 23.0%;
 
   z-index: 80;
 
@@ -1695,7 +1697,7 @@ const resetStage = async () => {
   position: absolute;
 
   left: 17%;
-  top: 13.8%;
+  top: 18.5%;
 
   z-index: 25;
 
@@ -2269,6 +2271,10 @@ const resetStage = async () => {
 ========================================================= */
 
 @media (max-width: 1100px) {
+  .mg-model-stage {
+    padding-top: 68px;
+  }
+
   .mg-model-stage__frame {
     height: 820px;
 
@@ -2277,7 +2283,7 @@ const resetStage = async () => {
 
   .mg-model-stage__brand {
     left: 28px;
-    top: 28px;
+    top: 52px;
   }
 
   .mg-model-stage__brand strong {
@@ -2290,7 +2296,7 @@ const resetStage = async () => {
 
   .mg-model-stage__reset {
     right: 28px;
-    top: 25px;
+    top: 49px;
 
     height: 34px;
 
@@ -2308,13 +2314,14 @@ const resetStage = async () => {
   }
 
   .mg-model-stage__title {
-    top: 68px;
+    top: 104px;
 
     width: 44%;
   }
 
   .mg-model-stage__title h2 {
     font-size: 38px;
+    line-height: 1.28;
   }
 
   .mg-model-stage__title > span {
@@ -2322,7 +2329,9 @@ const resetStage = async () => {
   }
 
   .mg-model-stage__title p {
+    margin-top: 10px;
     font-size: 9px;
+    line-height: 1.9;
   }
 
   .mg-model-stage__cta {
@@ -2335,7 +2344,7 @@ const resetStage = async () => {
 
   .mg-model-stage__colours {
     left: 28px;
-    top: 170px;
+    top: 210px;
 
     width: 110px;
 
@@ -2383,7 +2392,7 @@ const resetStage = async () => {
 
   .mg-model-stage__specs {
     right: 28px;
-    top: 170px;
+    top: 210px;
 
     width: 110px;
 
@@ -2400,7 +2409,7 @@ const resetStage = async () => {
 
   .mg-model-stage__vehicle-zone {
     left: 9%;
-    top: 140px;
+    top: 185px;
 
     width: 82%;
     height: 450px;
@@ -4169,4 +4178,53 @@ const resetStage = async () => {
     transition-duration: .01ms !important;
   }
 }
+
+/* =========================================================
+   INCREASED TOP GAP + LINE HEIGHT
+========================================================= */
+@media (max-width: 767px) {
+  .mg-model-stage {
+    padding-top: 56px;
+  }
+
+  .mg-model-stage__title h2 {
+    line-height: 1.16;
+  }
+
+  .mg-model-stage__title p {
+    line-height: 1.6;
+  }
+}
+
+@media (max-width: 420px) {
+  .mg-model-stage {
+    padding-top: 48px;
+  }
+}
+
+
+/* =========================================================
+   FINAL TOP-GAP + MAIN-TOPIC LINE-HEIGHT FIX
+========================================================= */
+@media (max-width: 767px) {
+  .mg-model-stage__title {
+    top: 96px !important;
+  }
+
+  .mg-model-stage__title h2 {
+    line-height: 1.28 !important;
+  }
+
+  .mg-model-stage__title p {
+    margin-top: 10px !important;
+    line-height: 1.9 !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .mg-model-stage__title {
+    top: 88px !important;
+  }
+}
+
 </style>

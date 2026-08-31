@@ -460,7 +460,7 @@ const toggleSpec = (id) => {
 
   /* SAME TOP GAP AS MG RANGE */
   padding:
-    clamp(20px, 1.8vw, 30px)
+    clamp(58px, 4.5vw, 78px)
     0
     clamp(76px, 6vw, 104px);
 
@@ -555,7 +555,7 @@ const toggleSpec = (id) => {
   font-size: clamp(38px, 2.7vw, 54px);
   font-weight: 600;
 
-  line-height: 1.08;
+  line-height: 1.18;
 
   letter-spacing: -0.05em;
 }
@@ -906,7 +906,7 @@ const toggleSpec = (id) => {
   font-size: clamp(38px, 2.7vw, 54px);
   font-weight: 600;
 
-  line-height: 1.07;
+  line-height: 1.17;
 
   letter-spacing: -0.048em;
 }
@@ -1392,7 +1392,7 @@ span:last-child {
 @media (max-width: 1000px) {
 
   .mg-dynamics {
-    padding-top: 20px;
+    padding-top: 52px;
   }
 
 
@@ -1438,7 +1438,7 @@ span:last-child {
 
   .mg-dynamics {
     padding:
-      20px
+      48px
       0
       66px;
   }
@@ -1464,6 +1464,7 @@ span:last-child {
 
   .mg-dynamics__headline h2 {
     font-size: 32px;
+    line-height: 1.18;
   }
 
 
@@ -1533,6 +1534,7 @@ span:last-child {
 
   .mg-specs__intro h3 {
     font-size: 30px;
+    line-height: 1.17;
   }
 
 
@@ -1647,7 +1649,7 @@ span:last-child {
 @media (max-width: 470px) {
 
   .mg-dynamics {
-    padding-top: 20px;
+    padding-top: 44px;
   }
 
 
