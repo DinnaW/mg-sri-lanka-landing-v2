@@ -52,6 +52,8 @@ const isScrolled = ref(false);
 
 let closeTimer = null;
 
+let categoryHoverTimer = null;
+
 let previousOverflow = "";
 
 let scrollFrame = null;
@@ -232,6 +234,40 @@ const scheduleClose = () => {
 
 };
 
+const clearCategoryHoverTimer = () => {
+
+  if (categoryHoverTimer) {
+
+    window.clearTimeout(categoryHoverTimer);
+
+    categoryHoverTimer = null;
+
+  }
+
+};
+
+const previewCategory = (categoryId) => {
+
+  clearCategoryHoverTimer();
+
+  categoryHoverTimer = window.setTimeout(() => {
+
+    activeCategory.value = categoryId;
+
+    categoryHoverTimer = null;
+
+  }, 380);
+
+};
+
+const selectCategory = (categoryId) => {
+
+  clearCategoryHoverTimer();
+
+  activeCategory.value = categoryId;
+
+};
+
 const closeForNavigation = () => {
 
   closeMega();
@@ -307,6 +343,7 @@ onMounted(() => {
 onBeforeUnmount(() => {
 
   clearCloseTimer();
+  clearCategoryHoverTimer();
 
   window.removeEventListener("scroll", handleScroll);
 
@@ -592,9 +629,10 @@ onBeforeUnmount(() => {
 
                 }"
 
-                @mouseenter="activeCategory = category.id"
-                @focus="activeCategory = category.id"
-                @click="activeCategory = category.id"
+                @mouseenter="previewCategory(category.id)"
+                @mouseleave="clearCategoryHoverTimer"
+                @focus="selectCategory(category.id)"
+                @click="selectCategory(category.id)"
 
               >
 
@@ -668,73 +706,81 @@ onBeforeUnmount(() => {
 
             </div>
 
-            <TransitionGroup
+            <Transition
 
-              name="vehicle-grid"
+              name="vehicle-filter"
 
-              tag="div"
-
-              class="mg-mega__grid"
+              mode="out-in"
 
             >
 
-              <a
+              <div
 
-                v-for="vehicle in filteredVehicles"
+                :key="activeCategory"
 
-                :key="vehicle.id"
-
-                :href="vehicle.href"
-
-                class="mg-model-card"
-
-                @click="closeMega"
+                class="mg-mega__grid"
 
               >
 
-                <div class="mg-model-card__visual">
+                <a
 
-                  <span class="mg-model-card__badge">
+                  v-for="vehicle in filteredVehicles"
 
-                    {{ vehicle.badge }}
+                  :key="vehicle.id"
 
-                  </span>
+                  :href="vehicle.href"
 
-                  <img
+                  class="mg-model-card"
 
-                    :src="vehicle.image"
+                  @click="closeMega"
 
-                    :alt="vehicle.name"
+                >
 
-                  />
+                  <div class="mg-model-card__visual">
 
-                  <span class="mg-model-card__explore">
+                    <span class="mg-model-card__badge">
 
-                    <svg viewBox="0 0 24 24">
+                      {{ vehicle.badge }}
 
-                      <path
+                    </span>
 
-                        d="M5 12h14M14 7l5 5-5 5"
+                    <img
 
-                      />
+                      :src="vehicle.image"
 
-                    </svg>
+                      :alt="vehicle.name"
 
-                  </span>
+                    />
 
-                </div>
+                    <span class="mg-model-card__explore">
 
-                <div class="mg-model-card__copy">
+                      <svg viewBox="0 0 24 24">
 
-                  <strong>{{ vehicle.name }}</strong>
+                        <path
 
-                  <span>{{ vehicle.type }}</span>
+                          d="M5 12h14M14 7l5 5-5 5"
 
-                </div>
+                        />
 
-              </a>
+                      </svg>
 
-            </TransitionGroup>
+                    </span>
+
+                  </div>
+
+                  <div class="mg-model-card__copy">
+
+                    <strong>{{ vehicle.name }}</strong>
+
+                    <span>{{ vehicle.type }}</span>
+
+                  </div>
+
+                </a>
+
+              </div>
+
+            </Transition>
 
             <div class="mg-mega__footer">
 
@@ -1602,9 +1648,9 @@ onBeforeUnmount(() => {
 
   transition:
 
-    color 0.25s ease,
+    color 0.38s ease,
 
-    transform 0.25s ease;
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
 
 }
 
@@ -1629,6 +1675,8 @@ onBeforeUnmount(() => {
   box-shadow:
     0 0 0.6vw rgba(229, 25, 32, 0.35);
 
+  transform: scale(1);
+
 }
 
 .mg-mega__filter-list button:focus-visible {
@@ -1646,6 +1694,13 @@ onBeforeUnmount(() => {
   border-radius: 50%;
 
   background: transparent;
+
+  transform: scale(0.65);
+
+  transition:
+    background 0.36s ease,
+    box-shadow 0.36s ease,
+    transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
 
 }
 
@@ -1813,9 +1868,9 @@ onBeforeUnmount(() => {
 
   transition:
 
-    background 0.35s ease,
+    background 0.45s ease,
 
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
 
 }
 
@@ -2117,28 +2172,37 @@ onBeforeUnmount(() => {
 
 }
 
-.vehicle-grid-enter-active,
-
-.vehicle-grid-leave-active {
-
+.vehicle-filter-enter-active,
+.vehicle-filter-leave-active {
   transition:
-
-    opacity 0.28s ease,
-
-    transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-
+    opacity 0.34s ease,
+    transform 0.46s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.34s ease;
+  will-change: opacity, transform, filter;
 }
 
-.vehicle-grid-enter-from,
-
-.vehicle-grid-leave-to {
-
+.vehicle-filter-enter-from {
   opacity: 0;
+  transform: translateY(0.28vw);
+  filter: blur(0.08vw);
+}
 
-  transform:
+.vehicle-filter-enter-to {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
 
-    translateY(0.45vw);
+.vehicle-filter-leave-from {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
 
+.vehicle-filter-leave-to {
+  opacity: 0;
+  transform: translateY(-0.18vw);
+  filter: blur(0.05vw);
 }
 
 .mg-mobile-nav {

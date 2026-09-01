@@ -436,86 +436,38 @@ const resetStage = async () => {
       </header>
 
       <!-- ===================================================
-           PREMIUM EXTERIOR PAINT SELECTOR
+           EXTERIOR FINISH — IMAGE MATCH PALETTE
       ==================================================== -->
-      <aside class="mg-model-stage__colours">
-        <div class="mg-model-stage__paint-head">
-          <div>
-            <span>EXTERIOR FINISH</span>
+      <aside
+        class="mg-model-stage__colours"
+        aria-label="Exterior finish selector"
+      >
 
-            <strong>
-              {{ selectedColour.name }}
-            </strong>
-          </div>
 
-          <small>
-            {{ selectedColourIndex }}
-            /
-            {{ String(colours.length).padStart(2, "0") }}
-          </small>
-        </div>
-
-        <div
-          class="mg-model-stage__paint-preview"
-          :style="{
-            '--active-paint':
-              selectedColour.hex,
-          }"
-        >
-          <span class="mg-model-stage__paint-orb"></span>
-
-          <div>
-            <strong>
-              {{ selectedColour.shortName }}
-            </strong>
-
-            <small>
-              {{ selectedColour.finish }}
-              ·
-              {{ selectedColour.code }}
-            </small>
-          </div>
-        </div>
-
-        <div class="mg-model-stage__colour-list">
+        <div class="mg-model-stage__paint-tray">
           <button
             v-for="colour in colours"
             :key="colour.id"
             type="button"
             class="mg-model-stage-colour"
-            :class="{
-              'is-active':
-                selectedColorId === colour.id,
-            }"
+            :class="{ 'is-active': selectedColorId === colour.id }"
             :aria-label="`Select ${colour.name}`"
-            :title="colour.name"
-            @click="
-              applyVehicleColour(
-                colour
-              )
-            "
+            :aria-pressed="selectedColorId === colour.id"
+            :title="`${colour.name} — ${colour.finish}`"
+            @click="applyVehicleColour(colour)"
           >
             <span
               class="mg-model-stage-colour__chip"
-              :style="{
-                '--paint':
-                  colour.hex,
-              }"
+              :style="{ '--paint': colour.hex }"
             ></span>
 
-            <span
-              class="mg-model-stage-colour__label"
-            >
-              <strong>
-                {{ colour.shortName }}
-              </strong>
-
-              <small>
-                {{ colour.finish }}
-              </small>
+            <span class="mg-model-stage-colour__copy">
+              <strong>{{ colour.name }}</strong>
+              <template v-if="selectedColorId === colour.id">
+                <small>{{ colour.finish }}</small>
+                <em>{{ colour.code }}</em>
+              </template>
             </span>
-
-            <i></i>
           </button>
         </div>
       </aside>
@@ -1599,17 +1551,21 @@ const resetStage = async () => {
 
   font-size: .56vw;
 
+  font-weight: 800;
+
   color:
-    rgba(255, 255, 255, .56);
+    rgba(255, 255, 255, .92);
 }
 
 .mg-model-stage__specs span {
   margin-top: .3vw;
 
   color:
-    rgba(255, 255, 255, .4);
+    rgba(255, 255, 255, .9);
 
   font-size: .52vw;
+
+  font-weight: 800;
 }
 
 /* =========================================================
@@ -2321,6 +2277,7 @@ const resetStage = async () => {
 
   .mg-model-stage__specs span {
     font-size: 7px;
+    font-weight: 800;
   }
 
   .mg-model-stage__vehicle-zone {
@@ -3909,4 +3866,3737 @@ const resetStage = async () => {
     transition-duration: .01ms !important;
   }
 }
+
+
+/* =========================================================
+   EXACT REFERENCE-STYLE EXTERIOR FINISH PALETTE
+   These final rules intentionally override the older
+   vertical glass colour selector without affecting the
+   working 3D paint logic.
+========================================================= */
+
+.mg-model-stage__colours {
+  position: absolute !important;
+  left: 50% !important;
+  right: auto !important;
+  top: 51.5% !important;
+  z-index: 95 !important;
+
+  width: min(58vw, 930px) !important;
+  min-width: 0 !important;
+  padding: 0 !important;
+
+  transform: translateX(-50%) !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+
+  font-family: "Manrope", sans-serif;
+  overflow: visible !important;
+}
+
+/* Transparent upper menu plate */
+.mg-model-stage__paint-tabs {
+  position: relative;
+  z-index: 3;
+
+  width: 86%;
+  height: clamp(38px, 2.65vw, 52px);
+
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+
+  margin: 0 auto;
+  padding: 0 clamp(8px, .45vw, 12px);
+
+  border: 0;
+  border-bottom: 1px solid rgba(255, 255, 255, .16);
+  border-radius: 0;
+
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  overflow: hidden;
+}
+
+.mg-model-stage__paint-tabs::before {
+  content: "";
+  position: absolute;
+  left: 4%;
+  right: 4%;
+  bottom: 0;
+  height: 1px;
+  background: rgba(255, 255, 255, .14);
+}
+
+.mg-model-stage__paint-tabs button {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 0;
+  padding: 0 clamp(5px, .5vw, 12px);
+
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, .10);
+  background: transparent;
+
+  color: rgba(255, 255, 255, .74);
+
+  font: inherit;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(10px, .72vw, 14px);
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+
+  cursor: default;
+}
+
+.mg-model-stage__paint-tabs button:last-child {
+  border-right: 0;
+}
+
+.mg-model-stage__paint-tabs button.is-active {
+  color: #d9151d;
+  font-weight: 700;
+}
+
+.mg-model-stage__paint-tabs button.is-active::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+
+  width: clamp(16px, 1.2vw, 22px);
+  height: 4px;
+
+  transform: translateX(-50%);
+
+  border-radius: 5px 5px 0 0;
+  background: #d9151d;
+
+  box-shadow: 0 0 7px rgba(217, 21, 29, .35);
+}
+
+/* Transparent lower palette plate */
+.mg-model-stage__paint-tray {
+  position: relative;
+  z-index: 2;
+
+  width: 100%;
+  height: clamp(92px, 6.8vw, 124px);
+
+  display: grid;
+  grid-template-columns: .9fr repeat(6, 1fr);
+  align-items: stretch;
+
+  margin-top: -2px;
+  padding: 0 clamp(16px, 1.2vw, 24px);
+
+  border: 0;
+  border-radius: 0;
+
+  background: transparent;
+  box-shadow: none;
+
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+
+  overflow: visible;
+}
+
+.mg-model-stage__paint-tray::before {
+  content: "";
+
+  position: absolute;
+  left: 7%;
+  right: 7%;
+  top: 12%;
+  height: 70%;
+
+  border-radius: 50%;
+
+  background: transparent;
+
+  pointer-events: none;
+}
+
+/* Back/reset circle */
+.mg-model-stage__paint-back {
+  position: relative;
+  z-index: 2;
+
+  display: grid;
+  place-items: center;
+
+  min-width: 0;
+  padding: 0;
+
+  border: 0;
+  border-right: 1px solid rgba(255, 255, 255, .10);
+  background: transparent;
+
+  cursor: pointer;
+}
+
+.mg-model-stage__paint-back > span {
+  width: clamp(48px, 3.5vw, 62px);
+  height: clamp(48px, 3.5vw, 62px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+
+  border: 2px solid rgba(213, 28, 35, .82);
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .055);
+
+  color: rgba(255, 255, 255, .78);
+
+  font-size: clamp(6px, .42vw, 8px);
+  font-weight: 700;
+  letter-spacing: .03em;
+  text-transform: uppercase;
+
+  box-shadow:
+    0 5px 14px rgba(0, 0, 0, .20),
+    inset 0 1px 0 rgba(255, 255, 255, .12),
+    0 0 0 3px rgba(255, 255, 255, .08);
+
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.mg-model-stage__paint-back:hover > span {
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 18px rgba(0, 0, 0, .26),
+    inset 0 1px 0 rgba(255, 255, 255, .18),
+    0 0 0 3px rgba(255, 255, 255, .13);
+}
+
+.mg-model-stage__paint-back svg {
+  width: clamp(10px, .75vw, 14px);
+  height: clamp(10px, .75vw, 14px);
+}
+
+/* Each colour gets its own subtle vertical cell like the reference */
+.mg-model-stage-colour {
+  position: relative !important;
+  z-index: 2;
+
+  width: auto !important;
+  height: auto !important;
+  min-height: 0 !important;
+
+  display: grid !important;
+  grid-template-columns: none !important;
+  place-items: center !important;
+
+  padding: 0 !important;
+  gap: 0 !important;
+
+  border: 0 !important;
+  border-right: 1px solid rgba(255, 255, 255, .10) !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+
+  color: #fff !important;
+  text-align: center !important;
+  cursor: pointer;
+
+  transform: none !important;
+  overflow: visible !important;
+
+  transition: background .25s ease !important;
+}
+
+.mg-model-stage-colour:last-child {
+  border-right: 0 !important;
+}
+
+.mg-model-stage-colour:hover {
+  background: rgba(255, 255, 255, .045) !important;
+  transform: none !important;
+}
+
+.mg-model-stage-colour.is-active {
+  background: rgba(255, 255, 255, .045) !important;
+
+  border-color: rgba(255, 255, 255, .10) !important;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* The selected vertical stripe/cell visible in the screenshot */
+.mg-model-stage-colour.is-active::before {
+  content: "";
+
+  position: absolute;
+  left: 6%;
+  right: 6%;
+  top: -1px;
+  bottom: -30px;
+  z-index: -1;
+
+  border-left: 1px solid rgba(255, 255, 255, .08);
+  border-right: 1px solid rgba(255, 255, 255, .08);
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, .055),
+    rgba(255, 255, 255, .018) 62%,
+    transparent
+  );
+
+  pointer-events: none;
+}
+
+/* Triangle under the selected paint, pointing to its caption */
+.mg-model-stage-colour.is-active::after {
+  content: "";
+
+  position: absolute;
+  left: 50%;
+  bottom: -10px;
+  z-index: 6;
+
+  width: 0;
+  height: 0;
+
+  transform: translateX(-50%);
+
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-top: 0;
+  border-bottom: 14px solid rgba(255, 255, 255, .58);
+
+  filter: drop-shadow(0 -1px 1px rgba(0, 0, 0, .2));
+
+  pointer-events: none;
+}
+
+/* Large glossy paint circles */
+.mg-model-stage-colour__chip {
+  --paint: #ccc;
+
+  position: relative;
+
+  width: clamp(48px, 3.7vw, 68px) !important;
+  height: clamp(48px, 3.7vw, 68px) !important;
+
+  display: block !important;
+
+  border: 2px solid rgba(35, 35, 35, .22) !important;
+  border-radius: 50% !important;
+
+  background:
+    radial-gradient(
+      circle at 31% 24%,
+      rgba(255, 255, 255, .92) 0%,
+      rgba(255, 255, 255, .28) 13%,
+      rgba(255, 255, 255, .04) 29%,
+      transparent 37%
+    ),
+    radial-gradient(
+      circle at 65% 75%,
+      rgba(0, 0, 0, .25),
+      transparent 56%
+    ),
+    var(--paint) !important;
+
+  box-shadow:
+    inset 0 2px 3px rgba(255, 255, 255, .45),
+    inset -5px -8px 12px rgba(0, 0, 0, .22),
+    0 4px 10px rgba(0, 0, 0, .24),
+    0 0 0 3px rgba(255, 255, 255, .72) !important;
+
+  transform: scale(.96) !important;
+
+  transition:
+    transform .28s cubic-bezier(.16, 1, .3, 1),
+    box-shadow .28s ease !important;
+}
+
+.mg-model-stage-colour:hover .mg-model-stage-colour__chip {
+  transform: translateY(-2px) scale(1) !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  transform: scale(1.08) !important;
+
+  border-color: rgba(55, 55, 55, .27) !important;
+
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, .5),
+    inset -6px -9px 14px rgba(0, 0, 0, .22),
+    0 7px 16px rgba(0, 0, 0, .28),
+    0 0 0 4px rgba(255, 255, 255, .9),
+    0 0 0 5px rgba(0, 0, 0, .1) !important;
+}
+
+/* Selected paint name panel hanging below the tray */
+.mg-model-stage-colour__selected-label {
+  position: absolute;
+  left: 50%;
+  top: calc(100% + 18px);
+  z-index: 8;
+
+  min-width: clamp(150px, 10.5vw, 190px);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  padding: clamp(10px, .8vw, 14px) clamp(10px, .9vw, 16px);
+
+  transform: translateX(-50%);
+
+  border-left: 1px solid rgba(255, 255, 255, .08);
+  border-right: 1px solid rgba(255, 255, 255, .08);
+
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, .045),
+    rgba(255, 255, 255, .015) 58%,
+    transparent
+  );
+
+  color: rgba(255, 255, 255, .88);
+
+  text-align: center;
+  pointer-events: none;
+}
+
+.mg-model-stage-colour__selected-label strong {
+  display: block;
+
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: clamp(12px, .83vw, 15px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: .015em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.mg-model-stage-colour__selected-label small {
+  display: block;
+  margin-top: 4px;
+
+  color: rgba(255, 255, 255, .52);
+
+  font-size: clamp(8px, .55vw, 10px);
+  font-weight: 600;
+  letter-spacing: .055em;
+  text-transform: uppercase;
+}
+
+.paint-label-enter-active,
+.paint-label-leave-active {
+  transition: opacity .22s ease, transform .22s ease;
+}
+
+.paint-label-enter-from,
+.paint-label-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+/* Reference image palette is centered below the vehicle. */
+@media (min-width: 1101px) {
+  .mg-model-stage__vehicle-zone {
+    top: 12.6% !important;
+  }
+
+  .mg-model-stage__drag {
+    top: 68.5% !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    top: 490px !important;
+    width: min(76vw, 760px) !important;
+  }
+
+  .mg-model-stage__paint-tabs {
+    width: 88%;
+    height: 38px;
+  }
+
+  .mg-model-stage__paint-tabs button {
+    font-size: 9px;
+  }
+
+  .mg-model-stage__paint-tray {
+    height: 92px;
+    padding: 0 14px;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 48px !important;
+    height: 48px !important;
+  }
+
+  .mg-model-stage-colour__selected-label {
+    top: calc(100% + 16px);
+    min-width: 138px;
+  }
+}
+
+/* Mobile: keep the same visual language, but allow horizontal scroll. */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 16px !important;
+    right: 16px !important;
+    top: 505px !important;
+    width: auto !important;
+
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-tabs {
+    width: 100%;
+    height: 38px;
+
+    overflow-x: auto;
+    grid-template-columns: repeat(6, minmax(78px, 1fr));
+
+    border-radius: 18px 18px 8px 8px;
+    scrollbar-width: none;
+  }
+
+  .mg-model-stage__paint-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mg-model-stage__paint-tabs button {
+    font-size: 9px;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 100%;
+    height: 84px;
+
+    display: flex;
+    align-items: stretch;
+
+    padding: 0 10px;
+
+    overflow-x: auto;
+    overflow-y: visible;
+
+    border-radius: 16px 16px 28px 28px;
+    scrollbar-width: none;
+  }
+
+  .mg-model-stage__paint-tray::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mg-model-stage__paint-back,
+  .mg-model-stage-colour {
+    width: 78px !important;
+    min-width: 78px !important;
+    flex: 0 0 78px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 46px !important;
+    height: 46px !important;
+  }
+
+  .mg-model-stage-colour__selected-label {
+    display: none;
+  }
+
+  .mg-model-stage-colour.is-active::before,
+  .mg-model-stage-colour.is-active::after {
+    display: none;
+  }
+}
+
+
+/* =========================================================
+   FINAL PALETTE TUNING — SMALLER + CURVED + TRANSPARENT
+   ========================================================= */
+
+/* Smaller centered configurator */
+.mg-model-stage__colours {
+  left: 50% !important;
+  top: 53.8% !important;
+  width: min(48vw, 760px) !important;
+  min-width: 560px !important;
+  transform: translateX(-50%) !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: visible !important;
+}
+
+/* Curved upper tab rail */
+.mg-model-stage__paint-tabs {
+  width: 88% !important;
+  height: clamp(34px, 2.25vw, 43px) !important;
+  padding: 0 8px !important;
+  overflow: visible !important;
+  border: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Draw one shallow curved line behind the tabs */
+.mg-model-stage__paint-tabs::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 1% !important;
+  right: 1% !important;
+  top: 14px !important;
+  bottom: auto !important;
+  height: 34px !important;
+  border-top: 1px solid rgba(255, 255, 255, .26) !important;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0 !important;
+  background: transparent !important;
+  pointer-events: none !important;
+}
+
+.mg-model-stage__paint-tabs button {
+  height: 34px !important;
+  padding: 0 7px !important;
+  border-right: 1px solid rgba(255, 255, 255, .09) !important;
+  color: rgba(255, 255, 255, .66) !important;
+  font-size: clamp(8px, .58vw, 11px) !important;
+  background: transparent !important;
+  transform-origin: center bottom;
+}
+
+/* Give the tab row the same shallow arc as the reference */
+.mg-model-stage__paint-tabs button:nth-child(1),
+.mg-model-stage__paint-tabs button:nth-child(6) {
+  transform: translateY(7px) rotate(0deg);
+}
+.mg-model-stage__paint-tabs button:nth-child(2),
+.mg-model-stage__paint-tabs button:nth-child(5) {
+  transform: translateY(3px);
+}
+.mg-model-stage__paint-tabs button:nth-child(3),
+.mg-model-stage__paint-tabs button:nth-child(4) {
+  transform: translateY(0);
+}
+
+.mg-model-stage__paint-tabs button.is-active {
+  color: #e51920 !important;
+}
+
+.mg-model-stage__paint-tabs button.is-active::after {
+  bottom: -1px !important;
+  width: 14px !important;
+  height: 3px !important;
+  border-radius: 999px !important;
+}
+
+/* Curved transparent colour rail */
+.mg-model-stage__paint-tray {
+  width: 100% !important;
+  height: clamp(72px, 5.25vw, 88px) !important;
+  margin-top: 1px !important;
+  padding: 0 18px !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+/* Elliptical top/bottom guide to create the curved tray shape */
+.mg-model-stage__paint-tray::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 1% !important;
+  right: 1% !important;
+  top: -9px !important;
+  height: 82px !important;
+  border-top: 1px solid rgba(255, 255, 255, .13) !important;
+  border-bottom: 1px solid rgba(255, 255, 255, .09) !important;
+  border-radius: 50% / 32% !important;
+  background: transparent !important;
+  pointer-events: none !important;
+}
+
+/* Smaller cells + subtle separators */
+.mg-model-stage__paint-back,
+.mg-model-stage-colour {
+  min-height: 68px !important;
+  border-right: 1px solid rgba(255, 255, 255, .075) !important;
+  background: transparent !important;
+}
+
+.mg-model-stage-colour:last-child {
+  border-right: 0 !important;
+}
+
+/* Arc the swatches: outside colours sit slightly lower */
+.mg-model-stage__paint-back,
+.mg-model-stage-colour:nth-child(2),
+.mg-model-stage-colour:nth-child(7) {
+  transform: translateY(8px) !important;
+}
+.mg-model-stage-colour:nth-child(3),
+.mg-model-stage-colour:nth-child(6) {
+  transform: translateY(4px) !important;
+}
+.mg-model-stage-colour:nth-child(4),
+.mg-model-stage-colour:nth-child(5) {
+  transform: translateY(1px) !important;
+}
+
+/* Smaller glossy circles */
+.mg-model-stage__paint-back > span,
+.mg-model-stage-colour__chip {
+  width: clamp(38px, 2.65vw, 50px) !important;
+  height: clamp(38px, 2.65vw, 50px) !important;
+}
+
+.mg-model-stage__paint-back > span {
+  border-width: 1.5px !important;
+  font-size: clamp(6px, .42vw, 8px) !important;
+  background: transparent !important;
+}
+
+.mg-model-stage__paint-back svg {
+  width: 11px !important;
+  height: 11px !important;
+}
+
+.mg-model-stage-colour__chip {
+  border-width: 1px !important;
+  box-shadow:
+    inset 0 1px 2px rgba(255,255,255,.42),
+    inset -4px -6px 9px rgba(0,0,0,.22),
+    0 3px 8px rgba(0,0,0,.2),
+    0 0 0 2px rgba(255,255,255,.5) !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  transform: scale(1.08) !important;
+  box-shadow:
+    inset 0 1px 3px rgba(255,255,255,.5),
+    inset -4px -7px 10px rgba(0,0,0,.22),
+    0 5px 12px rgba(0,0,0,.25),
+    0 0 0 3px rgba(255,255,255,.82),
+    0 0 0 4px rgba(0,0,0,.08) !important;
+}
+
+/* Smaller active pointer */
+.mg-model-stage-colour.is-active::before {
+  top: -11px !important;
+  border-left-width: 6px !important;
+  border-right-width: 6px !important;
+  border-bottom-width: 9px !important;
+}
+
+/* Compact selected colour label */
+.mg-model-stage-colour__selected-label {
+  top: calc(100% + 10px) !important;
+  min-width: 122px !important;
+  padding: 7px 9px !important;
+  background: transparent !important;
+  border-left-color: rgba(255,255,255,.06) !important;
+  border-right-color: rgba(255,255,255,.06) !important;
+}
+
+.mg-model-stage-colour__selected-label strong {
+  font-size: clamp(10px, .67vw, 12px) !important;
+}
+
+.mg-model-stage-colour__selected-label small {
+  margin-top: 2px !important;
+  font-size: clamp(7px, .45vw, 8px) !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    top: 500px !important;
+    width: min(68vw, 650px) !important;
+    min-width: 500px !important;
+  }
+
+  .mg-model-stage__paint-tabs {
+    height: 34px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    height: 74px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 40px !important;
+    height: 40px !important;
+  }
+}
+
+/* Mobile — preserve curve but allow horizontal scrolling */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 14px !important;
+    right: 14px !important;
+    top: 510px !important;
+    width: auto !important;
+    min-width: 0 !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-tabs {
+    width: 100% !important;
+    grid-template-columns: repeat(6, minmax(68px, 1fr)) !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    padding: 0 6px !important;
+  }
+
+  .mg-model-stage__paint-back,
+  .mg-model-stage-colour {
+    width: 66px !important;
+    min-width: 66px !important;
+    flex-basis: 66px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 38px !important;
+    height: 38px !important;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL POSITION OVERRIDE — LEFT SIDE CURVED PALETTE
+   ========================================================= */
+
+/* Desktop: keep the transparent curved palette on the LEFT. */
+.mg-model-stage__colours {
+  left: 3.8% !important;
+  right: auto !important;
+  top: 43% !important;
+  bottom: auto !important;
+  width: min(43vw, 680px) !important;
+  min-width: 520px !important;
+  transform: translateY(-50%) !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: visible !important;
+}
+
+/* Keep the curved rail compact instead of stretching across the screen. */
+.mg-model-stage__paint-tabs {
+  width: 88% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+.mg-model-stage__paint-tray {
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: auto !important;
+}
+
+/* Tablet: still left aligned. */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    left: 24px !important;
+    right: auto !important;
+    top: 455px !important;
+    bottom: auto !important;
+    width: min(62vw, 610px) !important;
+    min-width: 490px !important;
+    transform: none !important;
+  }
+}
+
+/* Mobile: left edge, full available width so it does not overflow. */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 14px !important;
+    right: 14px !important;
+    top: 505px !important;
+    bottom: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-tabs,
+  .mg-model-stage__paint-tray {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL OVERRIDE — STRAIGHT TOP-TO-BOTTOM LEFT PALETTE
+   ========================================================= */
+
+/* Put the whole selector on the left side. */
+.mg-model-stage__colours {
+  position: absolute !important;
+  left: 4.2% !important;
+  right: auto !important;
+  top: 22% !important;
+  bottom: auto !important;
+
+  width: 230px !important;
+  min-width: 230px !important;
+  height: 420px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: visible !important;
+  z-index: 88 !important;
+}
+
+/* Hide the old horizontal tabs/curve so only the vertical palette remains. */
+.mg-model-stage__paint-tabs {
+  display: none !important;
+}
+
+/* Vertical colour rail. */
+.mg-model-stage__paint-tray {
+  position: relative !important;
+  width: 230px !important;
+  height: 420px !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: space-between !important;
+  gap: 0 !important;
+
+  margin: 0 !important;
+  padding: 0 !important;
+
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+/* One clean STRAIGHT line from top to bottom. */
+.mg-model-stage__paint-tray::before {
+  content: "" !important;
+  position: absolute !important;
+  left: 23px !important;
+  top: 24px !important;
+  bottom: 24px !important;
+  width: 2px !important;
+  height: auto !important;
+
+  border: 0 !important;
+  border-radius: 999px !important;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,.18),
+    rgba(255,255,255,.72) 16%,
+    rgba(255,255,255,.72) 84%,
+    rgba(255,255,255,.18)
+  ) !important;
+  box-shadow: 0 0 10px rgba(255,255,255,.08) !important;
+  pointer-events: none !important;
+  z-index: 0 !important;
+}
+
+/* Every item sits on the same straight vertical line. */
+.mg-model-stage__paint-back,
+.mg-model-stage-colour {
+  position: relative !important;
+  z-index: 2 !important;
+
+  width: 230px !important;
+  min-width: 230px !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  flex: 0 0 50px !important;
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  transform: none !important;
+  overflow: visible !important;
+}
+
+/* Reset/back circle. */
+.mg-model-stage__paint-back > span {
+  position: relative !important;
+  left: 0 !important;
+
+  width: 46px !important;
+  height: 46px !important;
+  flex: 0 0 46px !important;
+
+  display: grid !important;
+  place-items: center !important;
+  gap: 0 !important;
+
+  border: 1px solid rgba(255,255,255,.58) !important;
+  border-radius: 50% !important;
+  background: rgba(5,5,5,.56) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 14px rgba(0,0,0,.28) !important;
+  backdrop-filter: blur(5px) !important;
+  -webkit-backdrop-filter: blur(5px) !important;
+
+  font-size: 0 !important;
+}
+
+.mg-model-stage__paint-back svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+/* Colour circles. */
+.mg-model-stage-colour__chip {
+  position: relative !important;
+  left: 0 !important;
+
+  width: 46px !important;
+  height: 46px !important;
+  flex: 0 0 46px !important;
+
+  border: 1px solid rgba(255,255,255,.52) !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle at 34% 26%, rgba(255,255,255,.7) 0%, rgba(255,255,255,.12) 22%, transparent 42%),
+    var(--paint) !important;
+  box-shadow:
+    inset -5px -7px 11px rgba(0,0,0,.28),
+    0 4px 12px rgba(0,0,0,.28) !important;
+  transform: none !important;
+  transition: transform .24s ease, box-shadow .24s ease !important;
+}
+
+.mg-model-stage-colour:hover .mg-model-stage-colour__chip {
+  transform: scale(1.06) !important;
+}
+
+/* Selected swatch — slightly larger, not dramatically bigger. */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  transform: scale(1.12) !important;
+  box-shadow:
+    inset -5px -7px 11px rgba(0,0,0,.24),
+    0 5px 16px rgba(0,0,0,.34),
+    0 0 0 2px #fff,
+    0 0 0 4px rgba(255,255,255,.22) !important;
+}
+
+/* Remove old curved-pointer triangles. */
+.mg-model-stage-colour.is-active::before,
+.mg-model-stage-colour.is-active::after {
+  display: none !important;
+}
+
+/* Selected colour information appears to the RIGHT of the straight line. */
+.mg-model-stage-colour__selected-label {
+  position: absolute !important;
+  left: 68px !important;
+  top: 50% !important;
+  width: 145px !important;
+  min-width: 145px !important;
+
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: translateY(-50%) !important;
+
+  border: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  text-align: left !important;
+  pointer-events: none !important;
+}
+
+/* Small horizontal connector from selected circle to text. */
+.mg-model-stage-colour__selected-label::before {
+  content: "";
+  position: absolute;
+  left: -18px;
+  top: 50%;
+  width: 12px;
+  height: 1px;
+  background: rgba(255,255,255,.65);
+  transform: translateY(-50%);
+}
+
+.mg-model-stage-colour__selected-label strong {
+  display: block !important;
+  color: #fff !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: .04em !important;
+  text-transform: uppercase !important;
+}
+
+.mg-model-stage-colour__selected-label small {
+  display: block !important;
+  margin-top: 4px !important;
+  color: rgba(255,255,255,.55) !important;
+  font-size: 8px !important;
+  font-weight: 600 !important;
+  letter-spacing: .08em !important;
+  text-transform: uppercase !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    left: 24px !important;
+    top: 185px !important;
+    width: 205px !important;
+    min-width: 205px !important;
+    height: 365px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 205px !important;
+    height: 365px !important;
+  }
+
+  .mg-model-stage__paint-back,
+  .mg-model-stage-colour {
+    width: 205px !important;
+    min-width: 205px !important;
+    height: 44px !important;
+    min-height: 44px !important;
+    flex-basis: 44px !important;
+  }
+
+  .mg-model-stage__paint-tray::before {
+    left: 20px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 40px !important;
+    height: 40px !important;
+    flex-basis: 40px !important;
+  }
+
+  .mg-model-stage-colour__selected-label {
+    left: 59px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 14px !important;
+    right: auto !important;
+    top: 205px !important;
+    width: 170px !important;
+    min-width: 170px !important;
+    height: 330px !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 170px !important;
+    height: 330px !important;
+    overflow: visible !important;
+  }
+
+  .mg-model-stage__paint-back,
+  .mg-model-stage-colour {
+    width: 170px !important;
+    min-width: 170px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    flex: 0 0 40px !important;
+  }
+
+  .mg-model-stage__paint-tray::before {
+    left: 18px !important;
+    top: 20px !important;
+    bottom: 20px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 36px !important;
+    height: 36px !important;
+    flex: 0 0 36px !important;
+  }
+
+  .mg-model-stage-colour__selected-label {
+    left: 53px !important;
+    width: 110px !important;
+    min-width: 110px !important;
+  }
+
+  .mg-model-stage-colour__selected-label strong {
+    font-size: 9px !important;
+  }
+
+  .mg-model-stage-colour__selected-label small {
+    font-size: 7px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL IMAGE-MATCH COLOUR PALETTE — NO LINES
+   ========================================================= */
+.mg-model-stage__colours {
+  position: absolute !important;
+  left: 4.8% !important;
+  right: auto !important;
+  top: 16.2% !important;
+  bottom: auto !important;
+  z-index: 92 !important;
+  width: clamp(230px, 17vw, 292px) !important;
+  min-width: 0 !important;
+  height: auto !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  transform: none !important;
+  background: transparent !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  overflow: visible !important;
+}
+
+/* Back row, matching the reference image. */
+.mg-model-stage__paint-back {
+  position: relative !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: clamp(42px, 3vw, 54px) !important;
+  min-height: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: clamp(14px, 1.15vw, 20px) !important;
+  padding: 0 !important;
+  margin: 0 0 clamp(16px, 1.45vw, 24px) 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  transform: none !important;
+  cursor: pointer !important;
+}
+
+.mg-model-stage__paint-back-icon {
+  width: clamp(38px, 2.75vw, 48px) !important;
+  height: clamp(38px, 2.75vw, 48px) !important;
+  flex: 0 0 clamp(38px, 2.75vw, 48px) !important;
+  display: grid !important;
+  place-items: center !important;
+  border: 1px solid rgba(255,255,255,.82) !important;
+  border-radius: 50% !important;
+  background: rgba(5,5,5,.24) !important;
+  box-shadow: 0 5px 18px rgba(0,0,0,.16) !important;
+  backdrop-filter: blur(2px) !important;
+  -webkit-backdrop-filter: blur(2px) !important;
+}
+
+.mg-model-stage__paint-back-icon svg {
+  width: 18px !important;
+  height: 18px !important;
+}
+
+.mg-model-stage__paint-back-text {
+  color: rgba(255,255,255,.94) !important;
+  font-size: clamp(10px, .78vw, 14px) !important;
+  font-weight: 600 !important;
+  letter-spacing: .025em !important;
+  text-transform: uppercase !important;
+}
+
+/* No track, no connector line, no curve. */
+.mg-model-stage__paint-tray {
+  position: relative !important;
+  width: 100% !important;
+  height: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  gap: clamp(13px, 1.05vw, 18px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.mg-model-stage__paint-tray::before,
+.mg-model-stage__paint-tray::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mg-model-stage-colour {
+  position: relative !important;
+  width: 100% !important;
+  min-width: 0 !important;
+  height: clamp(50px, 3.65vw, 64px) !important;
+  min-height: 0 !important;
+  flex: 0 0 auto !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+  gap: clamp(18px, 1.35vw, 24px) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  box-shadow: none !important;
+  transform: none !important;
+  text-align: left !important;
+  overflow: visible !important;
+  cursor: pointer !important;
+}
+
+.mg-model-stage-colour::before,
+.mg-model-stage-colour::after {
+  display: none !important;
+  content: none !important;
+}
+
+.mg-model-stage-colour__chip {
+  position: relative !important;
+  inset: auto !important;
+  left: auto !important;
+  top: auto !important;
+  width: clamp(46px, 3.4vw, 58px) !important;
+  height: clamp(46px, 3.4vw, 58px) !important;
+  flex: 0 0 clamp(46px, 3.4vw, 58px) !important;
+  display: block !important;
+  border: 1px solid rgba(255,255,255,.62) !important;
+  border-radius: 50% !important;
+  background:
+    radial-gradient(circle at 33% 24%, rgba(255,255,255,.88) 0%, rgba(255,255,255,.22) 18%, transparent 39%),
+    radial-gradient(circle at 70% 76%, rgba(0,0,0,.28), transparent 44%),
+    var(--paint) !important;
+  box-shadow:
+    inset -5px -7px 12px rgba(0,0,0,.24),
+    inset 2px 2px 4px rgba(255,255,255,.2),
+    0 5px 14px rgba(0,0,0,.24) !important;
+  transform: none !important;
+  transition: transform .24s ease, box-shadow .24s ease !important;
+}
+
+.mg-model-stage-colour:hover .mg-model-stage-colour__chip {
+  transform: scale(1.05) !important;
+}
+
+.mg-model-stage-colour.is-active {
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  transform: scale(1.16) !important;
+  box-shadow:
+    inset -5px -7px 12px rgba(0,0,0,.22),
+    inset 2px 2px 4px rgba(255,255,255,.25),
+    0 7px 18px rgba(0,0,0,.30),
+    0 0 0 3px #fff,
+    0 0 0 5px rgba(255,255,255,.25) !important;
+}
+
+/* Small white triangular pointer on the active swatch, as in the image. */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip::after {
+  content: "" !important;
+  position: absolute !important;
+  display: block !important;
+  right: -13px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-top: 7px solid transparent !important;
+  border-bottom: 7px solid transparent !important;
+  border-left: 10px solid #fff !important;
+}
+
+.mg-model-stage-colour__copy {
+  min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
+  background: transparent !important;
+  color: #fff !important;
+  text-align: left !important;
+  pointer-events: none !important;
+}
+
+.mg-model-stage-colour__copy strong {
+  display: block !important;
+  margin: 0 !important;
+  color: rgba(255,255,255,.94) !important;
+  font-size: clamp(10px, .78vw, 14px) !important;
+  font-weight: 500 !important;
+  line-height: 1.15 !important;
+  letter-spacing: .015em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+  font-size: clamp(13px, 1vw, 17px) !important;
+  font-weight: 700 !important;
+  color: #fff !important;
+}
+
+.mg-model-stage-colour__copy small,
+.mg-model-stage-colour__copy em {
+  display: block !important;
+  margin: 4px 0 0 0 !important;
+  color: rgba(255,255,255,.86) !important;
+  font-size: clamp(9px, .68vw, 12px) !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: 1.05 !important;
+  letter-spacing: .02em !important;
+  text-transform: uppercase !important;
+}
+
+.mg-model-stage-colour__copy em {
+  color: rgba(255,255,255,.72) !important;
+}
+
+/* Hide legacy palette pieces that can leak through old CSS. */
+.mg-model-stage__paint-tabs,
+.mg-model-stage-colour__selected-label,
+.mg-model-stage__colour-line,
+.mg-model-stage__paint-head,
+.mg-model-stage__paint-preview {
+  display: none !important;
+}
+
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    left: 24px !important;
+    top: 170px !important;
+    width: 220px !important;
+  }
+
+  .mg-model-stage__paint-back {
+    margin-bottom: 14px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    gap: 11px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 50px !important;
+    gap: 16px !important;
+  }
+
+  .mg-model-stage__paint-back-icon,
+  .mg-model-stage-colour__chip {
+    width: 44px !important;
+    height: 44px !important;
+    flex-basis: 44px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 14px !important;
+    right: auto !important;
+    top: 180px !important;
+    width: 175px !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-back {
+    gap: 12px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    gap: 7px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 42px !important;
+    gap: 12px !important;
+  }
+
+  .mg-model-stage__paint-back-icon,
+  .mg-model-stage-colour__chip {
+    width: 36px !important;
+    height: 36px !important;
+    flex-basis: 36px !important;
+  }
+
+  .mg-model-stage__paint-back-text,
+  .mg-model-stage-colour__copy strong {
+    font-size: 9px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+    font-size: 11px !important;
+  }
+
+  .mg-model-stage-colour__copy small,
+  .mg-model-stage-colour__copy em {
+    margin-top: 2px !important;
+    font-size: 7px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL SIZE TUNING — LARGE + CLEAR LEFT COLOUR PALETTE
+   ========================================================= */
+@media (min-width: 1101px) {
+  .mg-model-stage__colours {
+    left: 4.8% !important;
+    top: 17.5% !important;
+    width: 330px !important;
+    min-width: 330px !important;
+    padding: 0 !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-back {
+    height: 58px !important;
+    gap: 18px !important;
+    margin: 0 0 22px 0 !important;
+  }
+
+  .mg-model-stage__paint-back-icon {
+    width: 48px !important;
+    height: 48px !important;
+    flex: 0 0 48px !important;
+    border: 1.5px solid rgba(255,255,255,.72) !important;
+    box-shadow: 0 6px 18px rgba(0,0,0,.26) !important;
+  }
+
+  .mg-model-stage__paint-back-icon svg {
+    width: 21px !important;
+    height: 21px !important;
+  }
+
+  .mg-model-stage__paint-back-text {
+    font-size: 14px !important;
+    font-weight: 650 !important;
+    letter-spacing: .035em !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    gap: 18px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 72px !important;
+    gap: 24px !important;
+  }
+
+  .mg-model-stage-colour__chip {
+    width: 62px !important;
+    height: 62px !important;
+    flex: 0 0 62px !important;
+    border: 1.5px solid rgba(255,255,255,.72) !important;
+    box-shadow:
+      inset -6px -8px 14px rgba(0,0,0,.25),
+      inset 2px 2px 5px rgba(255,255,255,.28),
+      0 6px 16px rgba(0,0,0,.28) !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    transform: scale(1.16) !important;
+    box-shadow:
+      inset -6px -8px 14px rgba(0,0,0,.22),
+      inset 2px 2px 5px rgba(255,255,255,.30),
+      0 8px 22px rgba(0,0,0,.34),
+      0 0 0 4px #fff,
+      0 0 0 6px rgba(255,255,255,.22) !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip::after {
+    right: -16px !important;
+    border-top-width: 8px !important;
+    border-bottom-width: 8px !important;
+    border-left-width: 12px !important;
+  }
+
+  .mg-model-stage-colour__copy strong {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    letter-spacing: .025em !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+    font-size: 18px !important;
+    font-weight: 750 !important;
+    line-height: 1.1 !important;
+  }
+
+  .mg-model-stage-colour__copy small,
+  .mg-model-stage-colour__copy em {
+    margin-top: 4px !important;
+    font-size: 11px !important;
+    font-weight: 600 !important;
+    letter-spacing: .035em !important;
+  }
+}
+
+@media (min-width: 1600px) {
+  .mg-model-stage__colours {
+    left: 5.2% !important;
+    top: 17% !important;
+    width: 360px !important;
+    min-width: 360px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    gap: 20px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 76px !important;
+    gap: 26px !important;
+  }
+
+  .mg-model-stage-colour__chip {
+    width: 66px !important;
+    height: 66px !important;
+    flex-basis: 66px !important;
+  }
+
+  .mg-model-stage-colour__copy strong {
+    font-size: 15px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+    font-size: 19px !important;
+  }
+
+  .mg-model-stage-colour__copy small,
+  .mg-model-stage-colour__copy em {
+    font-size: 11.5px !important;
+  }
+}
+
 </style>
+
+<style scoped>
+/* FINAL OVERRIDE — SMALLER PALETTE SECTION, KEEP TEXT CLEAR */
+.mg-model-stage__colours {
+  width: 220px !important;
+  min-width: 220px !important;
+  left: 4.2% !important;
+  top: 42% !important;
+  transform: translateY(-50%) !important;
+}
+
+.mg-model-stage__paint-tray {
+  width: 220px !important;
+  gap: 10px !important;
+}
+
+.mg-model-stage__paint-back,
+.mg-model-stage-colour {
+  min-height: 54px !important;
+}
+
+.mg-model-stage__paint-back > span,
+.mg-model-stage-colour__chip {
+  width: 46px !important;
+  height: 46px !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  transform: scale(1.08) !important;
+}
+
+.mg-model-stage-colour__selected-label {
+  left: 62px !important;
+  min-width: 118px !important;
+  padding: 0 !important;
+}
+
+.mg-model-stage-colour__selected-label strong {
+  font-size: 12px !important;
+}
+
+.mg-model-stage-colour__selected-label small {
+  font-size: 9px !important;
+}
+
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    width: 190px !important;
+    min-width: 190px !important;
+    left: 22px !important;
+    top: 430px !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 190px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 42px !important;
+    height: 42px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    width: 170px !important;
+    min-width: 170px !important;
+    left: 14px !important;
+    right: auto !important;
+    top: 500px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 170px !important;
+  }
+
+  .mg-model-stage__paint-back > span,
+  .mg-model-stage-colour__chip {
+    width: 38px !important;
+    height: 38px !important;
+  }
+
+  .mg-model-stage-colour__selected-label {
+    left: 52px !important;
+    min-width: 105px !important;
+  }
+}
+</style>
+
+<!-- NOTE: circle-size override is intentionally appended after the scoped style block via a second scoped style. -->
+<style scoped>
+/* SMALL CIRCLES — keep the section/layout unchanged */
+.mg-model-stage__paint-back {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+}
+
+.mg-model-stage__paint-back svg {
+  width: 13px !important;
+  height: 13px !important;
+}
+
+.mg-model-stage-colour__chip {
+  width: 36px !important;
+  height: 36px !important;
+  min-width: 36px !important;
+  min-height: 36px !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  transform: none !important;
+}
+
+@media (max-width: 1100px) {
+  .mg-model-stage__paint-back {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+  }
+
+  .mg-model-stage-colour__chip {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mg-model-stage__paint-back {
+    width: 28px !important;
+    height: 28px !important;
+    min-width: 28px !important;
+  }
+
+  .mg-model-stage-colour__chip {
+    width: 29px !important;
+    height: 29px !important;
+    min-width: 29px !important;
+    min-height: 29px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+  }
+}
+</style>
+
+<style scoped>
+/* =========================================================
+   FINAL PALETTE OVERRIDE — GENTLE CURVE + SMALL TRUE CIRCLES
+   Matches the supplied reference: no connecting line, only
+   the swatch rows themselves form a very soft C-shaped arc.
+   ========================================================= */
+
+.mg-model-stage__colours {
+  left: 4.4% !important;
+  top: 42% !important;
+  width: 235px !important;
+  min-width: 235px !important;
+  height: auto !important;
+  padding: 0 !important;
+  transform: translateY(-50%) !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+.mg-model-stage__paint-tray {
+  width: 235px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+  gap: 10px !important;
+  overflow: visible !important;
+  background: transparent !important;
+}
+
+/* Absolutely no connector/track/curve line. */
+.mg-model-stage__paint-tray::before,
+.mg-model-stage__paint-tray::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Back control: keep it compact and on the same gentle arc. */
+.mg-model-stage__paint-back {
+  width: 190px !important;
+  min-width: 190px !important;
+  height: 36px !important;
+  min-height: 36px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 13px !important;
+  margin: 0 0 14px 18px !important;
+  padding: 0 !important;
+  transform: none !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+
+.mg-model-stage__paint-back-icon {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  flex: 0 0 30px !important;
+  aspect-ratio: 1 / 1 !important;
+  box-sizing: border-box !important;
+  border-radius: 50% !important;
+}
+
+.mg-model-stage__paint-back-icon svg {
+  width: 12px !important;
+  height: 12px !important;
+}
+
+.mg-model-stage__paint-back-text {
+  font-size: 10px !important;
+}
+
+/* Every row keeps a fixed height so the arc stays clean. */
+.mg-model-stage-colour {
+  width: 210px !important;
+  min-width: 210px !important;
+  height: 46px !important;
+  min-height: 46px !important;
+  flex: 0 0 46px !important;
+  display: flex !important;
+  align-items: center !important;
+  gap: 15px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Gentle C shape — deliberately small offsets, not a big curve. */
+.mg-model-stage-colour:nth-child(1) { transform: translateX(18px) !important; }
+.mg-model-stage-colour:nth-child(2) { transform: translateX(6px) !important; }
+.mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+.mg-model-stage-colour:nth-child(4) { transform: translateX(5px) !important; }
+.mg-model-stage-colour:nth-child(5) { transform: translateX(17px) !important; }
+.mg-model-stage-colour:nth-child(6) { transform: translateX(30px) !important; }
+
+/* True circular swatches: width, height and flex-basis are identical. */
+.mg-model-stage-colour__chip {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  flex: 0 0 30px !important;
+  flex-basis: 30px !important;
+  aspect-ratio: 1 / 1 !important;
+  box-sizing: border-box !important;
+  border-radius: 50% !important;
+  transform: none !important;
+}
+
+.mg-model-stage-colour:hover .mg-model-stage-colour__chip {
+  transform: scale(1.05) !important;
+}
+
+/* Active swatch is only slightly larger than the others. */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  min-height: 38px !important;
+  max-width: 38px !important;
+  max-height: 38px !important;
+  flex: 0 0 38px !important;
+  flex-basis: 38px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  transform: none !important;
+  box-shadow:
+    inset -4px -5px 9px rgba(0,0,0,.22),
+    inset 1px 1px 3px rgba(255,255,255,.30),
+    0 4px 10px rgba(0,0,0,.22),
+    0 0 0 2px #fff,
+    0 0 0 3px rgba(255,255,255,.20) !important;
+}
+
+/* Small pointer like the reference image. */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip::after {
+  right: -8px !important;
+  border-top-width: 4px !important;
+  border-bottom-width: 4px !important;
+  border-left-width: 6px !important;
+}
+
+.mg-model-stage-colour__copy strong {
+  font-size: 10px !important;
+  line-height: 1.12 !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+  font-size: 12px !important;
+  line-height: 1.08 !important;
+}
+
+.mg-model-stage-colour__copy small,
+.mg-model-stage-colour__copy em {
+  margin-top: 2px !important;
+  font-size: 7px !important;
+}
+
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    left: 22px !important;
+    top: 430px !important;
+    width: 205px !important;
+    min-width: 205px !important;
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-tray { width: 205px !important; }
+  .mg-model-stage-colour { width: 190px !important; height: 42px !important; min-height: 42px !important; flex-basis: 42px !important; gap: 13px !important; }
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(14px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(5px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(4px) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(13px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(22px) !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 28px !important; height: 28px !important;
+    min-width: 28px !important; min-height: 28px !important;
+    max-width: 28px !important; max-height: 28px !important;
+    flex: 0 0 28px !important; flex-basis: 28px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 35px !important; height: 35px !important;
+    min-width: 35px !important; min-height: 35px !important;
+    max-width: 35px !important; max-height: 35px !important;
+    flex: 0 0 35px !important; flex-basis: 35px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 14px !important;
+    top: 500px !important;
+    width: 180px !important;
+    min-width: 180px !important;
+  }
+
+  .mg-model-stage__paint-tray { width: 180px !important; gap: 7px !important; }
+  .mg-model-stage-colour { width: 168px !important; height: 38px !important; min-height: 38px !important; flex-basis: 38px !important; gap: 11px !important; }
+
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(11px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(4px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(3px) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(10px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(17px) !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 25px !important; height: 25px !important;
+    min-width: 25px !important; min-height: 25px !important;
+    max-width: 25px !important; max-height: 25px !important;
+    flex: 0 0 25px !important; flex-basis: 25px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 31px !important; height: 31px !important;
+    min-width: 31px !important; min-height: 31px !important;
+    max-width: 31px !important; max-height: 31px !important;
+    flex: 0 0 31px !important; flex-basis: 31px !important;
+  }
+}
+</style>
+
+<style scoped>
+/* FINAL OVERRIDE — SLIGHTLY LARGER COLOUR PALETTE */
+.mg-model-stage__colours {
+  width: 270px !important;
+  min-width: 270px !important;
+}
+.mg-model-stage__paint-tray { width: 270px !important; gap: 13px !important; }
+.mg-model-stage__paint-back { width: 220px !important; margin-bottom: 17px !important; }
+.mg-model-stage-colour { width: 245px !important; height: 54px !important; min-height: 54px !important; flex-basis: 54px !important; gap: 18px !important; }
+.mg-model-stage-colour__chip { width: 36px !important; height: 36px !important; min-width: 36px !important; min-height: 36px !important; max-width: 36px !important; max-height: 36px !important; flex: 0 0 36px !important; }
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip { width: 45px !important; height: 45px !important; min-width: 45px !important; min-height: 45px !important; max-width: 45px !important; max-height: 45px !important; flex: 0 0 45px !important; }
+.mg-model-stage-colour__copy strong { font-size: 12px !important; }
+.mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong { font-size: 15px !important; }
+.mg-model-stage-colour__copy small, .mg-model-stage-colour__copy em { font-size: 8px !important; }
+@media (max-width:1100px){.mg-model-stage__colours{width:225px!important;min-width:225px!important}.mg-model-stage__paint-tray{width:225px!important}.mg-model-stage-colour{width:210px!important;height:47px!important;min-height:47px!important;flex-basis:47px!important}.mg-model-stage-colour__chip{width:31px!important;height:31px!important;min-width:31px!important;min-height:31px!important;max-width:31px!important;max-height:31px!important;flex:0 0 31px!important}.mg-model-stage-colour.is-active .mg-model-stage-colour__chip{width:39px!important;height:39px!important;min-width:39px!important;min-height:39px!important;max-width:39px!important;max-height:39px!important;flex:0 0 39px!important}}
+@media (max-width:767px){.mg-model-stage__colours{width:195px!important;min-width:195px!important}.mg-model-stage__paint-tray{width:195px!important}.mg-model-stage-colour{width:180px!important;height:42px!important;min-height:42px!important;flex-basis:42px!important}.mg-model-stage-colour__chip{width:28px!important;height:28px!important;min-width:28px!important;min-height:28px!important;max-width:28px!important;max-height:28px!important;flex:0 0 28px!important}.mg-model-stage-colour.is-active .mg-model-stage-colour__chip{width:35px!important;height:35px!important;min-width:35px!important;min-height:35px!important;max-width:35px!important;max-height:35px!important;flex:0 0 35px!important}}
+
+/* =========================================================
+   FINAL REFERENCE OVERRIDE — ARC PALETTE LIKE PROVIDED IMAGE
+   - left-side vertical palette
+   - small circular swatches
+   - selected swatch larger
+   - no connecting line
+   - gentle C-shaped positioning created only by swatch offsets
+   ========================================================= */
+
+/* Main palette placement */
+.mg-model-stage__colours {
+  left: 4.2% !important;
+  top: 43% !important;
+
+  width: 300px !important;
+  min-width: 300px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  transform: translateY(-50%) !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  overflow: visible !important;
+}
+
+/* Back row */
+.mg-model-stage__paint-back {
+  width: 220px !important;
+  min-width: 220px !important;
+  height: 44px !important;
+  min-height: 44px !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 16px !important;
+
+  margin: 0 0 20px 48px !important;
+  padding: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  color: #fff !important;
+
+  transform: none !important;
+}
+
+.mg-model-stage__paint-back-icon {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  flex: 0 0 40px !important;
+
+  display: grid !important;
+  place-items: center !important;
+
+  border: 1.5px solid rgba(255,255,255,.82) !important;
+  border-radius: 50% !important;
+
+  background: rgba(0,0,0,.18) !important;
+  box-shadow: none !important;
+}
+
+.mg-model-stage__paint-back-icon svg {
+  width: 17px !important;
+  height: 17px !important;
+}
+
+.mg-model-stage__paint-back-text {
+  color: rgba(255,255,255,.94) !important;
+
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: .01em !important;
+  text-transform: uppercase !important;
+}
+
+/* Palette stack */
+.mg-model-stage__paint-tray {
+  width: 300px !important;
+  height: auto !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+
+  gap: 14px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  overflow: visible !important;
+}
+
+/* No line / track behind the colours */
+.mg-model-stage__paint-tray::before,
+.mg-model-stage__paint-tray::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* Colour row */
+.mg-model-stage-colour {
+  width: 280px !important;
+  min-width: 280px !important;
+
+  height: 56px !important;
+  min-height: 56px !important;
+  flex: 0 0 56px !important;
+
+  display: flex !important;
+  align-items: center !important;
+
+  gap: 20px !important;
+
+  padding: 0 !important;
+  margin: 0 !important;
+
+  overflow: visible !important;
+
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+
+  color: #fff !important;
+  text-align: left !important;
+}
+
+/* Reference-style arc.
+   White and blue sit furthest to the right.
+   Silver sits furthest left and becomes the visual focal point. */
+.mg-model-stage-colour:nth-child(1) {
+  transform: translateX(44px) !important;
+}
+.mg-model-stage-colour:nth-child(2) {
+  transform: translateX(16px) !important;
+}
+.mg-model-stage-colour:nth-child(3) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage-colour:nth-child(4) {
+  transform: translateX(16px) !important;
+}
+.mg-model-stage-colour:nth-child(5) {
+  transform: translateX(45px) !important;
+}
+.mg-model-stage-colour:nth-child(6) {
+  transform: translateX(78px) !important;
+}
+
+/* Small glossy circular swatch */
+.mg-model-stage-colour__chip {
+  position: relative !important;
+
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+
+  flex: 0 0 40px !important;
+
+  aspect-ratio: 1 / 1 !important;
+  box-sizing: border-box !important;
+
+  border: 1px solid rgba(255,255,255,.72) !important;
+  border-radius: 50% !important;
+
+  background:
+    radial-gradient(
+      circle at 32% 24%,
+      rgba(255,255,255,.72) 0%,
+      rgba(255,255,255,.20) 17%,
+      transparent 40%
+    ),
+    var(--paint) !important;
+
+  box-shadow:
+    inset -4px -5px 9px rgba(0,0,0,.28),
+    inset 1px 1px 3px rgba(255,255,255,.24),
+    0 3px 8px rgba(0,0,0,.22) !important;
+
+  transform: none !important;
+  transition:
+    width .25s ease,
+    height .25s ease,
+    box-shadow .25s ease,
+    transform .25s ease !important;
+}
+
+/* Selected colour is larger, as in the reference */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 62px !important;
+  height: 62px !important;
+  min-width: 62px !important;
+  min-height: 62px !important;
+  max-width: 62px !important;
+  max-height: 62px !important;
+
+  flex: 0 0 62px !important;
+
+  border: 2px solid #fff !important;
+  border-radius: 50% !important;
+
+  box-shadow:
+    inset -5px -7px 12px rgba(0,0,0,.24),
+    inset 1px 1px 4px rgba(255,255,255,.34),
+    0 5px 12px rgba(0,0,0,.24),
+    0 0 0 4px rgba(255,255,255,.88) !important;
+
+  transform: none !important;
+}
+
+/* Selected pointer */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip::after {
+  content: "" !important;
+
+  position: absolute !important;
+  right: -15px !important;
+  top: 50% !important;
+
+  width: 0 !important;
+  height: 0 !important;
+
+  transform: translateY(-50%) !important;
+
+  border-top: 7px solid transparent !important;
+  border-bottom: 7px solid transparent !important;
+  border-left: 10px solid #fff !important;
+
+  background: transparent !important;
+}
+
+/* Prevent any older selected pseudo element from appearing elsewhere */
+.mg-model-stage-colour.is-active::before,
+.mg-model-stage-colour.is-active::after {
+  display: none !important;
+}
+
+/* Text */
+.mg-model-stage-colour__copy {
+  min-width: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+}
+
+.mg-model-stage-colour__copy strong {
+  display: block !important;
+
+  color: rgba(255,255,255,.96) !important;
+
+  font-family: "Manrope", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 1.12 !important;
+
+  letter-spacing: .005em !important;
+  text-transform: uppercase !important;
+  white-space: nowrap !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  line-height: 1.06 !important;
+}
+
+.mg-model-stage-colour__copy small,
+.mg-model-stage-colour__copy em {
+  display: block !important;
+
+  margin-top: 4px !important;
+
+  color: rgba(255,255,255,.82) !important;
+
+  font-family: "Manrope", sans-serif !important;
+  font-size: 11px !important;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  line-height: 1 !important;
+
+  letter-spacing: .02em !important;
+  text-transform: uppercase !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    left: 24px !important;
+    top: 430px !important;
+
+    width: 250px !important;
+    min-width: 250px !important;
+
+    transform: none !important;
+  }
+
+  .mg-model-stage__paint-back {
+    width: 190px !important;
+    margin-left: 38px !important;
+    margin-bottom: 16px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 250px !important;
+    gap: 11px !important;
+  }
+
+  .mg-model-stage-colour {
+    width: 235px !important;
+    min-width: 235px !important;
+
+    height: 49px !important;
+    min-height: 49px !important;
+    flex-basis: 49px !important;
+
+    gap: 16px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(34px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(12px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(12px) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(35px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(58px) !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    flex: 0 0 34px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 52px !important;
+    height: 52px !important;
+    min-width: 52px !important;
+    min-height: 52px !important;
+    max-width: 52px !important;
+    max-height: 52px !important;
+    flex: 0 0 52px !important;
+  }
+
+  .mg-model-stage-colour__copy strong {
+    font-size: 11px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+    font-size: 15px !important;
+  }
+
+  .mg-model-stage-colour__copy small,
+  .mg-model-stage-colour__copy em {
+    font-size: 9px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    left: 12px !important;
+    top: 495px !important;
+
+    width: 205px !important;
+    min-width: 205px !important;
+  }
+
+  .mg-model-stage__paint-back {
+    width: 160px !important;
+    height: 34px !important;
+    min-height: 34px !important;
+
+    gap: 11px !important;
+    margin: 0 0 13px 28px !important;
+  }
+
+  .mg-model-stage__paint-back-icon {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    flex: 0 0 30px !important;
+  }
+
+  .mg-model-stage__paint-back-text {
+    font-size: 10px !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    width: 205px !important;
+    gap: 8px !important;
+  }
+
+  .mg-model-stage-colour {
+    width: 195px !important;
+    min-width: 195px !important;
+
+    height: 42px !important;
+    min-height: 42px !important;
+    flex-basis: 42px !important;
+
+    gap: 13px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(25px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(9px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(9px) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(25px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(42px) !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 29px !important;
+    height: 29px !important;
+    min-width: 29px !important;
+    min-height: 29px !important;
+    max-width: 29px !important;
+    max-height: 29px !important;
+    flex: 0 0 29px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 43px !important;
+    height: 43px !important;
+    min-width: 43px !important;
+    min-height: 43px !important;
+    max-width: 43px !important;
+    max-height: 43px !important;
+    flex: 0 0 43px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip::after {
+    right: -11px !important;
+
+    border-top-width: 5px !important;
+    border-bottom-width: 5px !important;
+    border-left-width: 7px !important;
+  }
+
+  .mg-model-stage-colour__copy strong {
+    font-size: 9px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__copy strong {
+    font-size: 12px !important;
+  }
+
+  .mg-model-stage-colour__copy small,
+  .mg-model-stage-colour__copy em {
+    margin-top: 2px !important;
+    font-size: 7px !important;
+  }
+}
+
+/* =========================================================
+   FINAL CLEANUP — REMOVE PALETTE EXTRA BUTTONS
+   ========================================================= */
+.mg-model-stage__paint-back {
+  display: none !important;
+}
+
+/* If any old decorative button-like element survived older CSS,
+   hide it inside the palette only. */
+.mg-model-stage__colours > button:not(.mg-model-stage-colour) {
+  display: none !important;
+}
+
+
+/* =========================================================
+   FINAL PALETTE SPACING OVERRIDE
+   Increase colour row/line height to match the reference image
+   while preserving the same circles, arc, text and paint logic.
+   ========================================================= */
+
+.mg-model-stage__colours {
+  top: 44% !important;
+}
+
+.mg-model-stage__paint-tray {
+  gap: 22px !important;
+}
+
+/* Each colour option gets more vertical breathing room */
+.mg-model-stage-colour {
+  height: 72px !important;
+  min-height: 72px !important;
+  flex: 0 0 72px !important;
+  align-items: center !important;
+}
+
+/* Keep circle size unchanged */
+.mg-model-stage-colour__chip {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  max-width: 40px !important;
+  max-height: 40px !important;
+  flex: 0 0 40px !important;
+}
+
+/* Selected swatch stays larger */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 62px !important;
+  height: 62px !important;
+  min-width: 62px !important;
+  min-height: 62px !important;
+  max-width: 62px !important;
+  max-height: 62px !important;
+  flex: 0 0 62px !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__paint-tray {
+    gap: 17px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 62px !important;
+    min-height: 62px !important;
+    flex-basis: 62px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__paint-tray {
+    gap: 13px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 52px !important;
+    min-height: 52px !important;
+    flex-basis: 52px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL PALETTE POSITION OVERRIDE
+   Move the complete colour palette higher on the left side
+   while keeping the current row height, arc, circles and labels.
+   ========================================================= */
+
+/* Desktop: move palette upward */
+.mg-model-stage__colours {
+  top: 36% !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    top: 355px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    top: 430px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL CURVE SHAPE OVERRIDE
+   Slightly stronger vertical arc for the exterior-finish palette.
+   Existing position, row height, swatch sizes and paint behaviour
+   remain unchanged.
+   ========================================================= */
+
+/* Desktop */
+.mg-model-stage-colour:nth-child(1) { transform: translateX(34px) !important; }
+.mg-model-stage-colour:nth-child(2) { transform: translateX(13px) !important; }
+.mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+.mg-model-stage-colour:nth-child(4) { transform: translateX(7px) !important; }
+.mg-model-stage-colour:nth-child(5) { transform: translateX(25px) !important; }
+.mg-model-stage-colour:nth-child(6) { transform: translateX(50px) !important; }
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(38px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(15px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(8px) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(28px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(54px) !important; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(29px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(11px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(7px) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(29px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(47px) !important; }
+}
+
+
+/* =========================================================
+   FINAL C-SHAPE PALETTE OVERRIDE
+   Stronger C-shaped colour arrangement using only row offsets.
+   No connecting line is added.
+   Existing position, spacing, circle sizes, selected style and
+   paint-changing behaviour remain unchanged.
+   ========================================================= */
+
+/* Desktop — C shape */
+.mg-model-stage-colour:nth-child(1) { transform: translateX(72px) !important; }
+.mg-model-stage-colour:nth-child(2) { transform: translateX(38px) !important; }
+.mg-model-stage-colour:nth-child(3) { transform: translateX(10px) !important; }
+.mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
+.mg-model-stage-colour:nth-child(5) { transform: translateX(28px) !important; }
+.mg-model-stage-colour:nth-child(6) { transform: translateX(68px) !important; }
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(58px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(30px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(8px) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(22px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(54px) !important; }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(44px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(24px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(7px) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(18px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(40px) !important; }
+}
+
+
+/* =========================================================
+   FINAL SPECS CURVE OVERRIDE
+   Arrange the four right-side performance specs in a C-shaped
+   vertical curve, similar to the exterior colour palette.
+   ========================================================= */
+
+.mg-model-stage__specs {
+  right: 3.2% !important;
+  top: 24% !important;
+  width: 230px !important;
+  gap: 34px !important;
+  overflow: visible !important;
+}
+
+/* Each spec keeps its vertical value/label layout */
+.mg-model-stage__specs > div {
+  width: 200px !important;
+  min-width: 200px !important;
+  align-items: flex-end !important;
+  text-align: right !important;
+  transition: transform .3s ease !important;
+}
+
+/* C-shape curve */
+.mg-model-stage__specs > div:nth-child(1) {
+  transform: translateX(34px) !important;
+}
+.mg-model-stage__specs > div:nth-child(2) {
+  transform: translateX(10px) !important;
+}
+.mg-model-stage__specs > div:nth-child(3) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage__specs > div:nth-child(4) {
+  transform: translateX(30px) !important;
+}
+
+/* Slightly clearer text like the reference */
+.mg-model-stage__specs strong {
+  font-size: 34px !important;
+  line-height: .92 !important;
+}
+
+.mg-model-stage__specs strong small {
+  font-size: 12px !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 6px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__specs {
+    right: 20px !important;
+    top: 180px !important;
+    width: 170px !important;
+    gap: 25px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 155px !important;
+    min-width: 155px !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(26px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(8px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(23px) !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 27px !important;
+  }
+
+  .mg-model-stage__specs strong small,
+  .mg-model-stage__specs span {
+    font-size: 9px !important;
+  }
+}
+
+/* Mobile: keep readable and reduce the curve */
+@media (max-width: 767px) {
+  .mg-model-stage__specs {
+    right: 12px !important;
+    top: 205px !important;
+    width: 135px !important;
+    gap: 18px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 122px !important;
+    min-width: 122px !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(18px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(6px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(16px) !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 22px !important;
+  }
+
+  .mg-model-stage__specs strong small,
+  .mg-model-stage__specs span {
+    font-size: 8px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL RIGHT SPECS — OPPOSITE C CURVE
+   Mirror the left colour-palette curve on the right side.
+   Top/bottom specs move LEFT; middle specs move RIGHT.
+   ========================================================= */
+
+.mg-model-stage__specs {
+  right: 4.8% !important;
+  top: 18.5% !important;
+  width: 230px !important;
+  gap: 34px !important;
+  overflow: visible !important;
+  text-align: right !important;
+}
+
+.mg-model-stage__specs > div {
+  width: 200px !important;
+  min-width: 200px !important;
+  align-items: flex-end !important;
+  text-align: right !important;
+}
+
+/* Opposite / mirrored C shape on the RIGHT */
+.mg-model-stage__specs > div:nth-child(1) {
+  transform: translateX(-42px) !important;
+}
+
+.mg-model-stage__specs > div:nth-child(2) {
+  transform: translateX(-12px) !important;
+}
+
+.mg-model-stage__specs > div:nth-child(3) {
+  transform: translateX(0) !important;
+}
+
+.mg-model-stage__specs > div:nth-child(4) {
+  transform: translateX(-36px) !important;
+}
+
+.mg-model-stage__specs strong {
+  font-size: 34px !important;
+  line-height: .92 !important;
+}
+
+.mg-model-stage__specs strong small {
+  font-size: 12px !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 6px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__specs {
+    right: 28px !important;
+    top: 170px !important;
+    width: 180px !important;
+    gap: 25px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 160px !important;
+    min-width: 160px !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(-30px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(-9px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(-26px) !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 27px !important;
+  }
+
+  .mg-model-stage__specs strong small,
+  .mg-model-stage__specs span {
+    font-size: 9px !important;
+  }
+}
+
+/* Mobile — smaller mirrored curve */
+@media (max-width: 767px) {
+  .mg-model-stage__specs {
+    right: 12px !important;
+    width: 140px !important;
+    gap: 18px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 125px !important;
+    min-width: 125px !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(-20px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(-6px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(-17px) !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 22px !important;
+  }
+
+  .mg-model-stage__specs strong small,
+  .mg-model-stage__specs span {
+    font-size: 8px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL RIGHT SPECS SPACING OVERRIDE
+   Increase the vertical line/row height between:
+   480 km / 6.3 s / 170 kW / 64 kWh
+   while preserving the opposite C-curve layout.
+   ========================================================= */
+
+.mg-model-stage__specs {
+  gap: 48px !important;
+}
+
+.mg-model-stage__specs > div {
+  min-height: 76px !important;
+  justify-content: center !important;
+}
+
+.mg-model-stage__specs strong {
+  line-height: 1 !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 9px !important;
+  line-height: 1.25 !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__specs {
+    gap: 36px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    min-height: 64px !important;
+  }
+
+  .mg-model-stage__specs span {
+    margin-top: 7px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__specs {
+    gap: 26px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    min-height: 54px !important;
+  }
+
+  .mg-model-stage__specs span {
+    margin-top: 5px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL BALANCED LEFT / RIGHT SIDE RHYTHM
+   Left: 6 exterior colours
+   Right: 4 performance specs
+
+   Both side panels occupy the same vertical visual height.
+   The right-side four rows are distributed evenly across the
+   same top/bottom bounds as the six colour rows.
+   Existing colour selection and vehicle paint behaviour remain.
+   ========================================================= */
+
+.mg-model-stage__colours,
+.mg-model-stage__specs {
+  top: 24% !important;
+  height: 430px !important;
+  box-sizing: border-box !important;
+}
+
+/* LEFT — six colour rows fill the common height */
+.mg-model-stage__colours {
+  left: 3.8% !important;
+  width: 230px !important;
+  min-width: 230px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mg-model-stage__paint-tray {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 0 !important;
+}
+
+.mg-model-stage-colour {
+  height: 62px !important;
+  min-height: 62px !important;
+  flex: 0 0 62px !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Preserve the left C curve */
+.mg-model-stage-colour:nth-child(1) {
+  transform: translateX(42px) !important;
+}
+.mg-model-stage-colour:nth-child(2) {
+  transform: translateX(17px) !important;
+}
+.mg-model-stage-colour:nth-child(3) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage-colour:nth-child(4) {
+  transform: translateX(9px) !important;
+}
+.mg-model-stage-colour:nth-child(5) {
+  transform: translateX(32px) !important;
+}
+.mg-model-stage-colour:nth-child(6) {
+  transform: translateX(62px) !important;
+}
+
+/* RIGHT — four specs fill exactly the same common height */
+.mg-model-stage__specs {
+  right: 4.8% !important;
+  width: 230px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 0 !important;
+  overflow: visible !important;
+  text-align: right !important;
+}
+
+.mg-model-stage__specs > div {
+  width: 200px !important;
+  height: 62px !important;
+  min-height: 62px !important;
+  flex: 0 0 62px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  text-align: right !important;
+}
+
+/* Mirrored C curve on the right */
+.mg-model-stage__specs > div:nth-child(1) {
+  transform: translateX(-42px) !important;
+}
+.mg-model-stage__specs > div:nth-child(2) {
+  transform: translateX(-10px) !important;
+}
+.mg-model-stage__specs > div:nth-child(3) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage__specs > div:nth-child(4) {
+  transform: translateX(-36px) !important;
+}
+
+.mg-model-stage__specs strong {
+  line-height: 1 !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 7px !important;
+  line-height: 1.2 !important;
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    top: 300px !important;
+    height: 330px !important;
+  }
+
+  .mg-model-stage__colours {
+    left: 28px !important;
+    width: 180px !important;
+    min-width: 180px !important;
+  }
+
+  .mg-model-stage__specs {
+    right: 28px !important;
+    width: 180px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 52px !important;
+    min-height: 52px !important;
+    flex-basis: 52px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 160px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) {
+    transform: translateX(30px) !important;
+  }
+  .mg-model-stage-colour:nth-child(2) {
+    transform: translateX(12px) !important;
+  }
+  .mg-model-stage-colour:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage-colour:nth-child(4) {
+    transform: translateX(7px) !important;
+  }
+  .mg-model-stage-colour:nth-child(5) {
+    transform: translateX(23px) !important;
+  }
+  .mg-model-stage-colour:nth-child(6) {
+    transform: translateX(44px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(-30px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(-8px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(-26px) !important;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    top: 410px !important;
+    height: 270px !important;
+  }
+
+  .mg-model-stage__colours {
+    left: 12px !important;
+    width: 145px !important;
+    min-width: 145px !important;
+  }
+
+  .mg-model-stage__specs {
+    right: 12px !important;
+    width: 140px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 42px !important;
+    min-height: 42px !important;
+    flex-basis: 42px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 125px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) {
+    transform: translateX(22px) !important;
+  }
+  .mg-model-stage-colour:nth-child(2) {
+    transform: translateX(9px) !important;
+  }
+  .mg-model-stage-colour:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage-colour:nth-child(4) {
+    transform: translateX(6px) !important;
+  }
+  .mg-model-stage-colour:nth-child(5) {
+    transform: translateX(21px) !important;
+  }
+  .mg-model-stage-colour:nth-child(6) {
+    transform: translateX(35px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(-20px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(-6px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(-17px) !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL BOTH-SIDES CENTERED OVERRIDE
+   Vertically center the LEFT colour palette and RIGHT specs
+   around the same center line of the stage.
+
+   Keeps:
+   - existing colour data / paint functionality
+   - left C-shaped palette
+   - mirrored right specs curve
+   - equal visual balance on both sides
+   ========================================================= */
+
+/* Shared vertical centre */
+.mg-model-stage__colours,
+.mg-model-stage__specs {
+  top: 46% !important;
+  bottom: auto !important;
+  height: 430px !important;
+  box-sizing: border-box !important;
+}
+
+/* LEFT */
+.mg-model-stage__colours {
+  left: 3.8% !important;
+  right: auto !important;
+  width: 230px !important;
+  min-width: 230px !important;
+  transform: translateY(-50%) !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+.mg-model-stage__paint-tray {
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 0 !important;
+}
+
+.mg-model-stage-colour {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 205px !important;
+  height: 62px !important;
+  min-height: 62px !important;
+  flex: 0 0 62px !important;
+  margin: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+}
+
+/* Left C curve */
+.mg-model-stage-colour:nth-child(1) {
+  transform: translateX(62px) !important;
+}
+.mg-model-stage-colour:nth-child(2) {
+  transform: translateX(30px) !important;
+}
+.mg-model-stage-colour:nth-child(3) {
+  transform: translateX(7px) !important;
+}
+.mg-model-stage-colour:nth-child(4) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage-colour:nth-child(5) {
+  transform: translateX(25px) !important;
+}
+.mg-model-stage-colour:nth-child(6) {
+  transform: translateX(58px) !important;
+}
+
+/* RIGHT */
+.mg-model-stage__specs {
+  left: auto !important;
+  right: 4.8% !important;
+  width: 230px !important;
+  transform: translateY(-50%) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+  gap: 0 !important;
+  overflow: visible !important;
+  text-align: right !important;
+}
+
+.mg-model-stage__specs > div {
+  position: relative !important;
+  top: auto !important;
+  right: auto !important;
+  width: 200px !important;
+  height: 62px !important;
+  min-height: 62px !important;
+  flex: 0 0 62px !important;
+  margin: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: flex-end !important;
+  text-align: right !important;
+}
+
+/* Mirrored curve on right */
+.mg-model-stage__specs > div:nth-child(1) {
+  transform: translateX(-58px) !important;
+}
+.mg-model-stage__specs > div:nth-child(2) {
+  transform: translateX(-15px) !important;
+}
+.mg-model-stage__specs > div:nth-child(3) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage__specs > div:nth-child(4) {
+  transform: translateX(-52px) !important;
+}
+
+.mg-model-stage__specs strong {
+  line-height: 1 !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 7px !important;
+  line-height: 1.2 !important;
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    top: 46% !important;
+    height: 330px !important;
+  }
+
+  .mg-model-stage__colours {
+    left: 28px !important;
+    width: 180px !important;
+    min-width: 180px !important;
+  }
+
+  .mg-model-stage__specs {
+    right: 28px !important;
+    width: 180px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 52px !important;
+    min-height: 52px !important;
+    flex-basis: 52px !important;
+  }
+
+  .mg-model-stage-colour {
+    width: 160px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 160px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) {
+    transform: translateX(44px) !important;
+  }
+  .mg-model-stage-colour:nth-child(2) {
+    transform: translateX(22px) !important;
+  }
+  .mg-model-stage-colour:nth-child(3) {
+    transform: translateX(5px) !important;
+  }
+  .mg-model-stage-colour:nth-child(4) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage-colour:nth-child(5) {
+    transform: translateX(18px) !important;
+  }
+  .mg-model-stage-colour:nth-child(6) {
+    transform: translateX(41px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(-41px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(-11px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(-37px) !important;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    top: 49% !important;
+    height: 270px !important;
+  }
+
+  .mg-model-stage__colours {
+    left: 12px !important;
+    width: 145px !important;
+    min-width: 145px !important;
+  }
+
+  .mg-model-stage__specs {
+    right: 12px !important;
+    width: 140px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 42px !important;
+    min-height: 42px !important;
+    flex-basis: 42px !important;
+  }
+
+  .mg-model-stage-colour {
+    width: 130px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 125px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) {
+    transform: translateX(34px) !important;
+  }
+  .mg-model-stage-colour:nth-child(2) {
+    transform: translateX(17px) !important;
+  }
+  .mg-model-stage-colour:nth-child(3) {
+    transform: translateX(4px) !important;
+  }
+  .mg-model-stage-colour:nth-child(4) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage-colour:nth-child(5) {
+    transform: translateX(14px) !important;
+  }
+  .mg-model-stage-colour:nth-child(6) {
+    transform: translateX(31px) !important;
+  }
+
+  .mg-model-stage__specs > div:nth-child(1) {
+    transform: translateX(-31px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(2) {
+    transform: translateX(-8px) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(3) {
+    transform: translateX(0) !important;
+  }
+  .mg-model-stage__specs > div:nth-child(4) {
+    transform: translateX(-28px) !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL POSITION OVERRIDE — MOVE BOTH SIDE SECTIONS UP
+   Exterior colours + vehicle specifications only.
+   ========================================================= */
+
+.mg-model-stage__colours,
+.mg-model-stage__specs {
+  top: 40% !important;
+  bottom: auto !important;
+  transform: translateY(-50%) !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    top: 39% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    top: 40% !important;
+    bottom: auto !important;
+    transform: translateY(-50%) !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL COLOUR SWATCH SIZE — SLIGHTLY SMALLER CIRCLES ONLY
+   Position, colour names, paint behaviour and specs unchanged.
+   ========================================================= */
+
+.mg-model-stage-colour__chip {
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+}
+
+/* Keep the selected colour slightly larger, but more compact */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage-colour__chip {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage-colour__chip {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+  }
+}
+
+
+/* =========================================================
+   FINAL COLOUR SWATCH SHAPE — PERFECT CIRCLES
+   Prevent flex/grid sizing from stretching swatches into ovals.
+   ========================================================= */
+
+.mg-model-stage-colour__chip {
+  box-sizing: border-box !important;
+  width: 34px !important;
+  height: 34px !important;
+  min-width: 34px !important;
+  min-height: 34px !important;
+  max-width: 34px !important;
+  max-height: 34px !important;
+  flex: 0 0 34px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+}
+
+/* Selected swatch stays round */
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 50px !important;
+  height: 50px !important;
+  min-width: 50px !important;
+  min-height: 50px !important;
+  max-width: 50px !important;
+  max-height: 50px !important;
+  flex-basis: 50px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+}
+
+@media (max-width: 1100px) {
+  .mg-model-stage-colour__chip {
+    width: 30px !important;
+    height: 30px !important;
+    min-width: 30px !important;
+    min-height: 30px !important;
+    max-width: 30px !important;
+    max-height: 30px !important;
+    flex-basis: 30px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 42px !important;
+    height: 42px !important;
+    min-width: 42px !important;
+    min-height: 42px !important;
+    max-width: 42px !important;
+    max-height: 42px !important;
+    flex-basis: 42px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .mg-model-stage-colour__chip {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    flex-basis: 26px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    flex-basis: 36px !important;
+  }
+}
+
+</style>
+  
