@@ -8218,5 +8218,339 @@ const resetStage = async () => {
   }
 }
 
+
+
+/* =========================================================
+   FINAL LARGE-SCREEN COLOUR CIRCLE SIZE
+   Only affects large desktop screens (1800px and above).
+   Colour circles are reduced to 80% of their large-screen size.
+========================================================= */
+
+@media (min-width: 1800px) {
+  /* Normal colour circles: 40px -> 32px (80%) */
+  .mg-model-stage-colour__chip {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    flex: 0 0 32px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+  }
+
+  /* Selected colour circle: 62px -> about 50px (80%) */
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+    flex: 0 0 50px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    transform: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL DESKTOP COLOUR CIRCLE SIZE FIX
+   Chrome 100% / normal desktop screens.
+
+   Previous large-screen rule started at 1800px, so many normal
+   desktop/laptop browser widths did not receive the smaller size.
+   This rule starts at 1200px.
+========================================================= */
+
+@media (min-width: 1200px) {
+  /* Normal colour circle */
+  .mg-model-stage-colour__chip {
+    width: 26px !important;
+    height: 26px !important;
+
+    min-width: 26px !important;
+    min-height: 26px !important;
+
+    max-width: 26px !important;
+    max-height: 26px !important;
+
+    flex: 0 0 26px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Selected / active colour circle */
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 40px !important;
+    height: 40px !important;
+
+    min-width: 40px !important;
+    min-height: 40px !important;
+
+    max-width: 40px !important;
+    max-height: 40px !important;
+
+    flex: 0 0 40px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+
+    transform: none !important;
+  }
+}
+
+/* Very large / 2K / 4K screens:
+   keep the circles controlled instead of allowing them to grow. */
+@media (min-width: 1800px) {
+  .mg-model-stage-colour__chip {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    flex: 0 0 26px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    flex: 0 0 40px !important;
+    transform: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   TRUE FINAL CHROME ZOOM CIRCLE FIX
+   - Chrome 100% / normal desktop width: smaller circles
+   - Chrome 80% / extra-wide CSS viewport: keep previous size
+========================================================= */
+
+/* Chrome 100% style range */
+@media (min-width: 1200px) and (max-width: 1799px) {
+  .mg-model-stage-colour__chip {
+    width: 26px !important;
+    height: 26px !important;
+    min-width: 26px !important;
+    min-height: 26px !important;
+    max-width: 26px !important;
+    max-height: 26px !important;
+    flex: 0 0 26px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 40px !important;
+    height: 40px !important;
+    min-width: 40px !important;
+    min-height: 40px !important;
+    max-width: 40px !important;
+    max-height: 40px !important;
+    flex: 0 0 40px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+}
+
+/* Extra-wide viewport / Chrome 80%:
+   preserve the previous large-screen circle sizing */
+@media (min-width: 1800px) {
+  .mg-model-stage-colour__chip {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    flex: 0 0 32px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+    flex: 0 0 50px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    transform: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   TRUE FINAL FIX — CHROME 100% SMALLER COLOUR CIRCLES
+
+   Why this range is wider:
+   A 1920px monitor at Chrome 100% can still be >= 1800 CSS px.
+   So the old 1800px breakpoint was treating 100% like the 80% view.
+
+   1200px–2199px = normal desktop / Chrome 100% -> SMALL
+   2200px+        = very wide / Chrome 80% style -> keep previous size
+========================================================= */
+
+/* Chrome 100% / normal desktop */
+@media (min-width: 1200px) and (max-width: 2199px) {
+  .mg-model-stage-colour__chip {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    flex: 0 0 22px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    flex: 0 0 34px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+}
+
+/* Chrome 80% / very wide viewport — keep previous size */
+@media (min-width: 2200px) {
+  .mg-model-stage-colour__chip {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    flex: 0 0 32px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+    flex: 0 0 50px !important;
+
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    transform: none !important;
+  }
+}
+
+
+
+/* =========================================================
+   FINAL RESPONSIVE COLOUR CIRCLE FIX
+
+   Chrome 100% = SMALL circles
+   Chrome 80%  = LARGE circles
+
+   On the same monitor, changing Chrome from 100% to 80%
+   increases the CSS viewport width. The 2000px breakpoint
+   separates the two layouts for this desktop setup.
+========================================================= */
+
+/* 100% CHROME — SMALL */
+@media (min-width: 1200px) and (max-width: 1999px) {
+  .mg-model-stage-colour__chip {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    flex: 0 0 22px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    flex: 0 0 34px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+}
+
+/* 80% CHROME / WIDER VIEWPORT — LARGE */
+@media (min-width: 2000px) {
+  .mg-model-stage-colour__chip {
+    width: 32px !important;
+    height: 32px !important;
+    min-width: 32px !important;
+    min-height: 32px !important;
+    max-width: 32px !important;
+    max-height: 32px !important;
+    flex: 0 0 32px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 50px !important;
+    height: 50px !important;
+    min-width: 50px !important;
+    min-height: 50px !important;
+    max-width: 50px !important;
+    max-height: 50px !important;
+    flex: 0 0 50px !important;
+    aspect-ratio: 1 / 1 !important;
+    border-radius: 50% !important;
+    box-sizing: border-box !important;
+    transform: none !important;
+  }
+}
+
 </style>
   
