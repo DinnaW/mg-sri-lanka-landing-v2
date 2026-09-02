@@ -28,7 +28,7 @@ const slides = [
   {
     id: 1,
     image:
-      "public/images/mg-owners/a679dfcb-fba4-4727-ad28-da21c99dea85.png",
+      "images/mg-owners/a679dfcb-fba4-4727-ad28-da21c99dea85.png",
     alt:
       "MG customer vehicle handover in Sri Lanka with a ceremonial MG key",
     quote:
