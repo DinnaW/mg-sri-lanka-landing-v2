@@ -8123,5 +8123,100 @@ const resetStage = async () => {
   }
 }
 
+
+
+/* =========================================================
+   FINAL FIX — REAL 30PX GAP BETWEEN ALL COLOUR ROWS
+   This MUST stay at the very bottom of <style scoped>.
+   It overrides the later `space-between` + `gap: 0` rules.
+========================================================= */
+
+/* DESKTOP */
+.mg-model-stage__colours {
+  height: auto !important;
+  min-height: 0 !important;
+  overflow: visible !important;
+}
+
+.mg-model-stage__paint-tray {
+  height: auto !important;
+  min-height: 0 !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: flex-start !important;
+
+  justify-content: flex-start !important;
+  gap: 30px !important;
+
+  overflow: visible !important;
+}
+
+/* Keep every colour row compact.
+   The 30px is now the REAL space BETWEEN rows. */
+.mg-model-stage-colour {
+  height: 48px !important;
+  min-height: 48px !important;
+  flex: 0 0 48px !important;
+  margin: 0 !important;
+}
+
+/* LARGE / 2K / 4K */
+@media (min-width: 1800px) {
+  .mg-model-stage__colours {
+    height: auto !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    height: auto !important;
+    justify-content: flex-start !important;
+    gap: 30px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 48px !important;
+    min-height: 48px !important;
+    flex: 0 0 48px !important;
+  }
+}
+
+/* TABLET */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours {
+    height: auto !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    height: auto !important;
+    justify-content: flex-start !important;
+    gap: 40px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 41px !important;
+    min-height: 41px !important;
+    flex: 0 0 41px !important;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .mg-model-stage__colours {
+    height: auto !important;
+  }
+
+  .mg-model-stage__paint-tray {
+    height: auto !important;
+    justify-content: flex-start !important;
+    gap: 24px !important;
+  }
+
+  .mg-model-stage-colour {
+    height: 34px !important;
+    min-height: 34px !important;
+    flex: 0 0 34px !important;
+  }
+}
+
 </style>
   
