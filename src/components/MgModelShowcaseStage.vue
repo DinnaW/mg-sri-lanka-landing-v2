@@ -5539,6 +5539,217 @@ const resetStage = async () => {
   }
 }
 
+
+/* =========================================================
+   FINAL COMPACT SIDE SECTIONS
+   Slightly smaller exterior colour palette + vehicle specs.
+   Keeps positions, curves and 3D paint behaviour unchanged.
+   ========================================================= */
+
+/* Desktop / large screens */
+.mg-model-stage__colours,
+.mg-model-stage__specs {
+  height: 390px !important;
+}
+
+.mg-model-stage__colours {
+  width: 215px !important;
+  min-width: 215px !important;
+}
+
+.mg-model-stage__specs {
+  width: 210px !important;
+}
+
+.mg-model-stage-colour,
+.mg-model-stage__specs > div {
+  height: 56px !important;
+  min-height: 56px !important;
+  flex-basis: 56px !important;
+}
+
+.mg-model-stage-colour {
+  width: 190px !important;
+}
+
+.mg-model-stage__specs > div {
+  width: 184px !important;
+}
+
+/* Slightly smaller specification typography */
+.mg-model-stage__specs strong {
+  font-size: clamp(25px, 1.55vw, 32px) !important;
+  line-height: .95 !important;
+}
+
+.mg-model-stage__specs strong small {
+  margin-left: 3px !important;
+  font-size: clamp(8px, .48vw, 10px) !important;
+  font-weight: 700 !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 5px !important;
+  font-size: clamp(8px, .46vw, 10px) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+}
+
+/* Keep the C-shaped palette balanced after making it smaller. */
+.mg-model-stage-colour:nth-child(1) {
+  transform: translateX(54px) !important;
+}
+.mg-model-stage-colour:nth-child(2) {
+  transform: translateX(27px) !important;
+}
+.mg-model-stage-colour:nth-child(3) {
+  transform: translateX(6px) !important;
+}
+.mg-model-stage-colour:nth-child(4) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage-colour:nth-child(5) {
+  transform: translateX(22px) !important;
+}
+.mg-model-stage-colour:nth-child(6) {
+  transform: translateX(51px) !important;
+}
+
+/* Mirror the same compact curve on the right. */
+.mg-model-stage__specs > div:nth-child(1) {
+  transform: translateX(-50px) !important;
+}
+.mg-model-stage__specs > div:nth-child(2) {
+  transform: translateX(-13px) !important;
+}
+.mg-model-stage__specs > div:nth-child(3) {
+  transform: translateX(0) !important;
+}
+.mg-model-stage__specs > div:nth-child(4) {
+  transform: translateX(-45px) !important;
+}
+
+/* Large desktop: stop side UI from growing too much. */
+@media (min-width: 1800px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 390px !important;
+  }
+
+  .mg-model-stage__colours {
+    width: 215px !important;
+    min-width: 215px !important;
+  }
+
+  .mg-model-stage__specs {
+    width: 210px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 56px !important;
+    min-height: 56px !important;
+    flex-basis: 56px !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 32px !important;
+  }
+
+  .mg-model-stage__specs strong small {
+    font-size: 10px !important;
+  }
+
+  .mg-model-stage__specs span {
+    font-size: 10px !important;
+  }
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 305px !important;
+  }
+
+  .mg-model-stage__colours {
+    width: 165px !important;
+    min-width: 165px !important;
+  }
+
+  .mg-model-stage__specs {
+    width: 165px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 47px !important;
+    min-height: 47px !important;
+    flex-basis: 47px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    width: 148px !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 23px !important;
+  }
+
+  .mg-model-stage__specs strong small {
+    font-size: 8px !important;
+  }
+
+  .mg-model-stage__specs span {
+    font-size: 7px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 250px !important;
+  }
+
+  .mg-model-stage__colours {
+    width: 132px !important;
+    min-width: 132px !important;
+  }
+
+  .mg-model-stage__specs {
+    width: 128px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 38px !important;
+    min-height: 38px !important;
+    flex-basis: 38px !important;
+  }
+
+  .mg-model-stage-colour {
+    width: 118px !important;
+  }
+
+  .mg-model-stage__specs > div {
+    width: 114px !important;
+  }
+
+  .mg-model-stage__specs strong {
+    font-size: 19px !important;
+  }
+
+  .mg-model-stage__specs strong small {
+    font-size: 7px !important;
+  }
+
+  .mg-model-stage__specs span {
+    font-size: 6px !important;
+  }
+}
+
 </style>
 
 <style scoped>
@@ -7598,5 +7809,238 @@ const resetStage = async () => {
   }
 }
 
+
+
+/* =========================================================
+   FINAL BALANCED SIDE UI
+   Slightly larger than the extra-small version, while still
+   staying compact on normal, 2K and 4K desktop screens.
+   ========================================================= */
+
+/* Desktop */
+.mg-model-stage__colours,
+.mg-model-stage__specs {
+  height: 360px !important;
+}
+
+.mg-model-stage__colours {
+  width: 200px !important;
+  min-width: 200px !important;
+}
+
+.mg-model-stage__specs {
+  width: 195px !important;
+}
+
+.mg-model-stage-colour,
+.mg-model-stage__specs > div {
+  height: 52px !important;
+  min-height: 52px !important;
+  flex-basis: 52px !important;
+}
+
+.mg-model-stage-colour {
+  width: 178px !important;
+}
+
+.mg-model-stage__specs > div {
+  width: 171px !important;
+}
+
+.mg-model-stage__specs strong {
+  font-size: clamp(25px, 1.45vw, 31px) !important;
+  line-height: .94 !important;
+}
+
+.mg-model-stage__specs strong small {
+  margin-left: 3px !important;
+  font-size: clamp(8px, .43vw, 10px) !important;
+}
+
+.mg-model-stage__specs span {
+  margin-top: 4px !important;
+  font-size: clamp(8px, .42vw, 10px) !important;
+  line-height: 1.1 !important;
+}
+
+.mg-model-stage-colour__chip {
+  box-sizing: border-box !important;
+  width: 31px !important;
+  height: 31px !important;
+  min-width: 31px !important;
+  min-height: 31px !important;
+  max-width: 31px !important;
+  max-height: 31px !important;
+  flex: 0 0 31px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 46px !important;
+  height: 46px !important;
+  min-width: 46px !important;
+  min-height: 46px !important;
+  max-width: 46px !important;
+  max-height: 46px !important;
+  flex: 0 0 46px !important;
+}
+
+/* Balanced C curve */
+.mg-model-stage-colour:nth-child(1) { transform: translateX(48px) !important; }
+.mg-model-stage-colour:nth-child(2) { transform: translateX(24px) !important; }
+.mg-model-stage-colour:nth-child(3) { transform: translateX(6px) !important; }
+.mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
+.mg-model-stage-colour:nth-child(5) { transform: translateX(20px) !important; }
+.mg-model-stage-colour:nth-child(6) { transform: translateX(46px) !important; }
+
+.mg-model-stage__specs > div:nth-child(1) { transform: translateX(-45px) !important; }
+.mg-model-stage__specs > div:nth-child(2) { transform: translateX(-12px) !important; }
+.mg-model-stage__specs > div:nth-child(3) { transform: translateX(0) !important; }
+.mg-model-stage__specs > div:nth-child(4) { transform: translateX(-40px) !important; }
+
+/* Large / 2K / 4K */
+@media (min-width: 1800px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 360px !important;
+  }
+
+  .mg-model-stage__colours {
+    width: 200px !important;
+    min-width: 200px !important;
+  }
+
+  .mg-model-stage__specs {
+    width: 195px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 52px !important;
+    min-height: 52px !important;
+    flex-basis: 52px !important;
+  }
+
+  .mg-model-stage__specs strong { font-size: 31px !important; }
+  .mg-model-stage__specs strong small { font-size: 10px !important; }
+  .mg-model-stage__specs span { font-size: 10px !important; }
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 292px !important;
+  }
+
+  .mg-model-stage__colours {
+    width: 156px !important;
+    min-width: 156px !important;
+  }
+
+  .mg-model-stage__specs {
+    width: 152px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 44px !important;
+    min-height: 44px !important;
+    flex-basis: 44px !important;
+  }
+
+  .mg-model-stage-colour { width: 140px !important; }
+  .mg-model-stage__specs > div { width: 137px !important; }
+
+  .mg-model-stage__specs strong { font-size: 22px !important; }
+  .mg-model-stage__specs strong small { font-size: 8px !important; }
+  .mg-model-stage__specs span { font-size: 7px !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 27px !important;
+    height: 27px !important;
+    min-width: 27px !important;
+    min-height: 27px !important;
+    max-width: 27px !important;
+    max-height: 27px !important;
+    flex: 0 0 27px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 39px !important;
+    height: 39px !important;
+    min-width: 39px !important;
+    min-height: 39px !important;
+    max-width: 39px !important;
+    max-height: 39px !important;
+    flex: 0 0 39px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 240px !important;
+  }
+
+  .mg-model-stage__colours {
+    left: 10px !important;
+    width: 127px !important;
+    min-width: 127px !important;
+  }
+
+  .mg-model-stage__specs {
+    right: 10px !important;
+    width: 123px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 36px !important;
+    min-height: 36px !important;
+    flex-basis: 36px !important;
+  }
+
+  .mg-model-stage-colour { width: 113px !important; }
+  .mg-model-stage__specs > div { width: 110px !important; }
+
+  .mg-model-stage__specs strong { font-size: 18px !important; }
+  .mg-model-stage__specs strong small { font-size: 6.5px !important; }
+  .mg-model-stage__specs span { font-size: 6px !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px !important;
+    min-height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    flex: 0 0 24px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 34px !important;
+    height: 34px !important;
+    min-width: 34px !important;
+    min-height: 34px !important;
+    max-width: 34px !important;
+    max-height: 34px !important;
+    flex: 0 0 34px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(30px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(15px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(4px) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(13px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(28px) !important; }
+
+  .mg-model-stage__specs > div:nth-child(1) { transform: translateX(-28px) !important; }
+  .mg-model-stage__specs > div:nth-child(2) { transform: translateX(-8px) !important; }
+  .mg-model-stage__specs > div:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage__specs > div:nth-child(4) { transform: translateX(-25px) !important; }
+}
+
 </style>
-  
