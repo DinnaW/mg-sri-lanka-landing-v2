@@ -44,7 +44,7 @@ const slides = [
   {
     id: 2,
     image:
-      "public/images/mg-owners/9b23f1af-7267-4a13-ac95-5cc94f4825ff.png",
+      "images/mg-owners/9b23f1af-7267-4a13-ac95-5cc94f4825ff.png",
     alt:
       "Family collecting a new MG vehicle at a showroom",
     quote:
@@ -60,7 +60,7 @@ const slides = [
   {
     id: 3,
     image:
-      "public/images/mg-owners/744ed884-dbde-4328-9af0-a554bf5f4799.png",
+      "images/mg-owners/744ed884-dbde-4328-9af0-a554bf5f4799.png",
     alt:
       "Customers receiving a new MG vehicle at a dealership",
     quote:
@@ -76,7 +76,7 @@ const slides = [
   {
     id: 4,
     image:
-      "public/images/mg-owners/c8e29417-5e27-4a79-9ce5-e6fbd21dddef.png",
+      "images/mg-owners/c8e29417-5e27-4a79-9ce5-e6fbd21dddef.png",
     alt:
       "MG owners celebrating the delivery of their new vehicle",
     quote:
