@@ -7812,151 +7812,273 @@ const resetStage = async () => {
 
 
 /* =========================================================
-   FINAL BALANCED SIDE UI
-   Slightly larger than the extra-small version, while still
-   staying compact on normal, 2K and 4K desktop screens.
+   FINAL EXTRA-SMALL SIDE UI
+   Smaller colour palette + vehicle specifications.
+   This block is intentionally last so it wins over all
+   earlier desktop/tablet/mobile overrides.
    ========================================================= */
 
 /* Desktop */
 .mg-model-stage__colours,
 .mg-model-stage__specs {
-  height: 360px !important;
+  height: 330px !important;
 }
 
 .mg-model-stage__colours {
-  width: 200px !important;
-  min-width: 200px !important;
+  width: 185px !important;
+  min-width: 185px !important;
 }
 
 .mg-model-stage__specs {
-  width: 195px !important;
+  width: 180px !important;
 }
 
 .mg-model-stage-colour,
 .mg-model-stage__specs > div {
-  height: 52px !important;
-  min-height: 52px !important;
-  flex-basis: 52px !important;
+  height: 48px !important;
+  min-height: 48px !important;
+  flex-basis: 48px !important;
 }
 
 .mg-model-stage-colour {
-  width: 178px !important;
+  width: 164px !important;
 }
 
 .mg-model-stage__specs > div {
-  width: 171px !important;
+  width: 158px !important;
 }
 
 .mg-model-stage__specs strong {
-  font-size: clamp(25px, 1.45vw, 31px) !important;
+  font-size: clamp(22px, 1.3vw, 27px) !important;
   line-height: .94 !important;
 }
 
 .mg-model-stage__specs strong small {
   margin-left: 3px !important;
-  font-size: clamp(8px, .43vw, 10px) !important;
+  font-size: clamp(7px, .4vw, 9px) !important;
 }
 
 .mg-model-stage__specs span {
   margin-top: 4px !important;
-  font-size: clamp(8px, .42vw, 10px) !important;
+  font-size: clamp(7px, .38vw, 9px) !important;
   line-height: 1.1 !important;
 }
 
+/* Smaller colour circles */
 .mg-model-stage-colour__chip {
   box-sizing: border-box !important;
-  width: 31px !important;
-  height: 31px !important;
-  min-width: 31px !important;
-  min-height: 31px !important;
-  max-width: 31px !important;
-  max-height: 31px !important;
-  flex: 0 0 31px !important;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  min-height: 28px !important;
+  max-width: 28px !important;
+  max-height: 28px !important;
+  flex: 0 0 28px !important;
   aspect-ratio: 1 / 1 !important;
   border-radius: 50% !important;
 }
 
 .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
-  width: 46px !important;
-  height: 46px !important;
-  min-width: 46px !important;
-  min-height: 46px !important;
-  max-width: 46px !important;
-  max-height: 46px !important;
-  flex: 0 0 46px !important;
+  width: 42px !important;
+  height: 42px !important;
+  min-width: 42px !important;
+  min-height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
+  flex: 0 0 42px !important;
 }
 
-/* Balanced C curve */
-.mg-model-stage-colour:nth-child(1) { transform: translateX(48px) !important; }
-.mg-model-stage-colour:nth-child(2) { transform: translateX(24px) !important; }
-.mg-model-stage-colour:nth-child(3) { transform: translateX(6px) !important; }
+/* Tighter C curve */
+.mg-model-stage-colour:nth-child(1) { transform: translateX(44px) !important; }
+.mg-model-stage-colour:nth-child(2) { transform: translateX(22px) !important; }
+.mg-model-stage-colour:nth-child(3) { transform: translateX(5px) !important; }
 .mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
-.mg-model-stage-colour:nth-child(5) { transform: translateX(20px) !important; }
-.mg-model-stage-colour:nth-child(6) { transform: translateX(46px) !important; }
+.mg-model-stage-colour:nth-child(5) { transform: translateX(18px) !important; }
+.mg-model-stage-colour:nth-child(6) { transform: translateX(42px) !important; }
 
-.mg-model-stage__specs > div:nth-child(1) { transform: translateX(-45px) !important; }
-.mg-model-stage__specs > div:nth-child(2) { transform: translateX(-12px) !important; }
+.mg-model-stage__specs > div:nth-child(1) { transform: translateX(-41px) !important; }
+.mg-model-stage__specs > div:nth-child(2) { transform: translateX(-11px) !important; }
 .mg-model-stage__specs > div:nth-child(3) { transform: translateX(0) !important; }
-.mg-model-stage__specs > div:nth-child(4) { transform: translateX(-40px) !important; }
+.mg-model-stage__specs > div:nth-child(4) { transform: translateX(-37px) !important; }
 
 /* Large / 2K / 4K */
 @media (min-width: 1800px) {
   .mg-model-stage__colours,
   .mg-model-stage__specs {
-    height: 360px !important;
+    height: 330px !important;
   }
 
   .mg-model-stage__colours {
-    width: 200px !important;
-    min-width: 200px !important;
+    width: 185px !important;
+    min-width: 185px !important;
   }
 
   .mg-model-stage__specs {
-    width: 195px !important;
+    width: 180px !important;
   }
 
   .mg-model-stage-colour,
   .mg-model-stage__specs > div {
-    height: 52px !important;
-    min-height: 52px !important;
-    flex-basis: 52px !important;
+    height: 48px !important;
+    min-height: 48px !important;
+    flex-basis: 48px !important;
   }
 
-  .mg-model-stage__specs strong { font-size: 31px !important; }
-  .mg-model-stage__specs strong small { font-size: 10px !important; }
-  .mg-model-stage__specs span { font-size: 10px !important; }
+  .mg-model-stage__specs strong { font-size: 27px !important; }
+  .mg-model-stage__specs strong small { font-size: 9px !important; }
+  .mg-model-stage__specs span { font-size: 9px !important; }
 }
 
 /* Tablet */
 @media (max-width: 1100px) {
   .mg-model-stage__colours,
   .mg-model-stage__specs {
-    height: 292px !important;
+    height: 270px !important;
   }
 
   .mg-model-stage__colours {
-    width: 156px !important;
-    min-width: 156px !important;
+    width: 145px !important;
+    min-width: 145px !important;
   }
 
   .mg-model-stage__specs {
-    width: 152px !important;
+    width: 142px !important;
   }
 
   .mg-model-stage-colour,
   .mg-model-stage__specs > div {
-    height: 44px !important;
-    min-height: 44px !important;
-    flex-basis: 44px !important;
+    height: 41px !important;
+    min-height: 41px !important;
+    flex-basis: 41px !important;
   }
 
-  .mg-model-stage-colour { width: 140px !important; }
-  .mg-model-stage__specs > div { width: 137px !important; }
+  .mg-model-stage-colour { width: 130px !important; }
+  .mg-model-stage__specs > div { width: 128px !important; }
 
-  .mg-model-stage__specs strong { font-size: 22px !important; }
-  .mg-model-stage__specs strong small { font-size: 8px !important; }
-  .mg-model-stage__specs span { font-size: 7px !important; }
+  .mg-model-stage__specs strong { font-size: 20px !important; }
+  .mg-model-stage__specs strong small { font-size: 7px !important; }
+  .mg-model-stage__specs span { font-size: 6.5px !important; }
 
+  .mg-model-stage-colour__chip {
+    width: 25px !important;
+    height: 25px !important;
+    min-width: 25px !important;
+    min-height: 25px !important;
+    max-width: 25px !important;
+    max-height: 25px !important;
+    flex: 0 0 25px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 36px !important;
+    height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
+    max-width: 36px !important;
+    max-height: 36px !important;
+    flex: 0 0 36px !important;
+  }
+}
+
+/* Mobile */
+@media (max-width: 767px) {
+  .mg-model-stage__colours,
+  .mg-model-stage__specs {
+    height: 225px !important;
+  }
+
+  .mg-model-stage__colours {
+    left: 10px !important;
+    width: 120px !important;
+    min-width: 120px !important;
+  }
+
+  .mg-model-stage__specs {
+    right: 10px !important;
+    width: 116px !important;
+  }
+
+  .mg-model-stage-colour,
+  .mg-model-stage__specs > div {
+    height: 34px !important;
+    min-height: 34px !important;
+    flex-basis: 34px !important;
+  }
+
+  .mg-model-stage-colour { width: 106px !important; }
+  .mg-model-stage__specs > div { width: 103px !important; }
+
+  .mg-model-stage__specs strong { font-size: 17px !important; }
+  .mg-model-stage__specs strong small { font-size: 6px !important; }
+  .mg-model-stage__specs span { font-size: 5.5px !important; }
+
+  .mg-model-stage-colour__chip {
+    width: 22px !important;
+    height: 22px !important;
+    min-width: 22px !important;
+    min-height: 22px !important;
+    max-width: 22px !important;
+    max-height: 22px !important;
+    flex: 0 0 22px !important;
+  }
+
+  .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+    width: 31px !important;
+    height: 31px !important;
+    min-width: 31px !important;
+    min-height: 31px !important;
+    max-width: 31px !important;
+    max-height: 31px !important;
+    flex: 0 0 31px !important;
+  }
+
+  .mg-model-stage-colour:nth-child(1) { transform: translateX(28px) !important; }
+  .mg-model-stage-colour:nth-child(2) { transform: translateX(14px) !important; }
+  .mg-model-stage-colour:nth-child(3) { transform: translateX(3px) !important; }
+  .mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
+  .mg-model-stage-colour:nth-child(5) { transform: translateX(12px) !important; }
+  .mg-model-stage-colour:nth-child(6) { transform: translateX(26px) !important; }
+
+  .mg-model-stage__specs > div:nth-child(1) { transform: translateX(-26px) !important; }
+  .mg-model-stage__specs > div:nth-child(2) { transform: translateX(-7px) !important; }
+  .mg-model-stage__specs > div:nth-child(3) { transform: translateX(0) !important; }
+  .mg-model-stage__specs > div:nth-child(4) { transform: translateX(-23px) !important; }
+}
+
+
+
+/* =========================================================
+   FINAL COLOUR PALETTE SIZE TUNING
+   Only the colour circles are made a little smaller.
+========================================================= */
+
+/* Desktop */
+.mg-model-stage-colour__chip {
+  width: 30px !important;
+  height: 30px !important;
+  min-width: 30px !important;
+  min-height: 30px !important;
+  max-width: 30px !important;
+  max-height: 30px !important;
+  aspect-ratio: 1 / 1 !important;
+  border-radius: 50% !important;
+  flex: 0 0 30px !important;
+  box-sizing: border-box !important;
+}
+
+.mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
+  width: 44px !important;
+  height: 44px !important;
+  min-width: 44px !important;
+  min-height: 44px !important;
+  max-width: 44px !important;
+  max-height: 44px !important;
+  flex: 0 0 44px !important;
+  transform: none !important;
+}
+
+/* Tablet */
+@media (max-width: 1100px) {
   .mg-model-stage-colour__chip {
     width: 27px !important;
     height: 27px !important;
@@ -7968,48 +8090,18 @@ const resetStage = async () => {
   }
 
   .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
-    width: 39px !important;
-    height: 39px !important;
-    min-width: 39px !important;
-    min-height: 39px !important;
-    max-width: 39px !important;
-    max-height: 39px !important;
-    flex: 0 0 39px !important;
+    width: 38px !important;
+    height: 38px !important;
+    min-width: 38px !important;
+    min-height: 38px !important;
+    max-width: 38px !important;
+    max-height: 38px !important;
+    flex: 0 0 38px !important;
   }
 }
 
 /* Mobile */
 @media (max-width: 767px) {
-  .mg-model-stage__colours,
-  .mg-model-stage__specs {
-    height: 240px !important;
-  }
-
-  .mg-model-stage__colours {
-    left: 10px !important;
-    width: 127px !important;
-    min-width: 127px !important;
-  }
-
-  .mg-model-stage__specs {
-    right: 10px !important;
-    width: 123px !important;
-  }
-
-  .mg-model-stage-colour,
-  .mg-model-stage__specs > div {
-    height: 36px !important;
-    min-height: 36px !important;
-    flex-basis: 36px !important;
-  }
-
-  .mg-model-stage-colour { width: 113px !important; }
-  .mg-model-stage__specs > div { width: 110px !important; }
-
-  .mg-model-stage__specs strong { font-size: 18px !important; }
-  .mg-model-stage__specs strong small { font-size: 6.5px !important; }
-  .mg-model-stage__specs span { font-size: 6px !important; }
-
   .mg-model-stage-colour__chip {
     width: 24px !important;
     height: 24px !important;
@@ -8021,26 +8113,15 @@ const resetStage = async () => {
   }
 
   .mg-model-stage-colour.is-active .mg-model-stage-colour__chip {
-    width: 34px !important;
-    height: 34px !important;
-    min-width: 34px !important;
-    min-height: 34px !important;
-    max-width: 34px !important;
-    max-height: 34px !important;
-    flex: 0 0 34px !important;
+    width: 33px !important;
+    height: 33px !important;
+    min-width: 33px !important;
+    min-height: 33px !important;
+    max-width: 33px !important;
+    max-height: 33px !important;
+    flex: 0 0 33px !important;
   }
-
-  .mg-model-stage-colour:nth-child(1) { transform: translateX(30px) !important; }
-  .mg-model-stage-colour:nth-child(2) { transform: translateX(15px) !important; }
-  .mg-model-stage-colour:nth-child(3) { transform: translateX(4px) !important; }
-  .mg-model-stage-colour:nth-child(4) { transform: translateX(0) !important; }
-  .mg-model-stage-colour:nth-child(5) { transform: translateX(13px) !important; }
-  .mg-model-stage-colour:nth-child(6) { transform: translateX(28px) !important; }
-
-  .mg-model-stage__specs > div:nth-child(1) { transform: translateX(-28px) !important; }
-  .mg-model-stage__specs > div:nth-child(2) { transform: translateX(-8px) !important; }
-  .mg-model-stage__specs > div:nth-child(3) { transform: translateX(0) !important; }
-  .mg-model-stage__specs > div:nth-child(4) { transform: translateX(-25px) !important; }
 }
 
 </style>
+  
