@@ -28,7 +28,7 @@ const slides = [
   {
     id: 1,
     image:
-      "https://bmkltsly13vb.compat.objectstorage.ap-mumbai-1.oraclecloud.com/cdn.ft.lk/assets/uploads/image_d6936ff88c.jpg",
+      "public/images/mg-owners/a679dfcb-fba4-4727-ad28-da21c99dea85.png",
     alt:
       "MG customer vehicle handover in Sri Lanka with a ceremonial MG key",
     quote:
@@ -44,7 +44,7 @@ const slides = [
   {
     id: 2,
     image:
-      "https://www.wewanted.com.tw/upload/saleshare/20250704_f303f.jpg",
+      "public/images/mg-owners/9b23f1af-7267-4a13-ac95-5cc94f4825ff.png",
     alt:
       "Family collecting a new MG vehicle at a showroom",
     quote:
@@ -60,7 +60,7 @@ const slides = [
   {
     id: 3,
     image:
-      "https://www.carblogindia.com/wp-content/uploads/2020/07/109764292_4489616057722774_4398695214800872576_n.jpg",
+      "public/images/mg-owners/744ed884-dbde-4328-9af0-a554bf5f4799.png",
     alt:
       "Customers receiving a new MG vehicle at a dealership",
     quote:
@@ -76,7 +76,7 @@ const slides = [
   {
     id: 4,
     image:
-      "https://cdn.cartoq.com/photos/mg_car_dealers_happiest_in_india_fada_survey_featured_fe754f0e31.jpg",
+      "public/images/mg-owners/c8e29417-5e27-4a79-9ce5-e6fbd21dddef.png",
     alt:
       "MG owners celebrating the delivery of their new vehicle",
     quote:
